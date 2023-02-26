@@ -7,8 +7,9 @@ categories: javascript
 # Debug Node.js using Visual Studio Code
 <br>
 
+
 <center>
-  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/1.png" alt="첫번째 사진">
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/1.png?raw=true" alt="첫번째 사진">
 </center>
 <br>
 
@@ -19,7 +20,7 @@ Add Configuration을 눌러 오른쪽 아래에 있는 Add Configuration... 버�
 <br>
 
 <center>
-  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/2.png" alt="두번째 사진">
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/2.png?raw=true" alt="두번째 사진">
 </center>
 <br>
 
@@ -71,7 +72,7 @@ vscode는 문자열 내부의 변수 대체를 지원 launch.json하며 다음�
 <br>
 
 <center>
-  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/3.png" alt="세번째 사진">
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/3.png?raw=true" alt="세번째 사진">
 </center>
 <br>
 
@@ -82,7 +83,7 @@ vscode는 문자열 내부의 변수 대체를 지원 launch.json하며 다음�
 <br>
 
 <center>
-  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/4.png" alt="네번째 사진">
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/4.png?raw=true" alt="네번째 사진">
 </center>
 <br>
 
@@ -93,7 +94,7 @@ node.js로 실행해도 되지만 편리함을 위해서 nodemon.js로 js파일�
 <br>
 
 <center>
-  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/5.png" alt="다섯번째 사진">
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/5.png?raw=true" alt="다섯번째 사진">
 </center>
 <br>
 
@@ -105,7 +106,7 @@ node.js로 실행해도 되지만 편리함을 위해서 nodemon.js로 js파일�
 <br>
 
 <center>
-  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/6.png" alt="여섯번째 사진">
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/6.png?raw=true" alt="여섯번째 사진">
 </center>
 <br>
 
