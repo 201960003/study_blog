@@ -67,10 +67,6 @@ JavaScript는 이항 연산자와 단항 연산자를 모두 포함하며, 유�
 아래의 표에서 볼 수 있듯이 연산과 할당을 동시에 수행하는 복합 할당 연산자도 존재합니다.
 
 
-  <!-- |         이름         |  단축 연산자  |   뜻   |
-  |:---|:---|:---|
-  ||||
-  |||| -->
 <table style="margin : auto; OR  ( margin-rigth : auto; margin-left : auto;"  >
   <thead>
     <tr>
@@ -81,32 +77,32 @@ JavaScript는 이항 연산자와 단항 연산자를 모두 포함하며, 유�
   </thead>
   <tbody>
     <tr>
-      <td>할당</a></td>
+      <td>할당</td>
       <td><code>x = y</code></td>
       <td><code>x = y</code></td>
     </tr>
     <tr>
-      <td>더하기 할당</a></td>
+      <td>더하기 할당</td>
       <td><code>x += y</code></td>
       <td><code>x = x + y</code></td>
     </tr>
     <tr>
-      <td>빼기 할당</a></td>
+      <td>빼기 할당</td>
       <td><code>x -= y</code></td>
       <td><code>x = x - y</code></td>
     </tr>
     <tr>
-      <td>곱하기 할당</a></td>
+      <td>곱하기 할당</td>
       <td><code>x *= y</code></td>
       <td><code>x = x * y</code></td>
     </tr>
     <tr>
-      <td>나누기 할당</a></td>
+      <td>나누기 할당</td>
       <td><code>x /= y</code></td>
       <td><code>x = x / y</code></td>
     </tr>
     <tr>
-      <td>나머지 할당</a></td>
+      <td>나머지 할당</td>
       <td><code>x %= y</code></td>
       <td><code>x = x % y</code></td>
     </tr>
@@ -164,4 +160,259 @@ JavaScript는 이항 연산자와 단항 연산자를 모두 포함하며, 유�
 </table>
 
 
-#### 할당 연산자
+##### 속성 할당
+어떤 표현식이 객체로 평가된다면, 할당 표현식의 좌황은 객체로 평가되는 표현식의 속성에 할당할 수 있습니다.
+
+example 1
+```javascript
+let obj = {};
+
+obj.x = 3;
+console.log(obj.x); // 3 출력
+console.log(obj); // {x: 3} 출력
+
+const key = 'y';
+obj[key] = 5;
+console.log(obj[key]); // 5 출력
+console.log(obj); // {x: 3,y: 5} 출력
+```
+어떤 표현식이 객체로 평가되지 않으면, 그 표현식의 속성에 대한 할당 표현식은 실제로는 할당하지 않습니다.
+
+example 2
+```javascript
+let val = 0;
+
+console.log(val.x = 3); // 3 출력
+console.log(val.x); // undefined 출력
+console.log(val); // 0 출력
+
+//---------------------------------//
+// 블로그 주인이 변경한 코드
+let val = {}; //let val = 0; 을 왼쪽 코드처럼 변경을 하면 적용이 됩니다.
+
+console.log(val.x = 3); // 3 출력
+console.log(val.x); // 3 출력
+console.log(val); // {x : 3} 출력
+```
+수정 불가능한 속성이나, 속성이 업는 표현식(```null``` or ```undefined```)으로 할당을 시도하면 오류가 발생합니다.
+
+블로그 주인의 생각은..?
+object로 변수선 하면 즉 변경한 코드처럼 작성을 하면 생각했던 값을 출력할 수 있습니다.
+그래서 0으로 변수 선언을 하면 저장할 수 있는 공간이 없어지게 된다고 생각합니다.. ㅎㅎ
+
+##### 구조 분해
+구조 분해 할당 구문은 javascript 표현식 중 하나로, 객체나 배열을 생성할 때와 비슷한 구문으로 사용해서 어떤 객체나 배열에서 데이터를 추출할 수 있습니다.
+
+```javascript
+var foo = ['one', 'two', 'three'];
+
+// 구조 분해 없음
+var one = foo[0];
+var two = foo[1];
+var three = foo[2];
+
+// 구조 분해 사용
+var [one, two, three] = foo;
+```
+구조 분해 없음에서 각 index를 변수 선언 할 때 사용하였는데
+구조 분해 사용에서
+```javascript
+var [one, two, three] = foo;
+```
+이 코드에서 맨 위에 선언했던 
+```javascript
+var foo = ['one', 'two', 'three'];
+```
+로 foo로 선언을 했으니 결론적으로
+```javascript
+[one, two, three] = ['one', 'two', 'three'];
+
+// one = 'one'
+// two = 'two'
+// three = 'three'
+```
+이렇게 됩니다. 그래서 각 index에 위치한 값이 할당이 되는 것입니다.
+
+##### 변환 값과 체이닝
+일반적으로, 할당 표현식은 변수 선언(```const```, ```let```, ```var```)과 함께 쓰이거나 독립적인 명령문으로 사용됩니다.
+
+```javascript
+// 변수 x를 선언해서 f()의 결과로 초기화
+// x = f() 할당 표현식의 결과는 버려짐
+let x = f();
+
+// 변수 x를 선언해서 g()의 결과로 초기화
+// x = g() 할당 표현식의 결과는 버려짐
+x = g(); //변수 x를 g()의 결과로 재할당
+```
+
+그런데, 다른 표현식들처럼 ```x = f()```와 할당 표현식도 결과 값으로 평가됩니다. 보통 이 값을 사용하진 않지만, 그래도 다른 평가식의 값으로 사용할 수 있다는 점이 바뀌지 않습니다.  
+
+
+할당체이닝이나, 다른 표현식에 중첩된 할당은 예상하기 힘든 동작을 보일 수 있습니다. 그래서 어떤 Javascript 스타일 가이드에서는 할당을 체이닝하거나 중첩하는 걸 지양하라 말합니다. (아래의 예처럼)
+
+```javascript
+// bad
+(function example() {
+  // JavaScript interprets this as
+  // let a = ( b = ( c = 1 ) );
+  // The let keyword only applies to variable a; variables b and c become
+  // global variables.
+  let a = b = c = 1;
+}());
+
+console.log(a); // throws ReferenceError
+console.log(b); // 1
+console.log(c); // 1
+
+// good
+(function example() {
+  let a = 1;
+  let b = a;
+  let c = a;
+}());
+
+console.log(a); // throws ReferenceError
+console.log(b); // throws ReferenceError
+console.log(c); // throws ReferenceError
+```
+
+할당 체이닝과 중첩을 가끔 마주치게 되므로 어떻게 동작을 하는지는 알아두는 것이 좋습니다.
+
+할당 표현식을 체이닝하거나 중첩함으로써 할당의 결과를 다시 다른 변수에 할당할 수 맀습니다. 아니면 콘솔에 기록할 수 있고, 배열 리터럴이나 함수 호출에 사용할 수도 있습니다.
+
+```javascript
+let x;
+const y = (x = f()); //또는 const y = x = f(); 와 같음
+console.log(y); // x = f() 할당의 반환 값을 기록
+
+console.log((x = f())); // 반환 값을 직접 기록
+```
+
+```javascript
+let x;
+const y = (x = function f() { }); // 또는 const y = x = f(); 와 같음.
+console.log(y); // x = f() 할당의 반환 값을 기록. // 출력 [Function: f]
+
+console.log((x = function f() { })); // 반환 값을 직접 기록. // 출력 [Function: f]
+
+// 할당 표현식은 보통 표현식을 기대하는 곳이라면
+// 어디에나 중첩해 사용할 수 있으며
+// 배열 리터럴의 요소나 함수의 매개변수도 그런 곳 중 일부임.
+console.log([0, (x = function f() { }), 0]); 
+
+// 출력 [ 0, [Function: f], 0 ]
+```
+
+여기는 블로그 주인이 이해가 안되어서.. 조금 더 공부하고 부가적으로 재업로드 하겠습니다.
+
+
+
+#### 비교 연산자
+비교 연산자는 피연산자를 서로 비교하고, 비교 결과가 true인지에 따라 논리 값을 반환합니다. 피연산자로는 숫자, 문자열, 논리형 객체 값을 사용할 수 있습니다. 문자열은 Unicode 값을 사용한 표준 사전식 순서에 따라 비교합니다.
+만역 두 피연산자다 서로 다른 타입이면, Javascript는 피연산자들을 서로 비교하기에 적합한 타입으로 변환합니다. 이 동작은 대게 두 값을 모두 숫자오 변환한 후 결과를 낳습니다.
+비교 연산에서 발생하는 타입의 유일한 예외는 ```===```과 ```!==``` 연산자를 사용해 엄격 일치와 불일치 비교룰 수행하은 경우인데, 두 연산자는 비교 전에 피연산자를 변환하지 않습니다. 아래의 표는 다음 예제 코드처럼 비교 연산자를 설명합니다
+```javascript
+// 먼저 아래처럼 변수 선언을 합니다.
+const var1 = 3;
+const var2 = 4;
+```
+##### 비교 연산자 표
+<figure class="table-container"><table class="standard-table">
+  <caption>비교 연산자</caption>
+  <thead>
+    <tr>
+      <th scope="col">연산자</th>
+      <th scope="col">설명</th>
+      <th scope="col"><code>true</code>를 반환하는 예제</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <a href="/ko/docs/Web/JavaScript/Reference/Operators/Equality">동등</a>
+        (<code>==</code>)
+      </td>
+      <td>피연산자가 서로 같으면 <code>true</code>를 반환합니다.</td>
+      <td><code>3 == var1</code>
+        <p><code>"3" == var1</code></p><code>3 == '3'</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="/ko/docs/Web/JavaScript/Reference/Operators/Inequality">부등</a>
+        (<code>!=</code>)
+      </td>
+      <td>피연산자가 서로 다르면 <code>true</code>를 반환합니다.</td>
+      <td><code>var1 != 4<br>var2 != "3"</code></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality" class="only-in-en-us" title="Currently only available in English (US)">일치 <small>(en-US)<small></small></small></a>
+        (<code>===</code>)
+      </td>
+      <td>
+        두 피연산자의 값과 타입이 모두 같은 경우 <code>true</code>를 반환합니다.
+        <a href="/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/is"><code>Object.is</code></a>와
+        <a href="/ko/docs/Web/JavaScript/Equality_comparisons_and_sameness">JavaScript에서의 같음</a>을 참고하세요.
+      </td>
+      <td><code>3 === var1</code></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="/en-US/docs/Web/JavaScript/Reference/Operators/Strict_inequality" class="only-in-en-us" title="Currently only available in English (US)">불일치 <small>(en-US)<small></small></small></a>
+        (<code>!==</code>)
+      </td>
+      <td>피연산자의 값 또는 타입이 서로 다를 경우 <code>true</code>를 반환합니다.</td>
+      <td><code>var1 !== "3"<br>3 !== '3'</code></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="/en-US/docs/Web/JavaScript/Reference/Operators/Greater_than" class="only-in-en-us" title="Currently only available in English (US)">큼 <small>(en-US)<small></small></small></a>
+        (<code>&gt;</code>)
+      </td>
+      <td>왼쪽 피연산자가 오른쪽 피연산자보다 크면 <code>true</code>를 반환합니다.</td>
+      <td><code>var2 &gt; var1<br>"12" &gt; 2</code></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="/en-US/docs/Web/JavaScript/Reference/Operators/Greater_than_or_equal" class="only-in-en-us" title="Currently only available in English (US)">크거나 같음 <small>(en-US)<small></small></small></a>
+        (<code>&gt;=</code>)
+      </td>
+      <td>
+        왼쪽 피연산자가 오른쪽 피연산자와 같거나 크면 <code>true</code>를
+        반환합니다.
+      </td>
+      <td><code>var2 &gt;= var1<br>var1 &gt;= 3</code></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="/en-US/docs/Web/JavaScript/Reference/Operators/Less_than" class="only-in-en-us" title="Currently only available in English (US)">작음 <small>(en-US)<small></small></small></a>
+        (<code>&lt;</code>)
+      </td>
+      <td>
+        왼쪽 피연산자가 오른쪽 피연산자보다 작으면 <code>true</code>를
+        반환합니다.
+      </td>
+      <td><code>var1 &lt; var2<br>"2" &lt; 12</code></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="/en-US/docs/Web/JavaScript/Reference/Operators/Less_than_or_equal" class="only-in-en-us" title="Currently only available in English (US)">작거나 같음 <small>(en-US)<small></small></small></a>
+        (<code>&lt;=</code>)
+      </td>
+      <td>
+        왼쪽 피연산자가 오른쪽 피연산자와 같거나 작으면 <code>true</code>를
+        반환합니다.
+      </td>
+      <td>
+        <p><code>var1 &lt;= var2<br>var2 &lt;= 5</code></p>
+      </td>
+    </tr>
+  </tbody>
+</table></figure>
+
+> __참고__ ```=>```는 연산자가 아니라 화살표 함수의 표기법입니다.
+
+
+<script>
