@@ -160,7 +160,7 @@ JavaScript는 이항 연산자와 단항 연산자를 모두 포함하며, 유�
 </table>
 
 
-##### 속성 할당
+__속성 할당__
 어떤 표현식이 객체로 평가된다면, 할당 표현식의 좌황은 객체로 평가되는 표현식의 속성에 할당할 수 있습니다.
 
 example 1
@@ -233,7 +233,7 @@ var foo = ['one', 'two', 'three'];
 ```
 이렇게 됩니다. 그래서 각 index에 위치한 값이 할당이 되는 것입니다.
 
-##### 변환 값과 체이닝
+__변환 값과 체이닝__
 일반적으로, 할당 표현식은 변수 선언(```const```, ```let```, ```var```)과 함께 쓰이거나 독립적인 명령문으로 사용됩니다.
 
 ```javascript
@@ -317,7 +317,8 @@ console.log([0, (x = function f() { }), 0]);
 const var1 = 3;
 const var2 = 4;
 ```
-##### 비교 연산자 표
+
+__비교 연산자 표__
 <figure class="table-container"><table class="standard-table">
   <caption>비교 연산자</caption>
   <thead>
@@ -330,7 +331,7 @@ const var2 = 4;
   <tbody>
     <tr>
       <td>
-        <a href="/ko/docs/Web/JavaScript/Reference/Operators/Equality">동등</a>
+        동등
         (<code>==</code>)
       </td>
       <td>피연산자가 서로 같으면 <code>true</code>를 반환합니다.</td>
@@ -340,7 +341,7 @@ const var2 = 4;
     </tr>
     <tr>
       <td>
-        <a href="/ko/docs/Web/JavaScript/Reference/Operators/Inequality">부등</a>
+        부등</a>
         (<code>!=</code>)
       </td>
       <td>피연산자가 서로 다르면 <code>true</code>를 반환합니다.</td>
@@ -348,19 +349,18 @@ const var2 = 4;
     </tr>
     <tr>
       <td>
-        <a href="/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality" class="only-in-en-us" title="Currently only available in English (US)">일치 <small>(en-US)<small></small></small></a>
+        일치 <small>(en-US)<small></small></small>
         (<code>===</code>)
       </td>
       <td>
         두 피연산자의 값과 타입이 모두 같은 경우 <code>true</code>를 반환합니다.
-        <a href="/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/is"><code>Object.is</code></a>와
-        <a href="/ko/docs/Web/JavaScript/Equality_comparisons_and_sameness">JavaScript에서의 같음</a>을 참고하세요.
+       <code>Object.is</code>와 JavaScript에서의 같음을 참고하세요.
       </td>
       <td><code>3 === var1</code></td>
     </tr>
     <tr>
       <td>
-        <a href="/en-US/docs/Web/JavaScript/Reference/Operators/Strict_inequality" class="only-in-en-us" title="Currently only available in English (US)">불일치 <small>(en-US)<small></small></small></a>
+        불일치 <small>(en-US)<small></small></small>
         (<code>!==</code>)
       </td>
       <td>피연산자의 값 또는 타입이 서로 다를 경우 <code>true</code>를 반환합니다.</td>
@@ -368,7 +368,7 @@ const var2 = 4;
     </tr>
     <tr>
       <td>
-        <a href="/en-US/docs/Web/JavaScript/Reference/Operators/Greater_than" class="only-in-en-us" title="Currently only available in English (US)">큼 <small>(en-US)<small></small></small></a>
+        큼 <small>(en-US)<small></small></small>
         (<code>&gt;</code>)
       </td>
       <td>왼쪽 피연산자가 오른쪽 피연산자보다 크면 <code>true</code>를 반환합니다.</td>
@@ -376,7 +376,7 @@ const var2 = 4;
     </tr>
     <tr>
       <td>
-        <a href="/en-US/docs/Web/JavaScript/Reference/Operators/Greater_than_or_equal" class="only-in-en-us" title="Currently only available in English (US)">크거나 같음 <small>(en-US)<small></small></small></a>
+        크거나 같음 <small>(en-US)<small></small></small>
         (<code>&gt;=</code>)
       </td>
       <td>
@@ -387,7 +387,7 @@ const var2 = 4;
     </tr>
     <tr>
       <td>
-        <a href="/en-US/docs/Web/JavaScript/Reference/Operators/Less_than" class="only-in-en-us" title="Currently only available in English (US)">작음 <small>(en-US)<small></small></small></a>
+        작음 <small>(en-US)<small></small></small>
         (<code>&lt;</code>)
       </td>
       <td>
@@ -398,7 +398,7 @@ const var2 = 4;
     </tr>
     <tr>
       <td>
-        <a href="/en-US/docs/Web/JavaScript/Reference/Operators/Less_than_or_equal" class="only-in-en-us" title="Currently only available in English (US)">작거나 같음 <small>(en-US)<small></small></small></a>
+        작거나 같음 <small>(en-US)<small></small></small>
         (<code>&lt;=</code>)
       </td>
       <td>
