@@ -433,7 +433,7 @@ const var2 = 4;
 Javascript는 표준 산술 연산자(<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>)외에도 아래의 표에서 나열된 산술 연산자를 제공합니다.
 
 
-<table>
+<table class="standard-table">
   <caption>산술 연산자</caption>
   <thead>
     <tr>
@@ -576,7 +576,7 @@ a.age = 10; // 가능
 #### 논리 연산자
 논리 연산자는 보통 불리언(논리)값과 함께 사용해서 불리언 값을 변환합니다. 그러나 <code>&&</code>와 <code>||</code> 연산자는 사실 두 피연산자 중 하나를 반환 한 것으로, 만약 줄 중 하나가 불리언 값이 아니라면 논리 연산자의 반환 값도 불리언 값이 아닐 수 있습니다.
 
-<table>
+<table class="standard-table">
   <caption>논리 연산자</caption>
   <tbody>
     <tr>
@@ -660,7 +660,7 @@ var o5 = 'Cat' || 'Dog';    // t || t는 Cat 반환
 var o6 = false || 'Cat';    // f || t는 Cat 반환
 var o7 = 'Cat' || false;    // t || f는 Cat 반환
 ```
-<br>
+<be>
 다음 코드는 <code>!</code> (논리 NOT) 연산자의 예제입니다.
 
 ```javascript
@@ -687,6 +687,7 @@ Nullish coalescing operator(널 병합 연산자 - ??)
 문자열에 사용할 수 있는 비교 연산자들 외에도, 문자열 연결(<code>+</code>)연산자는 두 문자열의 값을 서로 연결한 새로운 문자열을 반환합니다.
 
 example1,
+
 ```javascript
 console.log('나만의 ' + '문자열'); // 콘솔에 "나만의 문자열"을 기록
 ```
@@ -702,12 +703,14 @@ mystring += '글';
 #### 조건 (삼항) 연산자
 조견 연산자는 Javascript에서 3개의 피연산자를 받는 유일한 연산자입니다.
 조건 연산자는 주어진 조건에 따라 두 값 중 하나를 반환합니다.
+
 ```javascript
 condition ? val1 : val2;
 ```
 만약 <code>condition</code>이 참이라면, 조건 연산자는 <code>vall</code>을 반환하고, 그외에는 <code>val2</code>를 반환합니다. 다른 연산자를 사용할 수 있는 곳이라면 조건 연산자도 사용할 수 있습니다.
 
 examlpe,
+
 ```javascript
 var status = age >= 18 ? '성인' : '미성년자';
 ```
@@ -720,6 +723,7 @@ var status = age >= 18 ? '성인' : '미성년자';
 꼭 필요하지 않다면, 그 외의 상황에 사용하는 것은 좋지 않은 코드 스타일로 여겨져, 쉼표 연산자보다는 두개의 분리된 명령문을 사용하는 편이 낫다고 합니다.
 
 example,
+
 ```javascript
 var x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 var a = [x, x, x, x, x];
@@ -737,6 +741,7 @@ console.log('a[' + i + '][' + j + ']= ' + a[i][j]);
 __1. delete__
 <code>delete</code>연산자는 객체의 속성을 삭제합니다.
 구문은 다음과 같습니다.
+
 ```javascript
 delete object.property;
 delete object[propertyKey];
@@ -771,6 +776,7 @@ typeof (operand)
 <code>operand</code>는 문자열, 변수, 키워드, 객체 등 타입을 알아낼 값입니다. 주위의 괄호는 선택사항입니다.
 
 example,
+
 ```javascript
 var myFun = new Function('5 + 2');
 var shape = 'round';
