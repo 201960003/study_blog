@@ -619,12 +619,12 @@ a.age = 10; // 가능
   </tbody>
 </table>
 
-<code>false</code> 로 변환할 수 있는 표현식은 평가 결과가 ```null```. ```0```, ```NaN```, 빈 문자열(```""```),```undefined```인 경우입니다.
+<code>false</code> 로 변환할 수 있는 표현식은 평가 결과가 <code>null</code>. <code>0</code>, <code>NaN</code>, 빈 문자열(<code>""</code>),<code>undefined</code>인 경우입니다.
 
 
-
+<br>
 다음 코드는 <code>&&</code> (논리 AND) 연산자의 예제입니다.
-
+<br>
 ```javascript
 var a1 = true && true;      // t && t는 true 반환
 var a2 = true && false;     // t && f는 false 반환
