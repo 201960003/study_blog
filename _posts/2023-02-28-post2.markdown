@@ -572,6 +572,7 @@ a.age = 10; // 가능
     </tr>
   </tbody>
 </table>
+<br>
 
 #### 논리 연산자
 논리 연산자는 보통 불리언(논리)값과 함께 사용해서 불리언 값을 변환합니다. 그러나 <code>&&</code>와 <code>||</code> 연산자는 사실 두 피연산자 중 하나를 반환 한 것으로, 만약 줄 중 하나가 불리언 값이 아니라면 논리 연산자의 반환 값도 불리언 값이 아닐 수 있습니다.
@@ -625,6 +626,7 @@ a.age = 10; // 가능
 <br>
 다음 코드는 <code>&&</code> (논리 AND) 연산자의 예제입니다.
 <br>
+
 ```javascript
 var a1 = true && true;      // t && t는 true 반환
 var a2 = true && false;     // t && f는 false 반환
@@ -691,6 +693,7 @@ example1,
 ```javascript
 console.log('나만의 ' + '문자열'); // 콘솔에 "나만의 문자열"을 기록
 ```
+
 단축 할당 연산자인 <code>+=</code> 또한 문자열을 연결할 때 사용할 수 있습니다.
 
 example2,
@@ -707,6 +710,7 @@ mystring += '글';
 ```javascript
 condition ? val1 : val2;
 ```
+
 만약 <code>condition</code>이 참이라면, 조건 연산자는 <code>vall</code>을 반환하고, 그외에는 <code>val2</code>를 반환합니다. 다른 연산자를 사용할 수 있는 곳이라면 조건 연산자도 사용할 수 있습니다.
 
 examlpe,
@@ -716,7 +720,7 @@ var status = age >= 18 ? '성인' : '미성년자';
 ```
 
 위의 명령문은 <code>age</code>가 18이상이라면 <code>status</code>변수에 "성인"을 할당하고, 그렇지 않으면 "미성년자"를 할당합니다.
-
+<br>
 #### 쉼표 연산자
 싐표 연산자(<code>,</code>)는 두 피연산자를 모두 평가한 후 오른쪽 피연산자의 값을 반환합니다.
 쉼표 연산자는 주로 <code>for</code>반복문 안에서 사용하여 한 번의 반복으로 여러 변수를 변경할 때 사용합니다.
@@ -757,6 +761,7 @@ delete Math.PI; // false 반환 (설정 불가한 속성 삭제 불가)
 const myObj = {h: 4};
 delete myobj.h; // true 반환 (사용자 정의 속성 삭제 가능)
 ```
+
 Math.PI 속성은 원의 둘레와 지름의 비율, 약 3.14159의 값을 가집니다.
 javascript에 있는 속성이므로 변환이 불가합니다.
 
@@ -772,6 +777,7 @@ __2. typeof__
 typeof operand
 typeof (operand)
 ```
+
 <code>typeof</code>연신자는 평가 전의 피연산자 타입을 나타내는 문자열을 반환합니다.
 <code>operand</code>는 문자열, 변수, 키워드, 객체 등 타입을 알아낼 값입니다. 주위의 괄호는 선택사항입니다.
 
@@ -784,6 +790,7 @@ var size = 1;
 var foo = ['Apple', 'Mango', 'Orange'];
 var today = new Date();
 ```
+
 <code>typeof</code>연신자는 위의 변수들에 대해서 다음과 같은 값을 반환합니다.
 
 ```javascript
@@ -794,6 +801,7 @@ typeof foo;       // "object" 반환
 typeof today;     // "object" 반환
 typeof dontExist; // "undefined" 반환
 ```
+
 키워드 <code>true</code>와 <code>null</code>에 대해서는 다음과 같은 결과를 반환합니다.
 
 ```javascript
