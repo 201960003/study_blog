@@ -572,9 +572,8 @@ a.age = 10; // 가능
     </tr>
   </tbody>
 </table>
-<br>
 
-#### 논리 연산자
+<h4>논리 연산자</h4>
 논리 연산자는 보통 불리언(논리)값과 함께 사용해서 불리언 값을 변환합니다. 그러나 <code>&&</code>와 <code>||</code> 연산자는 사실 두 피연산자 중 하나를 반환 한 것으로, 만약 줄 중 하나가 불리언 값이 아니라면 논리 연산자의 반환 값도 불리언 값이 아닐 수 있습니다.
 
 <table class="standard-table">
@@ -625,9 +624,8 @@ a.age = 10; // 가능
 
 <br>
 다음 코드는 <code>&&</code> (논리 AND) 연산자의 예제입니다.
-<br>
 
-```javascript
+~~~javascript
 var a1 = true && true;      // t && t는 true 반환
 var a2 = true && false;     // t && f는 false 반환
 var a3 = false && true;     // f && t는 false 반환
@@ -635,9 +633,9 @@ var a4 = false && (3 == 4); // f && f는 false 반환
 var a5 = 'Cat' && 'Dog';    // t && t는 Dog 반환
 var a6 = false && 'Cat';    // f && t는 false 반환
 var a7 = 'Cat' && false;    // t && f는 false 반환
-```
+~~~
 
-```javascript
+~~~javascript
 for (var i = 1; i < 8; i++) {
   var a1 = true && true;
   var a2 = true && false;
@@ -648,12 +646,13 @@ for (var i = 1; i < 8; i++) {
   var a7 = 'Cat' && false;
   console.log(`a${i} = `, eval(`a${i}`));
 } // 블로그 주인이 반목문을 이용하면 편하지 않을까 고민한 코드....
-```
+~~~
+
 빈 문자열이면 <code>false</code>, 빈 문자열이 아니면 <code>true</code>
 
 다음 코드는 <code>||</code>(논리 OR) 연산자의 예제입니다.
 
-```javascript
+~~~javascript
 var o1 = true || true;      // t || t는 true 반환
 var o2 = false || true;     // f || t는 true 반환
 var o3 = true || false;     // t || f는 true 반환
@@ -661,15 +660,16 @@ var o4 = false || (3 == 4); // f || f는 false 반환
 var o5 = 'Cat' || 'Dog';    // t || t는 Cat 반환
 var o6 = false || 'Cat';    // f || t는 Cat 반환
 var o7 = 'Cat' || false;    // t || f는 Cat 반환
-```
+~~~
+
 <be>
 다음 코드는 <code>!</code> (논리 NOT) 연산자의 예제입니다.
 
-```javascript
+~~~javascript
 var n1 = !true;  // !t는 false 반환
 var n2 = !false; // !f는 true 반환
 var n3 = !'Cat'; // !t는 false 반환
-```
+~~~
 
 __단락평가__
 논리 연산자는 왼쪽에서 오른쪽의 순서로 평가하므로, 다음 규칙을 사용해서 "단락(short-circuit) 평가가 가능한지 판별합니다.
@@ -690,37 +690,39 @@ Nullish coalescing operator(널 병합 연산자 - ??)
 
 example1,
 
-```javascript
+~~~javascript
 console.log('나만의 ' + '문자열'); // 콘솔에 "나만의 문자열"을 기록
-```
+~~~
 
 단축 할당 연산자인 <code>+=</code> 또한 문자열을 연결할 때 사용할 수 있습니다.
 
 example2,
-```javascript
+
+~~~javascript
 var mystring = '한';
 mystring += '글';
 // "한글"로 평가되며, mystring에 "한글"을 할당함
-```
+~~~
 
 #### 조건 (삼항) 연산자
 조견 연산자는 Javascript에서 3개의 피연산자를 받는 유일한 연산자입니다.
 조건 연산자는 주어진 조건에 따라 두 값 중 하나를 반환합니다.
 
-```javascript
+~~~javascript
 condition ? val1 : val2;
-```
+~~~
 
 만약 <code>condition</code>이 참이라면, 조건 연산자는 <code>vall</code>을 반환하고, 그외에는 <code>val2</code>를 반환합니다. 다른 연산자를 사용할 수 있는 곳이라면 조건 연산자도 사용할 수 있습니다.
 
 examlpe,
 
-```javascript
+~~~javascript
 var status = age >= 18 ? '성인' : '미성년자';
-```
+~~~
 
 위의 명령문은 <code>age</code>가 18이상이라면 <code>status</code>변수에 "성인"을 할당하고, 그렇지 않으면 "미성년자"를 할당합니다.
-<br>
+
+
 #### 쉼표 연산자
 싐표 연산자(<code>,</code>)는 두 피연산자를 모두 평가한 후 오른쪽 피연산자의 값을 반환합니다.
 쉼표 연산자는 주로 <code>for</code>반복문 안에서 사용하여 한 번의 반복으로 여러 변수를 변경할 때 사용합니다.
@@ -728,14 +730,14 @@ var status = age >= 18 ? '성인' : '미성년자';
 
 example,
 
-```javascript
+~~~javascript
 var x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 var a = [x, x, x, x, x];
 
 for (var i = 0, j = 9; i <= j; i++, j--);
                                       ^
 console.log('a[' + i + '][' + j + ']= ' + a[i][j]);
-```
+~~~
 
 쉼표 연산자의 예제로, 10행 10열의 2차원 배열 <code>a</code>를 가정할 때, 아래의 코드는 쉼표 연산자를 사용해서 두 개의 변수를 한번에 업데이트하는 모습을 보입니다. 코드의 실행 결과는 <code>a</code>의 요소를 대각선((0, 0), (1, 1), (2, 2), ...)으로 출력한 것입니다.
 
@@ -746,21 +748,22 @@ __1. delete__
 <code>delete</code>연산자는 객체의 속성을 삭제합니다.
 구문은 다음과 같습니다.
 
-```javascript
+~~~javascript
 delete object.property;
 delete object[propertyKey];
 delete objectName[index];
-```
+~~~
+
 위의 구문에서,<code>objectName</code>은 객체의 이름이고, <code>property</code>는 객체에 존재하는 속성, <code>propertykey</code>는 존재하는 속성을 가리키는 문자열이나 심볼입니다.
 
 <code>delete</code>연산자가 속성을 성공적으로 삭제한 이후, 해당 속성을 접근하려고 하면 <code>undefined</code>가 반환됩니다. <code>delete</code>는 속성을 제거할 수 있는 경우에는 <code>true</code>를 반환하고, 제거 할 수 없을 땐 <code>false</code>를 변환합니다.
 
-```javascript
+~~~javascript
 delete Math.PI; // false 반환 (설정 불가한 속성 삭제 불가)
 
 const myObj = {h: 4};
 delete myobj.h; // true 반환 (사용자 정의 속성 삭제 가능)
-```
+~~~
 
 Math.PI 속성은 원의 둘레와 지름의 비율, 약 3.14159의 값을 가집니다.
 javascript에 있는 속성이므로 변환이 불가합니다.
@@ -773,10 +776,10 @@ __배열의 원소 삭제하기__
 __2. typeof__
 <code>typeof</code>연산자는 다음과 같은 방법으로 사용합니다.
 
-```javascript
+~~~javascript
 typeof operand
 typeof (operand)
-```
+~~~
 
 <code>typeof</code>연신자는 평가 전의 피연산자 타입을 나타내는 문자열을 반환합니다.
 <code>operand</code>는 문자열, 변수, 키워드, 객체 등 타입을 알아낼 값입니다. 주위의 괄호는 선택사항입니다.
