@@ -2,6 +2,7 @@
 layout: post
 title:  1. 컴퓨터의 개념
 date:   2023-03-07 +0900
+permalink: /post/
 categories: Information Processing 
 ---
 
