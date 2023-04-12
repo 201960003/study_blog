@@ -1,0 +1,69 @@
+---
+layout: post
+title:  How to change Git branch
+date:   2023-04-12 +0900
+categories: git
+---
+
+
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post4/git.png?raw=true" alt="main 사진">
+</center>
+
+## git branch 바꾸는 방법!
+
+## 1.
+
+```
+git checkout main
+```
+
+코드에서 <code>checkout</code>은 git에서 branch 사이를 전환하는데 사용됩니다.<br>
+↓<br>
+로컬 저장소의 branch를 "main"으로 전환합니다.
+<br>
+<br>
+
+
+## 2.
+
+```
+git branch master
+```
+
+코드에서 <code>branch</code>은 새 branch를 생성하는 데 사용됩니다.<br>
+↓<br>
+로컬 저장소에 "master"라는 새로운 branch를 만듭니다
+<br>
+<br>
+
+
+## 3.
+
+```
+git checkout master
+```
+
+코드에서 <code>checkout</code>은 git에서 branch를 전환하는데 사용됩니다.<br>
+↓<br>
+로컬 저장소의 branch를 "master"로 전환합니다.
+<br>
+<br>
+
+
+## 4.
+
+```
+git push origin --delete main
+```
+
+코드에서 <code>push</code>는 로컬 저장소에서 원격 저장소로 변경 사항을 보내는 데 사용되며 <code>--delete</code> 옵션은 분기를 삭제하는 데 사용됩니다.<br>
+↓<br>
+이 경우 원본(기본 원격) 리포지토리의 원격 리포지토리에서 "main" branch를 삭제합니다.
+<br>
+<br>
+
+
+### 🧐 오늘의 소감은?
+블로그 주인이 git에 대해 아직 잘 몰라서 오늘 업무를 하다가 실수를 했었던 것을 정리해봤습니다.
+git이번 글을 시작으로 짧게 작성해서 까먹을 때마다 보기 편하게 하면 좋을 것 같다는 생각이 들어 조금씩 해보려고 합니다.😀

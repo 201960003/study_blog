@@ -1,0 +1,136 @@
+---
+layout: post
+title:  Debug Node.js Apps using Visual Studio Code
+date:   2023-02-26 +0900
+categories: javascript
+---
+
+<br>
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/1.png?raw=true" alt="첫번째 사진">
+</center>
+<br>
+
+>__1. command+shift+d 또는 왼쪽 Run and debug 탭을 선택__
+
+Add Configuration을 눌러 오른쪽 아래에 있는 Add Configuration... 버튼을 클릭합니다.
+<br>
+<br>
+
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/2.png?raw=true" alt="두번째 사진">
+</center>
+<br>
+
+
+> __2. Node.js: Attach to Process를 선택__
+
+Add Configuration...버튼을 클릭하면 위의 사진에 나오는 것처럼 여러 타입으로 추가가 가능합니다. 그중에 Node.js: Attach to Process를 선택해줍니다.
+
+```
+{
+    "name": "Attach by Process ID",
+    "processId": "${command:PickProcess}",
+    "request": "attach",
+    "skipFiles": [
+        "<node_internals>/**"
+    ],
+    "type": "node"
+},
+```
+선택하여 나온 정보는 위처럼 나옵니다. 꼭 ctrl+s로 저장 필수!!
+
+만들어진 launch.json파일의 실행구성에 필수 요소
+<ul>
+<li><code>program</code> : 디버거를 시작할 때 실행할 실행 파일 또는 파일</li>
+<li><code>args</code>: 디버깅 할 프로그램에 전달된 인수</li>
+<li><code>env</code>: 환경 변수</li>
+<li><code>cwd</code>: 의존성 및 기타 파일을 찾기위한 현재 작업 디렉토리</li>
+<li><code>port</code>: 실행중인 프로세스에 연결할 때의 포트</li>
+<li><code>stopOnEntry</code>: 프로그램이 시작되면 즉시 중단</li>
+<li><code>console</code>: 어떤 종류를 콘솔을 사용할지 지정. 예를 들어 internalConsole, integratedTerminal, externalTerminal.</li>
+</ul>
+
+vscode는 문자열 내부의 변수 대체를 지원 launch.json하며 다음과 같이 미리 정의 된 변수가 있습니다.
+
+<ul>
+<li><code>${workspaceFolder}</code> : vscode에서 연 폴더의 경로</li>
+<li><code>${workspaceFolderBasename}</code> : vscode에서 슬래시없이 열리는 폴더 이름 (/)</li>
+<li><code>${file}</code> : 현재 열려있는 파일</li>
+<li><code>${relativeFile}</code> : workspaceFolder 에서 현재 열린 파일</li>
+<li><code>${fileBasename}</code> : 현재 열려있는 파일의 기본 이름</li>
+<li><code>${fileBasenameNoExtension}</code> : 파일 확장명이 없는 현재 열린 파일의 기본 이름</li>
+<li><code>${fileDirname}</code> : 현재 열려있는 파일의 디렉토리 이름</li>
+<li><code>${fileExtname}</code> : 현재 열려있는 파일의 확장자</li>
+<li><code>${cwd}</code> : 시작시 태스크 러너의 현재 작업 디렉토리</li>
+<li><code>${lineNumber}</code> : 활성 파일에서 현재 선택된 행 번호</li>
+</ul>
+
+<br>
+<br>
+
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/3.png?raw=true" alt="세번째 사진">
+</center>
+<br>
+
+> __3. "Attach by Process ID"로 디버깅 시작.__
+
+원래 파일로 돌아가서 "Attach by Process ID"로 디버깅을 시작합니다.
+<br>
+<br>
+
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/4.png?raw=true" alt="네번째 사진">
+</center>
+<br>
+
+> __4. 터미널에 Node.js로 js파일을 실행__
+
+node.js로 실행해도 되지만 편리함을 위해서 nodemon.js로 js파일을 실행합니다.
+<br>
+<br>
+
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/5.png?raw=true" alt="다섯번째 사진">
+</center>
+<br>
+
+> __5. break point 표시__
+
+번호 옆에 break point를 표시하여 다시 실행시키면 break point를 표시한 시점에서 중단됩니다.
+이렇게 확인을 하여 중단을 하고 버그를 확인할 수 있습니다.
+<br>
+<br>
+
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post1/6.png?raw=true" alt="여섯번째 사진">
+</center>
+<br>
+
+> __6. 각 버튼들의 기능들__
+
+왼쪽부터 순서대로 기술하면
+
+__1. 계속/일시중지(Continue/Pause) - F5__
+계속: 일반 프로그램/스크립트 실행을 재개합니다(다음 중단점까지).
+일시중지: 현재 라인에서 실행 중인 코드를 검사하고 라인별로 디버그합니다.
+
+__2. 단위실행(Step Over) - F10__
+구성 요소 단계를 검사하거나 따르지 않고 다음 메서드를 단일 명령으로 실행합니다.
+
+__3. 단계정보(Step Into) - F11__
+다음 메서드를 입력하여 한 줄씩 실행합니다.
+
+__4. 단계출력(Step Out) - Shift+F11__
+메서드 또는 서브루틴 내부에 있을 때 단일 명령인 것처럼 현재 메서드의 나머지 줄을 완료하여 이전 실행 컨텍스트로 돌아갑니다.
+
+__5. 다시시작(Restart) - Ctrl+Shift+F5__
+현재 프로그램 실행을 종료하고 현재 실행 구성을 사용하여 다시 디버깅을 시작합니다.
+
+__6. 중지(Stop) - Shift+F5__
+현재 프로그램 실행을 종료합니다.
+<br>
+<br>
+
+출처: https://code.visualstudio.com/docs/editor/debugging
