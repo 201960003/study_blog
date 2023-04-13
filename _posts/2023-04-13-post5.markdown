@@ -1,0 +1,83 @@
+---
+layout: post
+title:  How to change Git branch
+date:   2023-04-13 +0900
+categories: git
+---
+
+<!-- 똑같은 카테고리여서 post 4 사진 그대로 가져왔음 !!-->
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post4/git.png?raw=true" alt="main 사진">
+</center>
+
+## git 사용자 이름 or 사용자 이메일 설정하는 방법!
+
+<br>
+블로그 주인이 git을 사용하면서 push를 했는데
+
+```
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+```
+이런 오류가 계속 떠서 왜 그런거지? 하면서 찾아봤는데 알고봤더니 사용자 초기 설정을 하면 저런 오류가 안 생긴다고 하더라고요.<br>
+그래서 사용자 설정하는 방법을 공부해볼까 합니다.
+<br>
+<br>
+<br>
+
+## 1️⃣ 방법 1 - 전체 저장소에서 설정
+
+```
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"ㅈ
+```
+사용자 이름과 사용하는 이메일 주소를 입력하면 됩니다.
+<br>
+예를 들어,
+<br>
+
+```
+git config --global user.name "papaya"
+git config --global user.email "papaya@gmail.com"ㅈ
+```
+여기서 github id로 해도 되고 알리고 싶은 특정한 이름으로 해도 됩니다.<br>
+이메일은 실제 있는 이메일을 적어야합니다.
+<br>
+<br>
+<br>
+
+
+## 2️⃣ 방법 2 - 특정 저장소에서 설정
+
+```
+git config user.name "Your Name"
+git config user.email "you@example.com"
+```
+
+특정 저장소에서만 사용자 설정을 다르게 하고 싶다면 <code>--global</code>을 제외하고 코드를 입력하면 됩니다.<br>
+여기도 똑같이 실제 이메일을 입력해야 합니다.
+<br>
+<br>
+<br>
+
+## 3️⃣ 확인하는 방법
+
+```
+git config --get user.name    
+git config --get user.email   
+```
+
+마지막으로 <code>--get</code>를 사용하여 제대로 설정되었는지 확인하는 방법입니다.
+<br>
+<br>
+<br>
+
+
+
+
+
+### 🧐 오늘의 소감은?
+오늘도 git을 다루면서 발견한 오류인데 어제보다는 비교적 다루기 쉬운 오류여서 다행인 것 같습니다..<br>
+일을 좀 더 빠르게 해야하는 데 요즘 집중을 잘 못하는 것 같아서 고민이에요ㅠ
+그래도 요즘에는 생각하는 시간이 길고 코드를 어떻게 작성해야지 될까?하는 고민고민이 많아서 고민이지만 조금이라도 생각한 코드를 작성할 수 있다는 것에 요즘 감사하고 있어요!
+매일 꾸준히 공부를 하다보면 좀 더 빠르게 공부가 되지 않을까 싶습니다. 화이팅 해야죠!
