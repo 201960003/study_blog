@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  How to change Git branch
+title:  How to change Git Username and Email Address
 date:   2023-04-13 +0900
 categories: git
 ---
