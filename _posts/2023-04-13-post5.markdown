@@ -5,7 +5,7 @@ date:   2023-04-13 +0900
 categories: git
 ---
 
-<!-- 똑같은 카테고리여서 post 4 사진 그대로 가져왔음 !!-->
+<!-- 똑같은 카테고리여서 post 4 사진 그대로 가져왔음-->
 <center>
   <img src="https://github.com/201960003/study_blog/blob/main/img/post4/git.png?raw=true" alt="main 사진">
 </center>
