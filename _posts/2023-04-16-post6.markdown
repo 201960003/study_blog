@@ -108,7 +108,7 @@ git branch -a
 <span style='color:grey;'>
 결과 ex)<br>
 * cafe<br>
-  main
+&ensp; main
 <span>
 <br>
 <br>
