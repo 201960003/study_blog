@@ -52,7 +52,8 @@ origin 원격 저장소로 하고 branch는 main로 하는 예를 들면,
 ```
 git remote add origin https://github.com/nickname/cafe.git
 ```
-<br>
+
+원격저장소 생성 후 "main" branch를 생성합니다.
 
 ```
 git branch main
