@@ -67,7 +67,8 @@ push를 할 때 <code>git push origin masin</code>으로 작성해주면 됩니�
 
 ## 3️⃣ 방법 3 - git branch 목록 조회하기
 
-1. local branch 목록 조회
+<ul>
+<li>local branch 목록 조회</li> <!-- 1 -->
 
 ``` 
 git branch
@@ -76,13 +77,14 @@ git branch
 현재 branch 목록을 출력합니다.<br>
 현재 작업 중인 branch는 앞에 별표(*)로 표시됩니다.
 
-결과 ex)
-```
+
+<span style='color=gray'>
+결과 ex)<br>
 * cafe
-```
+</span>
+<br>
 
-
-2. remote branch 목록 조회
+<li>remote branch 목록 조회</li> <!-- 2 -->
 
 ``` 
 git branch -r
@@ -90,13 +92,13 @@ git branch -r
 
 원격 저장소의 branch 목록을 출력합니다.
 
-결과 ex)
-```
+<span style='color=gray'>
+결과 ex)<br>
  main
-```
+</span>
 
 
-3. 모든 branch 목록 조회
+<li>모든 branch 목록 조회</li> <!-- 3 -->
 
 ``` 
 git branch -a
@@ -104,11 +106,12 @@ git branch -a
 
 로컬 저장소와 원격 저장소의 모든 브랜치 목록을 출력합니다.
 
-결과 ex)
-```
-* cafe
-  main
-```
+<span style='color=gray'>
+결과 ex)<br>
+* cafe<br>
+ㅤ main
+<span>
+</ul>
 <br>
 <br>
 <br>
