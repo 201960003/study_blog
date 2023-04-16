@@ -1,0 +1,125 @@
+---
+layout: post
+title:  [Git] How to create and check Git branches
+date:   2023-04-16 +0900
+categories: git
+---
+
+<!-- 똑같은 카테고리여서 post 4 사진 그대로 가져왔음-->
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post4/git.png?raw=true" alt="main 사진">
+</center>
+
+## git 브랜치 생성 및 확인하는 방법!
+
+<br>
+업무를 하면서 이것저것 바꿔가면서 하다 보니 현재 branch가 어떤 것인지 헷갈릴 때가 있었습니다.
+그래서 이번에는 branch를 생성하고 확인하는 방법을 공부해 볼까 합니다.
+
+
+브랜치(branch)를 통해 여러 개발자들이 동시에 작업을 할 수 있습니다. 
+<br>
+<br>
+<br>
+
+## 1️⃣ 방법 1 -  로컬 저장소에서 git branch 생성하기 
+
+```
+git branch <branch name>
+```
+새로운 branch를 생성하려면 위의 코드를 사용하면 됩니다.
+<br>
+예를 들어, 새로운 branch "cafe"를 생성하려면 다음과 같이 입력합니다.
+<br>
+
+```
+git branch cafe
+```
+<br>
+<br>
+<br>
+
+## 2️⃣ 방법 2 - 원격 저장소에서 git branch 생성하기
+
+```
+git remote add <원격 저장소 이름> <git 원격 저장소 url>
+```
+
+remote add로 원격 저장소를 지정해주면 됩니다.
+<br>
+origin 원격 저장소로 하고 branch는 main로 하는 예를 들면, 
+
+```
+git remote add origin https://github.com/nickname/cafe.git
+```
+<br>
+
+```
+git branch main
+```
+
+push를 할 때 <code>git push origin masin</code>으로 작성해주면 됩니다.
+<br>
+<br>
+<br>
+
+
+
+## 3️⃣ 방법 3 - git branch 목록 조회하기
+
+1. local branch 목록 조회
+
+``` 
+git branch
+```
+
+현재 branch 목록을 출력합니다.<br>
+현재 작업 중인 branch는 앞에 별표(*)로 표시됩니다.
+
+결과 ex)
+```
+* cafe
+```
+
+
+2. remote branch 목록 조회
+
+``` 
+git branch -r
+```
+
+원격 저장소의 branch 목록을 출력합니다.
+
+결과 ex)
+```
+ main
+```
+
+
+3. 모든 branch 목록 조회
+
+``` 
+git branch -a
+```
+
+로컬 저장소와 원격 저장소의 모든 브랜치 목록을 출력합니다.
+
+결과 ex)
+```
+* cafe
+  main
+```
+<br>
+<br>
+<br>
+
+
+
+
+
+### 🧐 오늘의 소감은?
+업무를 하면서 giteh node도 완전 말썽이어서 맨날 블로그 조금씩 올리려고 했는데 금,토,일 후다닥 처리하고 이제서야 블로그를 조금이나마 쓰네여 ㅠㅠ<br>
+진짜 백업한게 없어져서 토요일에 너무 광광 울었던 건 안 비밀.. ㅎㅎ 진짜 백업파일 없어져서 와 어떳하지 하고 저녁에서야 발견했는데 사실... 코드가 조금 지저분했던 건 사실이거든요 그래서 처음부터 깔끔하게 짜보자 하는 마음으로 어떻게 했더라 생각하면서 코드 작서했더니 그래도 일요일 오후에는 완료를 할 수 있어서 얼마나 다행인지 몰라요<br>
+너무 횡설수설 아무말 대단치로 적었긴했는데 정말 너무 다행이다라는 것을 표현하고 싶었어요!<br>
+너무 무리하지 않으면서 조금씩 작성해보야겠어요 다음에는 node도 한번 작성해볼까합니다. (고민고민??)
+

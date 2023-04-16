@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  javascript operator
+title:  [JavaScript] javascript operator
 date:   2023-02-28 +0900
 categories: javascript
 ---
