@@ -99,7 +99,7 @@ git branch -a
 
 로컬 저장소와 원격 저장소의 모든 브랜치 목록을 출력합니다.
 
-<span style='color:grey;'>결과 ex)<br>* cafe<br>&nbsp;main</span>
+<span style='color:grey;'>결과 ex)<br>* cafe<br>&ensp;main</span>
 <br>
 <br>
 <br>
