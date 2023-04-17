@@ -1,0 +1,109 @@
+---
+layout: post
+title:  ⌜Git⌟ How to create and check Git branches
+date:   2023-04-17 +0900
+categories: git
+---
+
+<!-- 똑같은 카테고리여서 post 4 사진 그대로 가져왔음-->
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post7/nodejs.png?raw=true" alt="main 사진">
+</center>
+
+## node 버전 설정하는 방법!
+
+```
+(function (exports, require, module, __filename, __dirname) ( import axios from './lib/axios.js';
+
+SyntaxError: Unexpected token import
+at createScript (vm.js:80:10)
+at Object.runlnThisContext (vm.js:139:10)
+at Module._compile (module.js:617:28)
+at Object.Module._extensions.js (module.js:664:10)
+at Module.load (module.js:566:32)
+at tryModuleLoad (module.js:506:12)
+at Function.Module. load (module.js:498:3)
+at Module.require (module.js:597:17)
+at require (internal/module.js:11:18)
+at Object.
+```
+
+이렇게 프로젝트를 하다가 노드 버전때문에 모듈 버전이 맞지 않아 위와 같은 오류가 생겼습니다. 노드 버전을 바꾸는 일이 생겨 이번에는 노드 버전을 변경하는 방법에 대해서 공부하려고 합니다.
+<br>
+<br>
+
+
+## 1️⃣ Node.js의 버전 관리 도구 "n" 설치
+
+```
+npm install -g n
+```
+"n"은 Node.js의 버전 관리를 도와주는 도구로, npm(Node.js 패키지 매니저)을 사용하여 "n"을 전역으로 설치합니다.
+<br>
+<br>
+<br>
+
+## 2️⃣ 특정 or 최신 버전으로 설치하기
+
+#### 1. 최근 버전으로 설치
+```
+n latest
+```
+
+위의 명령으로 최신 버전의 node 설치할 수 있습니다.
+
+```
+sudo n latest
+```
+
+또한 "sudo"로 최신 버전을 설치할 수 있습니다.
+<br>
+<br>
+
+#### 2. 특정 버전으로 설치
+```
+n <버전>
+```
+
+위의 명령으로 특정 버전의 node 설치할 수 있습니다.
+
+```
+sudo n install <버전>
+```
+
+또한 "sudo"로 특정 버전을 설치할 수 있습니다.
+
+node 버전을 16으로 예를 들어,
+<code>n 16</code> 또는 <code>sudo n install 16</code> 처럼 버전 16을 설치할 수 있습니다.
+<br>
+<br>
+<br>
+
+
+## 3️⃣ node 버전 확인하기
+
+Node.js가 설치되면, <code>node</code> 명령어를 사용하여 설치된 버전의 Node.js가 제대로 동작하는지 확인할 수 있습니다.<br>
+```
+node -v
+```
+<code>node -v</code> 명령어를 사용하여 현재 설치된 Node.js의 버전을 확인할 수 있습니다.
+```
+node --verson
+```
+또한 위와 같이도 node 버전을 확인할 수 있습니다.<br>
+
+
+만약 해당 명령어가 동작하지 않는다면, Node.js가 제대로 설치되어 있지 않을 수 있으므로, Node.js를 먼저 설치한 후에 위의 명령어를 실행해야 합니다. 
+
+<br>
+<br>
+<br>
+
+
+
+
+
+### 🧐 오늘의 소감은?
+맡은 업무를 거의다 마무리 다 되어가서 정말 다행이라는 생각이 들어요! 그래서 다른 프로젝트도 받았는데 그거는 앱 개발이라 아직 서툴지만 열심히 더더 열심히 해보려고 합니다.<br>
+정말 꾸준히 열심히 해서 좀 더 능숙하게 하는 날이 왔으면 좋겠네요 🙂
+
