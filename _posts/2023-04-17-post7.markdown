@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  ⌜Git⌟ How to create and check Git branches
+title:  ⌜Node.js⌟ How to change node verson
 date:   2023-04-17 +0900
-categories: git
+categories: node
 ---
 
 <!-- 똑같은 카테고리여서 post 4 사진 그대로 가져왔음-->
