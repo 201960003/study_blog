@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  ⌜Flutter⌟ How to fix the 'The sandbox is not in sync with the Podfile.lock' error in Flutter
+title:  ⌜Flutter⌟ How to fix the 'The sandbox is not in sync with the Podfile.lock' error
 date:   2023-04-22 +0900
 categories: flutter
 ---
@@ -54,7 +54,7 @@ flutter pub get
 
 __1. pod을 설치하기 전, 터미널에서 <code>cd ios</code>를 입력하여 ios 디렉터리로 이동합니다.__
 
-<span style="font-size:12px; color:gray">* 블로그 주인은 폴더를 디렉터리라고도 말하기도 합니다. 둘을 같이 사용할 수 있어서 헷갈리지 않게 미리 적어두겠습니다.</span>
+<span style="font-size:12px; color:gray">블로그 주인은 폴더를 디렉터리라고도 말하기도 합니다. 둘을 같이 사용할 수 있어서 헷갈리지 않게 미리 적어두겠습니다.</span>
 <br><br>
 
 __2. <code>arch -x86_64 pod install --repo-update --clean-install</code>를 입력하여 pod을 설치합니다.__
