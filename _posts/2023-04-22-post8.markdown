@@ -29,6 +29,9 @@ flutter clean
 
 * Flutter에서 `flutter clean` 명령어는 현재 프로젝트의 모든 캐시 파일을 삭제하는 역할을 합니다.
 * 이를 통해 새로운 빌드를 시작할 때, 이전에 생성된 캐시 파일로 인해 발생할 수 있는 문제를 방지할 수 있습니다. 즉, `flutter clean` 명령어는 Flutter 프로젝트를 초기 상태로 변하게 합니다.
+<br>
+<br>
+<br>
 
 ## 2️⃣ flutter pub get
 ```
@@ -43,14 +46,15 @@ flutter pub get
 * 이러한 패키지들은 프로젝트의 pubspec.yaml 파일에 종속성으로 지정됩니다. 
 * "flutter pub get" 명령어는 이러한 종속성을 다운로드하고, Flutter 프로젝트에서 사용할 수 있도록 준비합니다. 따라서 새로운 패키지를 추가하거나, 기존 패키지를 업데이트하는 경우에는 "flutter pub get" 명령어를 실행해야 합니다. 
 * Flutter 프로젝트에서는 "flutter run" 명령어를 실행하기 전에 "flutter pub get" 명령어를 실행하여 모든 종속성을 미리 가져와야 합니다. 이를 통해 빌드 시간을 줄이고, 에러를 방지할 수 있습니다.
+<br>
+<br>
+<br>
 
 ## 3️⃣ pod install
 
 __1. pod을 설치하기 전, 터미널에서 <code>cd ios</code>를 입력하여 ios 디렉터리로 이동합니다.__
 
-<span style="font-size:12px; color:gray">
-* 블로그 주인은 폴더를 디렉터리라고도 말하기도 합니다. 둘을 같이 사용할 수 있어서 헷갈리지 않게 미리 적어두겠습니다.
-</span>
+<span style="font-size:12px; color:gray">* 블로그 주인은 폴더를 디렉터리라고도 말하기도 합니다. 둘을 같이 사용할 수 있어서 헷갈리지 않게 미리 적어두겠습니다.</span>
 <br><br>
 
 __2. <code>arch -x86_64 pod install --repo-update --clean-install</code>를 입력하여 pod을 설치합니다.__
@@ -75,10 +79,13 @@ __2. <code>arch -x86_64 pod install --repo-update --clean-install</code>를 입�
 <span style="color: gray;">
 참고 !<br>
 Rosetta 2 번역 레이어는 Apple Silicon(M1) 기반의 Mac 컴퓨터에서 Intel 기반의 소프트웨어를 실행하기 위한 기술입니다. Rosetta 2는 소프트웨어의 기계어(machine code)를 Intel 명령어에서 Apple Silicon 명령어로 자동으로 번역하여 실행할 수 있게 합니다.
+</span>
 <br><br>
+<span style="color: gray;">
 이것은 macOS에서 이전에 작성된 소프트웨어가 새로운 Apple Silicon 기반의 Mac 컴퓨터에서도 작동할 수 있도록 보장하기 위한 중요한 기술입니다. CocoaPods는 아직 Apple Silicon에 대한 완전한 호환성을 갖추지 않았으므로, Rosetta 2 번역 레이어를 사용하여 Intel 기반의 CocoaPods를 Apple Silicon에서 실행할 수 있게 됩니다.
+</span>
 <br><br>
-
+<span style="color: gray;">
 따라서, `arch -x86_64 pod install --repo-update --clean-install` 명령어는 Rosetta 2 번역 레이어를 사용하여 Apple Silicon(M1) 기반의 Mac에서 CocoaPods를 실행하고, 프로젝트의 종속성(dependency)을 설치할 수 있도록 해줍니다.
 </span>
 <br><br>
@@ -116,11 +123,6 @@ Flutter 2.0 이후부터는 "null safety"가 기본적으로 활성화되어 있
 <br>
 <br>
 <br>
-
-
-위의 방법대로 해결해 나간다면 에러를 쉽게 해결 할 수 있을 거라 믿습니다.
-
-
 
 
 ### 🧐 오늘의 소감은?
