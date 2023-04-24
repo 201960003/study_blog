@@ -1,0 +1,79 @@
+---
+layout: post
+title:  ⌜Flutter⌟ How to fix the 'MissingPluginException(No implementation found for method getAll on channel...' error
+date:   2023-04-24 +0900
+categories: flutter
+---
+
+<!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post8/flutter.png?raw=true" alt="main 사진">
+</center>
+
+## Flutter "MissingPluginException(No implementation found for method getAll on channel..." 에러 해결 방법!
+
+```
+MissingPluginException(No implementation found for method getAll on channel plugins.flutter.io/shared_preferences). 
+```
+오늘도 플러터를 다루면서 새로운 오류로 조금 어렵게 느꼈는데요! 플러터는 다행히도 많은 정보가 있어서 비교적 쉽게 해결할 수 있었던 것 같아요.<br>
+그래서 오늘은 까먹기 전에 복습을 해보려고 합니다.
+<br><br><br>
+
+위의 오류는 보통 새로운 플로그인을 추가한 후 저장하면서 생기는 오류입니다.
+
+
+## 1️⃣ Flutter 프로젝트의 빌드 캐시 및 임시 파일 삭제
+
+__flutter clean__
+```
+flutter clean
+```
+명령어를 실행하여 캐시된 빌드 파일을 제거합니다.
+
+* Flutter에서 `flutter clean` 명령어는 현재 프로젝트의 모든 캐시 파일을 삭제하는 역할을 합니다.
+* 이를 통해 새로운 빌드를 시작할 때, 이전에 생성된 캐시 파일로 인해 발생할 수 있는 문제를 방지할 수 있습니다. 즉, `flutter clean` 명령어는 Flutter 프로젝트를 초기 상태로 변하게 합니다.
+
+
+만약 `flutter clean`을 해도 오류가 해결이 안되는 경우가 있습니다.<br>
+그 경우에는 아래와 같은 코드를 입력하면 됩니다.<br>
+
+
+__flutter pub cache repair__
+```
+flutter pub cache repair
+```
+
+`flutter pub cache repair`는 Flutter 패키지 매니저인 pub의 캐시를 수리하고, 손상된 패키지를 복구하는 명령입니다.
+
+
+프로젝트에서 사용되는 패키지는 pub 캐시에 다운로드되고 캐싱되지만 때로는 캐시가 손상되거나 잘못된 패키지 버전이 다운로드되는 등의 이유로 문제가 발생할 수 있는데요<br>
+이 때 flutter pub cache repair 명령을 사용하여 문제를 해결할 수 있습니다.
+
+
+명령을 실행하면, pub cache 디렉토리에서 손상된 패키지를 검색하고 삭제하며, 손상된 캐시를 다시 빌드하여 새로운 캐시를 생성합니다.
+
+
+이 명령을 실행하면, 시스템에서 pub cache 디렉토리를 검색하고 손상된 패키지를 삭제하여 새로운 캐시를 빌드하여 문제를 해결합니다.
+
+## 2️⃣ flutter pub get
+```
+flutter pub get
+```
+
+명령어를 실행하여 pubspec.yaml 파일에 지정된 종속성을 가져옵니다.
+<br><br>
+
+* Flutter에서 `flutter pub get` 명령어는 pubspec.yaml 파일에 지정된 종속성을 가져오는 역할을 합니다. 
+* Flutter에서 사용되는 패키지(라이브러리)들은 pub.dev 또는 다른 저장소에서 가져올 수 있습니다.
+* 이러한 패키지들은 프로젝트의 pubspec.yaml 파일에 종속성으로 지정됩니다. 
+* "flutter pub get" 명령어는 이러한 종속성을 다운로드하고, Flutter 프로젝트에서 사용할 수 있도록 준비합니다. 따라서 새로운 패키지를 추가하거나, 기존 패키지를 업데이트하는 경우에는 "flutter pub get" 명령어를 실행해야 합니다. 
+* Flutter 프로젝트에서는 "flutter run" 명령어를 실행하기 전에 "flutter pub get" 명령어를 실행하여 모든 종속성을 미리 가져와야 합니다. 이를 통해 빌드 시간을 줄이고, 에러를 방지할 수 있습니다.
+<br><br><br>
+
+
+
+### 🧐 오늘의 소감은?
+아직 기초가 부족하여 파라미터로 변수를 사용하는 것이 아직 익숙하지 않은 것 같습니다. 이런 기초를 잡아야 다른 프로젝트 또는 언어를 공부할 때 훨씬 수월할텐데 말이죠 ㅎㅎ<br>
+오늘따라 조금 현타가 오는 것 같네요. 너무 갑작스러운 이야기이겠지만 요즘에는 뭔가 공부에 집중이 안되고 힘이 빠지는 것 같습니다.
+집중이 안되는게 너무 큰 것 같아요 ㅠㅠ 그래도 힘내봐야죠!
+
