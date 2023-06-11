@@ -5,7 +5,6 @@ date:   2023-04-22 +0900
 categories: flutter
 ---
 
-<!-- 똑같은 카테고리여서 post 4 사진 그대로 가져왔음-->
 <center>
   <img src="https://github.com/201960003/study_blog/blob/main/img/post8/flutter.png?raw=true" alt="main 사진">
 </center>
@@ -108,7 +107,7 @@ Rosetta 2 번역 레이어는 Apple Silicon(M1) 기반의 Mac 컴퓨터에서 In
 build하기 전에 터미널에서 `cd ..`을 입력하여 프로젝트 메인 디렉터리로 이동합니다.
 
 ```
-flutter build is --no-sound-null-safety
+flutter build ios --no-sound-null-safety
 ```
 
 

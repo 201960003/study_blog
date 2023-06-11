@@ -1,0 +1,172 @@
+---
+layout: post
+title:  ⌜Flutter⌟ UP & DOWN GAME
+date:   2023-06-11 +0900
+categories: flutter
+---
+
+<!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post8/flutter.png?raw=true" alt="main 사진">
+</center>
+
+## UP & DOWN 게임 만들기
+
+플러터 기본 개념을 공부하면서 반복문과 조건문을 응용하면 좋을 것 같아서 컴퓨터가 숫자를 맞추는 게임을 만들어보려고 합니다.
+
+
+처음에는 컴퓨터가 정한 값을 사용자가 맞추게 하려고 했으나 컴퓨터가 맞추면 어떨까 싶어서 시작하게 되었습니다.
+
+
+UP & DOWN 게임 제작은 vscode에서 작업을 하려고 했으나 이번에는 [dartpad.dev](https://dartpad.dev/?)에서 작업을 했습니다. 
+<br><br>
+
+## 1️⃣ 처음 생각한 방법
+```dart
+void main() {
+  Timer.periodic(Duration(seconds: 1), (Timer timer) {
+    //1초마다 아래 함수가 실행된다.
+     rand_Num();
+   });
+}
+
+radnum(){
+  var rand = math.Random();
+  int a = rand.nextInt(100);
+  return a;
+}
+
+updown(input){
+  for (int i = 0; i < 6; i++) {
+    int a = rand_Num();
+    if (input > a) {
+       print('$input > $a');
+       print('up');
+    } else if (input < a) {
+       print('$input < $a');
+       print('down');
+    } else if (input == a){
+      print('success');
+      break;
+    }
+  }
+}
+```
+
+위의 내용은 <code>Timer</code>로 1초마다 함수를 실행하게 하여 <code>Timer</code>
+<br>radnum()<br>의 반환값을 전달하여 반복문을 통해 조건을 확인하는 함수로 만들었습니다. 여기서 문제점은 자료조사가 부족했던 것도 있어서 부정확한데 타이머가 실행이 되질 않았어서 다른 방법을 이용하여 적용시켜야겠다고 생각했습니다.ㅠㅠ 뭔가 확 느낌이 와서 후다닥 했었는데 안되어서 슬펐어요ㅠㅠㅠ
+
+
+## 2️⃣ 두 번째 생각한 방법
+```dart
+import 'dart:math' as math;
+import 'dart:async';
+
+void main() {
+  updown(40); // 사용자가 정한 값 
+}
+
+var rand = math.Random();
+
+Stream<int> rand_Num() async*{
+  int number = rand.nextInt(100); // 1 ~ 100까지 랜덤 
+  while(true){
+    print(number);
+    yield number;
+  }
+}
+
+ updown(int input) async{
+   Stream<int> randNum = rand_Num();
+   await for(int a in randNum){
+     print('randNum : $a');
+     print('input : $input');
+     while (input != a) {
+       if (input > a) {
+         print('down');
+       }
+       else if (input < a) {
+         print('up');
+      } else {
+        break;
+      }
+    }
+   }
+  return 'success';
+ }
+```
+
+위의 내용은 <code>rand_Num()</code> 함수애서 <code>async*</code>와 <code>yield</code> 를 이용하여 반복문의 값을 하나씩 전달합니다.<br>
+그 후, <code>randNum</code>로 변수를 지정하여 반환된 값을 반복문을 통해 비교를 하려고 했으나 숫자로 반환이 안되었습니다.<br>
+그리고 너무 많은 범위의 숫자를 해서 버벅거리더라고요 그래서 1 ~ 10까지로 범위를 변경했습니다.
+<br><br>
+
+## 3️⃣ 세 번째 생각한 방법
+```dart
+import 'dart:math' as math;
+import 'dart:async';
+
+void main() { 
+  updown3(3);
+}
+
+var rand = math.Random();
+
+ updown2(input) {
+   for (int i = 0; i < 6; i++) {
+     int a = rand.nextInt(10);
+     if (input > a) {
+       print('$input > $a');
+       print('up');
+     } else if (input < a) {
+       print('$input < $a');
+       print('down');
+     }
+   }
+   return 'success!!';
+ }
+
+```
+위의 방법은 확실히 빨라졌지만 딱 6번만 하기 때문에 반환 조건도 잘못생각했었고 두개의 숫자가 같을때 반환되는 것이 아니어서 다시 생각해보았습니다.
+<br><br>
+
+## 4️⃣ 최종 방법
+```dart
+import 'dart:math' as math;
+import 'dart:async';
+
+void main() {
+  updown3(3);
+}
+
+var rand = math.Random();
+
+updown3(input) {
+  var count = 0;
+  while (true) {
+    int a = rand.nextInt(10);
+    count++;
+    if (input > a) {
+      print('$input > $a');
+      print('up');
+      print('count $count');
+    } else if (input < a) {
+      print('$input < $a');
+      print('down');
+      print('count $count');
+    } else if (input == a) {
+      print('$input = $a');
+      print('success!!');
+      print('count $count');
+      break;
+    }
+  }
+}
+```
+<code>while</code>의 조건을 true로 한 후에 <code>input == a</code>을 탈출 조건으로 하였더니 정상적으로 작동이 되었습니다.
+<br><br>
+
+### 🧐 오늘의 소감은?
+기초 공부를 해서 이정도는 할 수 있겠지 하고 너무 쉽게 생각을 했는지 조금 많이 버벅였던 것 같습니다. 좀 더 기초를 다져서 조금씩 공부하면 점점 더 성장할 수 있겠죠?
+<br>
+
