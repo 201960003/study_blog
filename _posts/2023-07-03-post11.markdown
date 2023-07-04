@@ -1,0 +1,203 @@
+---
+layout: post
+title:  ⌜Flutter⌟ StatefulWidget ElevatedButton & Switch widget
+date:   2023-07-03 +0900
+categories: flutter
+---
+
+<!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post8/flutter.png?raw=true" alt="main 사진">
+</center>
+
+오늘은 StatefulWidget을 좀 더 익숙해지기 위해서 기초적인 연습을 하려고 합니다.
+<br><br>
+
+## 1️⃣ Switch 위젯으로 모든 위젯 색상 변경하기
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _MyApp();
+}
+
+class _MyApp extends State<MyApp> {
+  var switchValue = false;
+  String test = "hello";
+  Color _color = Colors.blue;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      darkTheme: ThemeData.light(),
+      home: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Switch(
+                value: switchValue,
+                onChanged: (value) {
+                  switchValue = value;
+                  print(value);
+                  print(_color.toString());
+                  if (value == true) {
+                    setState(() {
+                      _color = Colors.amber;
+                    });
+                  }
+                  if (value == false) {
+                    setState(() {
+                      _color = Colors.blue;
+                    });
+                  }
+                },
+              ),
+              ElevatedButton(
+                child: Text('$test'),
+                style: ElevatedButton.styleFrom(
+                  primary: _color, // Background color
+                ),
+                onPressed: () {
+                  if (test == 'hello') {
+                    setState(() {
+                      test = 'flutter';
+                    });
+                  } else {
+                    setState(() {
+                      test = 'hello';
+                    });
+                  }
+                  print('$test');
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+<br><br>
+'Switch'를 누르면 전체 색상이 변경이 되고 'ElevatedButton'를 누르면 버튼의 텍스트가 변경되게 했습니다.
+
+#### 1. 스위치로 색상 변경
+<code>var switchValue = false;</code>,<code>Color _color = Colors.blue;</code>을 선언하였고 스위치를 누르면 onChanged: (value)를 통해 value값이 변경됩니다.<br>
+그래서 <code>switchValue = value;</code>을 'onChanged'안에 선언해주어 값이 변경되게 해주었습니다.<br>
+setState로 상테 변경을 해주었는데 <code>if (value == true)</code>조건에 충족되면 <code>Color _color = Colors.blue;</code>에서 <code>Color _color = Colors.amber;</code>로 변경하게 했습니다.
+<br><br>
+
+#### 2. 버튼으로 텍스트 변경
+<code>String test = "hello";</code>로 처음에 선언을 하였고 이제 'ElevatedButton'의 'onPressed'에서 버튼을 눌렀을때 어떻게 할것인 지에 대해 작성하면 됩니다.<br>
+저는 조건을 <code>if (test == 'hello')</code>이면 setState에서  <code>test = 'flutter';</code>으로 값을 변경하였습니다. 그러면 버튼을 클릭했을 때 'hello'에서 'flutter'로 변경됩니다.<br>
+그럼 다시 'flutter'에서 'hello'로 변경하려면 똑같이 <code>else</code>이면 setState에서 test = 'hello';으로 값을 변경하여 버튼을 누를때 마다 텍스트가 변경되게 하였습니다.
+<br><br><br>
+
+
+## 2️⃣ ElevatedButton으로 모든 위젯 색상 변경하기
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _MyApp();
+}
+
+class _MyApp extends State<MyApp> {
+  var switchValue = false;
+  String test = "hello";
+  Color _color = Colors.blue;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      darkTheme: ThemeData.light(),
+      home: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Switch(
+                value: switchValue,
+                onChanged: (value) {
+                  switchValue = value;
+                  print(value);
+                  print(_color.toString());
+                  if (value == true) {
+                    setState(() {
+                      _color = Colors.amber;
+                    });
+                  }
+                  if (value == false) {
+                    setState(() {
+                      _color = Colors.blue;
+                    });
+                  }
+                },
+              ),
+              ElevatedButton(
+                child: Text('$test'),
+                style: ElevatedButton.styleFrom(
+                  primary: _color, // Background color
+                ),
+                onPressed: () {
+                  if (test == 'hello') {
+                    setState(() {
+                      test = 'flutter';
+                      _color = Colors.blue;
+                      switchValue = false;
+                    });
+                  } else {
+                    setState(() {
+                      test = 'hello';
+                      _color = Colors.amber;
+                      switchValue = true;
+                    });
+                  }
+                  print('$test');
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+'ElevatedButton'의 'onPressed'에서 <code>_color</code> 와 <code>switchValue</code>의 값을 변경하여 버튼을 눌렀을때 스위치가 켜지고 색도 변경이 됩니다.
+<br><br><br>
+
+### 🧐 오늘의 소감은?
+오늘의 소감은 플러터의 기초를 조금씩 잡고 있는다고 생각했는데 아직 멀었다는게 느껴지네요 바로 뚝딱 만들어지지 않고 좀 이건가 저건가 하면서 했던 것 같아요. 벌써 프로그래밍을 접한지 반년이 되어가는데 아직 준비가 안된 것 같네요ㅠㅠ 나중에 쫓기듯이만 남하면 될 것같은데 제 자신을 좀 더 굴려서 열심히 하게 햐야겠어요! 힘내보아요 😤😤
+<br>
