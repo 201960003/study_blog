@@ -1,0 +1,46 @@
+---
+layout: post
+title:  ⌜Java⌟ pvsm & sout
+date:   2023-07-04 +0900
+categories: Java
+---
+
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post12/java.png?raw=true" alt="main 사진">
+</center>
+
+Java 완전 기초를 시작하기 전에 더더 기초가 될 단축어를 공부해볼까합니다.
+<br><br>
+
+```Java
+public class App {
+    public static void main(String[] args) throws Exception {
+        System.out.println("Hello, World!");
+    }
+}
+```
+
+Hello, World!가 출력되게 간단하게 코드를 작성했습니다. <br>
+
+1. pvsm
+여기서 pvsm란? public static void main의 약자로 pvsm을 입력하면 
+```Java
+public static void main(String[] args) {
+            
+}
+```
+이렇게 코드가 작성됩니다.
+<br><br>
+
+1. sout
+sout란? System.out의 약자로 sout을 입력하면 
+```Java
+System.out.println();
+```
+위와 같은 코드가 작성됩니다.
+<br><br>
+
+
+### 🧐 오늘의 소감은?
+오늘은 쉬어가는 시간을 가지면서 간단하게 글을 작성해보았는데요 Java 뭔가 새로운 느낌이 들면서 신기해 하면서 조금씩 보았던 것 같아요! 오늘은 정말 간단라게 작성하려고 했는데 생각보다 더 내용이 적은 것 같네요 그래도 오랜만에 볼 떼는 더 간단하게 볼 수 있을 것 같아서 좋아요!
+<br>
