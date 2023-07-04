@@ -20,8 +20,9 @@ public class App {
 }
 ```
 
-Hello, World!가 출력되게 간단하게 코드를 작성했습니다. <br>
-
+Hello, World!가 출력되게 간단하게 코드를 작성했습니다.
+ <br> <br>
+ 
 1. pvsm
 여기서 pvsm란? public static void main의 약자로 pvsm을 입력하면
 
@@ -34,7 +35,7 @@ public static void main(String[] args) {
 이렇게 코드가 작성됩니다.
 <br><br>
 
-1. sout
+2. sout
 sout란? System.out의 약자로 sout을 입력하면
 
 ```Java
