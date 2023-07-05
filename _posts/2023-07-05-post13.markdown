@@ -1,0 +1,29 @@
+---
+layout: post
+title:  ⌜Flutter⌟ flutter version downgrade
+date:   2023-07-05 +0900
+categories: flutter
+---
+
+<!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post8/flutter.png?raw=true" alt="main 사진">
+</center>
+
+네이버지도 api를 사용하면서 플러터 버전을 업그레이드를 했더니 <code>flutter run --no-sound-null-safety</code>를 사용을 할 수 없어서 굉장히 당황했었습니다ㅠ<br>
+네이버지도 api를 사용하면 꼭 저렇게 실행을 했어야했는데 할 수 없어서 디버깅을 할 수 없었어요. 그래서 오늘은 플러터 버전을 다운그레이드 하는 방법을 적어볼까 합니다.
+<br><br>
+
+
+```
+flutter downgrade <특정 버전>
+```
+
+위와 같이 다운그레이드 할 특정버전을 옆에 적으면 됩니다.
+저는 3.7.12 버전으로 다운그레이드하기 위해서 <code>flutter downgrade 3.7.12</code>로 작성했습니다.
+
+<br><br><br>
+
+### 🧐 오늘의 소감은?
+요즘 드는 생각이지만 구글 데이터베이스도 이용하고 있고 이제 구글지도 api도 사용하고 플러터와 쉽게 연동하여 작업할 수 있게 되어있는 것 같아서 너무 편한 것 같아요. 자바스크립트 공부할 때도 네이버지도를 사용했었는데 구글지도로 변경하다보니 익숙하지 않아서 시간이 좀 오래걸리는 것 같네요!
+<br>
