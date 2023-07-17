@@ -1,0 +1,28 @@
+---
+layout: post
+title:  ⌜Flutter⌟  How to fix 'Invalid Reuse after Initialization Failure' Error in Xcode
+date:   2023-07-17 +0900
+categories: flutter
+---
+
+<!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post16/xcode.jpeg?raw=true" alt="main 사진">
+</center>
+
+Xocde에서 빌드를 하는데
+>  invalid reuse after initialization failure
+라는 에러가 뜨더라고요 다행히 해결 방법이 있다고 하는데요
+
+```
+ Command + Shift + K 
+```
+단축기를 눌러 프로젝트 폴더를 clean 후에 다시 빌드를 하니 해결되었습니다.
+
+
+<br><br><br>
+
+### 🧐 오늘의 소감은?
+잘은 모르지만 재사용하고 있어서 에러가 났다고 하는데요... 이 에러는 잘 모르겠지만 해결 방법을 까먹지 않기 위해 쓰인 글입니다.
+Xcode 빌드 할 때마다 너무 오래걸리는 것 같은데 저만 그런거 아니겠죠? Xcode 빌드하면서 인내심 기르는 중이에요^^
+<br>

@@ -1,0 +1,59 @@
+---
+layout: post
+title:  ⌜Flutter⌟ 키보드 올라왔을 때 생기는 오버플로우 해결방법
+date:   2023-07-13 +0900
+categories: flutter
+---
+
+<!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post8/flutter.png?raw=true" alt="main 사진">
+</center>
+
+플러터에서 텍스트 필드나 텍스트 폼 필드를 사용하다보면 화면이 밀려오면서 바텀 오버플로우가 생기는 오류입니다.<br>
+바텀 오버플로우를 해결하는 방법에 대해서 공부하려고 합니다.
+<br><br>
+
+
+```dart
+@override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.white, 
+        resizeToAvoidBottomInset: false,
+        body: SafeArea(
+        child: ....
+        )
+     );
+  }
+```
+
+<code>resizeToAvoidBottomInset: false</code> 속성은 Scaffold 위젯 내에서 사용되며, 키보드가 표시될 때 위젯의 크기를 조정할지 여부를 제어합니다. false로 설정하면 키보드에 의해 생성되는 하단 영역에 대한 위젯의 크기 조정이 이루어지지 않습니다. 다시 말해, 위젯의 콘텐츠가 키보드가 나타날 때 자동으로 올라가지 않습니다. 이는 키보드가 표시되어도 레이아웃을 고정된 상태로 유지하고 싶을 때 유용합니다.
+<br><br>
+
+```dart
+  Padding(
+    padding: MediaQuery.of(context).viewInsets,
+  )
+  
+```
+
+view insets는 키보드와 같은 시스템 UI 요소가 차지하는 화면 영역을 나타냅니다. 이 패딩을 적용하여 위젯의 콘텐츠가 키보드에 의해 가려지지 않고 보이도록 합니다.
+<br><br>
+
+```dart
+  return SingleChildScrollView(
+    physics: NeverScrollableScrollPhysics(),
+    child: Padding(
+      padding: MediaQuery.of(context).viewInsets,
+      child: YourContentWidget(),
+    ),
+  );
+```
+<code>physics: NeverScrollableScrollPhysics()</code>는 SingleChildScrollView에서 스크롤을 비활성화하는 데 사용됩니다. 이렇게 하면 스크롤을 안해도 내용이 보이게 되고 바텀 오버플로우가 생기지 않습니다.
+
+<br><br><br>
+
+### 🧐 오늘의 소감은?
+오늘은 이렇게 3가지 방법에 대해서 공부했는데요. 바텀 오버플로우는 생기게 하지는 말아야하는데 SingleChildScrollView를 사용하면서 스크롤을 안하게 하고 싶기도 하면서 고민을 했었습니다.. 그래서 위와 같은 방법을 다 섞어가면서 사용했는데요 조금 더 간판한 방법이 있을텐데.. 좀 더 공부를 해야될 것 같아여! 화이팅해야죠! 화이팅!!
+<br>

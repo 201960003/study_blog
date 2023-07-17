@@ -1,0 +1,56 @@
+---
+layout: post
+title:  ⌜Flutter⌟ Wrap text on overflow 해결 방법 (ellipsis, fade 등)
+date:   2023-07-14 +0900
+categories: flutter
+---
+
+<!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post8/flutter.png?raw=true" alt="main 사진">
+</center>
+
+Container 나 SizedBox를 사용하다보면 정해진 사이즈보다 텍스트의 길이가 더 길면 textoverflow가 생깁니다.<br>
+오늘은 textoverflow를 해결하는 방법에 대해서 알아보려고 합니다.
+
+
+```dart
+Text(
+  "I get some coffee every day",
+  overflow: TextOverflow.ellipsis,
+),
+```
+
+<code>overflow: TextOverflow.ellipsise</code> 속성은 속성은 텍스트 내용이 주어진 공간을 벗어날 경우, "..."(말줄임표)로 표시됩니다. 이 옵션은 텍스트가 일정 공간에 맞지 않을 때 텍스트를 잘라내고 말줄임표로 표시하는 가장 일반적인 방법입니다.
+<br><br>
+
+```dart
+Text(
+  "I get some coffee every day",
+  overflow: TextOverflow.fade,
+  maxLines: 1,
+  softWrap: false,
+),
+```
+
+<code>overflow: TextOverflow.fade</code> 속성은 텍스트 내용이 주어진 공간을 벗어날 경우, 텍스트의 끝 부분이 서서히 흐려지는 효과를 주어 표시됩니다. 이는 텍스트를 완전히 잘라내지 않고도 공간을 초과하는 텍스트의 일부를 시각적으로 나타내는 데 사용됩니다.
+<br><br>
+
+```dart
+Text(
+  "I get some coffee every day",
+  overflow: TextOverflow.clip,
+  maxLines: 1,
+  softWrap: false,
+),
+```
+
+<code>overflow: TextOverflow.clip</code> 텍스트 내용이 주어진 공간을 벗어날 경우, 텍스트가 그대로 자르고 잘리게 됩니다. 말줄임표나 페이드 효과 없이 텍스트의 일부가 잘리는 것을 의미합니다. 이 옵션을 사용하면 잘리는 텍스트가 부드럽게 표시되지 않고 단순히 잘립니다.
+<br><br>
+
+<br><br><br>
+
+### 🧐 오늘의 소감은?
+자바스크립트 할 때에도 ellipsise를 사용했었는데 플러터에도 있는 기능이라니! 그나마 조금 친숙한 느낌이 들었습니다. fade, clip은 아예 처음 보는데 fade는 정말 자연스럽게 흐려져서 많이 애용할 것 같습니다. 오늘은 이렇게 textoverflow의 속성에 대해서 알아보았는데요! 미디어쿼리로 기종에 맞게 작업하는게 생각보다 쉽지가 않네요ㅠㅠ 오늘도 까먹기 전에 조금 끄젹여봅니다.
+
+<br>
