@@ -10,13 +10,20 @@ categories: flutter
   <img src="https://github.com/201960003/study_blog/blob/main/img/post16/xcode.jpeg?raw=true" alt="main 사진">
 </center>
 
+<br><br>
+
 Xocde에서 빌드를 하는데
->  invalid reuse after initialization failure
-라는 에러가 뜨더라고요 다행히 해결 방법이 있다고 하는데요
 
 ```
- Command + Shift + K 
+ invalid reuse after initialization failure
 ```
+
+라는 에러가 뜨더라고요 다행히 해결 방법이 있다고 하는데요
+
+<code>
+ Command + Shift + K 
+</code>
+
 단축기를 눌러 프로젝트 폴더를 clean 후에 다시 빌드를 하니 해결되었습니다.
 
 
