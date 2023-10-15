@@ -1,0 +1,122 @@
+---
+layout: post
+title:  ⌜BEAKJOON⌟ 10988번 팰린드롬인지 확인하기 - dart
+date:   2023-07-17 +0900
+categories: BEAKJOON
+---
+<center>
+  <img src="https://github.com/201960003/study_blog/blob/main/img/post18/logo%402x.png?raw=true" alt="main 사진">
+</center>
+
+[백준 10988번 : 팰린드롬인지 확인하기](https://www.acmicpc.net/problem/10988)
+<br><br>
+
+### 🤓 풀이 과정 
+
+#### 1️⃣ 첫 번째 생각한 방법
+```dart
+import 'dart:io';
+
+void main() {
+  String? input = stdin.readLineSync(); // 터미널에서 입력
+  palindromeCheck(input!);
+}
+
+void palindromeCheck(String input){
+  int inputLength = input.length;
+  List check = [];
+
+  List inputList = input.trim().split('');
+  for(var firstIndex = 0; firstIndex < inputLength; firstIndex ++){
+    if(inputList[firstIndex] == inputList[inputLength-firstIndex-1]){
+      check.add(true);
+      
+    }
+  }
+  if(check.length == inputLength){
+    print('palindrome!!!!');
+    print(1);
+
+      } else {
+    print('Not palindrome!!!!');
+    print(0);
+        
+      }
+}
+```
+처음에 생각한 방법은 String을 하나씩 잘라서 List로 처음과 끝, 그리고 두번째와 마지막에서 두번째 이런식으로 같은 지 확인하기 위해 방법을 고민했습니다.
+
+예를 들어서
+``String a = '12321';``을
+
+
+``List aList = ['1', '2', '3', '2', '1'];``로 변경하여
+
+
+``aList[0] == aList[4]``,``aList[1] == aList[3]``,``aList[2] == aList[2]``가 전부 ``true`` 가 되게 적용하면 됩니다.
+
+그리고 String의 길이가 홀수, 짝수 상관없이 적용됩니다.
+
+
+#### 2️⃣ 두 번째 생각한 방법
+```dart
+import 'dart:io';
+
+void main() {
+  String? input = stdin.readLineSync(); // 터미널에서 입력
+  palindromeCheck2(input!);
+}
+
+void palindromeCheck2(String input){
+  int inputLength = input.length;
+
+  List inputList = input.trim().split('');
+  int check = 0;
+  
+  for(var index = 0; index < inputLength/2; index ++){
+    if(inputList[index] != inputList[inputLength-index-1]){
+      print('Not palindrome!!!!');
+      print(0);
+      break; // 하나라도 충족되지 않을 때 탈출
+    } else {
+      check++;
+      if(check == (inputLength/2).round()){
+        print('palindrome!!!!');
+        print(1);
+        break; 
+      }    
+    }
+  }
+}
+```
+
+두번째는 인덱스를 확인할때 길이를 반으로 줄여서 해도 적용된다는 것을 알고 위와 같이 수정했습니다.
+
+
+#### 3️⃣ 세 번째 생각한 방법
+```dart
+import 'dart:io';
+
+void main() {
+  String? input = stdin.readLineSync(); // 터미널에서 입력
+  palindromeCheck3(input!);
+}
+
+void palindromeCheck3(String input){
+  var  reversedinputList = input.trim().split('').reversed;
+  String reversedInput = reversedinputList.join();
+  if(input == reversedInput){
+    print(1);
+  }else {
+    print(0);
+  }
+}
+```
+
+마지막으로 최종적인 방법은 원래 리스트와 뒤집었을 때의 리스트와 같으면 팰린드롬인 방법으로 코드를 작성했습니다.
+
+<br><br><br>
+
+### 🧐 오늘의 소감은?
+처음부터 너무 어렵게 생각을 했던 것네요 ㅠㅠ 마지막 방법이 저렇게 간단한 방법이 있을지... 전혀 생각지도 못했어요 ㅠ 치근차근 문제를 풀어봐야겠어요!!
+<br>
