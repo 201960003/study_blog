@@ -1,0 +1,58 @@
+---
+layout: post
+title:  ⌜MySQL⌟ connect ECONNREFUSED ERROR 해결 방법
+date:   2024-03-17 +0900
+categories: MySQL
+---
+
+node.js에서 MySQL을 다루고 있었는데 아래와 같은 오류가 생겼었습니다.
+<center>
+  <img src="https://raw.githubusercontent.com/201960003/study_blog/0058b7a11c5053e51fb4d2e7a57a02dedc2d514b/img/post19/1.png?raw=true" alt="첫번째 사진">
+</center>
+ECONNREFUSED 오류는 일반적으로 네트워크 연결 문제를 나타나는데 
+
+<center>
+  <img src="https://raw.githubusercontent.com/201960003/study_blog/0058b7a11c5053e51fb4d2e7a57a02dedc2d514b/img/post19/2.png?raw=true" alt="두번째 사진">
+</center>
+위의 사진처럼 컴퓨터 전원을 재시작할 때마다 서버가 닫혀서 생기는 오류로, 제가 정확하게는 알지 못하지만 아래의 방법으로 해결을 했습니다.
+
+<br><br>
+
+### 🤓 해결 방법
+
+<center>
+  <img src="https://raw.githubusercontent.com/201960003/study_blog/0058b7a11c5053e51fb4d2e7a57a02dedc2d514b/img/post19/3.png?raw=true" alt="세번째 사진">
+</center>
+
+
+* MAC 에서 MySQL 서버 시작
+``` 
+mysql.start start
+```
+
+
+
+이렇게 저는 서버를 시작해서 오류를 해결하였습니다.
+또한 재시작하는 방법은 아래처럼 하시면 됩니다.
+
+
+
+* MAC 에서 MySQL 서버 재시작
+```
+mysql.start restart
+```
+
+<br><br>
+
+### 🤓 오류 해결시 나오는 화면
+<center>
+  <img src="https://raw.githubusercontent.com/201960003/study_blog/0058b7a11c5053e51fb4d2e7a57a02dedc2d514b/img/post19/4.png?raw=true" alt="4번째 사진">
+</center>
+위와 같이 server status가 'Running'로 나온다면 최종적으로 Node.js에서 MySQL을 사용할 수 있습니다.
+
+
+<br><br><br>
+
+### 🧐 오늘의 소감은?
+MySQL은 처음 다루어서 오류 하나하나가 정말 막막했던 것 같아요 ㅠㅠ 물론 이 오류 발견한 날짜가 1월이긴 하지만요 ㅠㅠㅠ 흑흑 블로그로 정리해야지 했는데 마음만 먹고서 개을렀더니 이제서야 작성하게 되네요 ㅠㅠ  오류를 보고 정확하게 해결할 수 는 능력을 키웠으면 좋겠네여^^ 다 같이 힘내봅시다!
+<br>
