@@ -22,7 +22,7 @@ title: STUDY BLOG
 description: >- # this means to ignore newlines until "baseurl:"
  STUDY BLOG
 baseurl: "/study_blog" # the subpath of your site, e.g. /blog
-url: "https://201960003.github.io/study_blog/" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://201960003.github.io/study_blog/About" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
 # github_username:  jekyll
 
