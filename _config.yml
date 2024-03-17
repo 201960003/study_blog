@@ -40,7 +40,7 @@ defaults:
       path: ""
       type: "pages"
     values:
-      layout: single
+      layout: page
       permalink: /about/
 
 
