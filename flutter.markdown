@@ -7,7 +7,6 @@ permalink: /flutter/
 
 ### 1. [⌜Flutter⌟ How to fix the 'The sandbox is not in sync with the Podfile.lock' error](https://201960003.github.io/study_blog/flutter/2023/04/22/post8.html)
 
-
 ### 2.  [⌜Flutter⌟ How to fix the 'MissingPluginException(No implementation found for method getAll on channel...' error](https://201960003.github.io/study_blog/flutter/2023/04/24/post9.html)
 
 ### 3.  [⌜Flutter⌟ UP & DOWN GAME](https://201960003.github.io/study_blog/flutter/2023/06/11/post10.html)
