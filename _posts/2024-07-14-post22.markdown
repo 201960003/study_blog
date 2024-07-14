@@ -264,13 +264,13 @@ firebase에서 fcm 보낼 때는 firebase-messaging-sw.js라는 파일 명의 se
 
   // Firebase 설정
   const firebaseConfig = {
-    apiKey: "AIzaSyAM5B_EnbfkAcAOeyGEN5cROg02QF-9RtY",
+    apiKey: "-.....-9RtY",
     authDomain: "<your_project_id>.firebaseapp.com",
     projectId: "<your_project_id>",
     storageBucket: "<your_project_id>.appspot.com",
     messagingSenderId: "436817793271",
     appId: "1:436817793271:web:3b7ae336147b66aef1c3f2",
-    measurementId: "G-Y1LBQSGVD8"
+    measurementId: "G-....."
   };
 
   // Firebase 초기화
@@ -299,7 +299,7 @@ firebase에서 fcm 보낼 때는 firebase-messaging-sw.js라는 파일 명의 se
 ### 5. firebase-adminsdk-uum70-4ab63d0963.json 대략적인 파일 내용
 ```json
 {
-  "type": "service_account",
+  "type": ".....",
   "project_id": "<your_project_id>",
   "private_key_id": "4ab63d0963e458dbcd4e249d0d506fa6ae288c97",
   "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCg0CTfo82yd9Gr\n9Cba5kSRoEH+akcgaJAJj6wOQ34xllUiRok/.....",
