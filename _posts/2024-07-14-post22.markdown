@@ -268,8 +268,8 @@ firebase에서 fcm 보낼 때는 firebase-messaging-sw.js라는 파일 명의 se
     authDomain: "<your_project_id>.firebaseapp.com",
     projectId: "<your_project_id>",
     storageBucket: "<your_project_id>.appspot.com",
-    messagingSenderId: "436817793271",
-    appId: "1:436817793271:web:3b7ae336147b66aef1c3f2",
+    messagingSenderId: "........",
+    appId: ".................",
     measurementId: "G-....."
   };
 
@@ -301,14 +301,14 @@ firebase에서 fcm 보낼 때는 firebase-messaging-sw.js라는 파일 명의 se
 {
   "type": ".....",
   "project_id": "<your_project_id>",
-  "private_key_id": "4ab63d0963e458dbcd4e249d0d506fa6ae288c97",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCg0CTfo82yd9Gr\n9Cba5kSRoEH+akcgaJAJj6wOQ34xllUiRok/.....",
-  "client_email": "firebase-adminsdk-uum70@<your_project_id>.iam.gserviceaccount.com",
+  "private_key_id": ".............",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIB........+akcgaJAJj6wOQ34xllUiRok/.....",
+  "client_email": "firebase-admin......0@<your_project_id>.iam.....com",
   "client_id": "105706711658084451842",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-uum70%<your_project_id>.iam.gserviceaccount.com",
+  "auth_uri": "https://a..................",
+  "token_uri": "https://...............n",
+  "auth_provider_x509_cert_url": "........",
+  "client_x509_cert_url": "https://www......%<your_project_id>.iam......com",
   "universe_domain": "googleapis.com"
 }
 ```
