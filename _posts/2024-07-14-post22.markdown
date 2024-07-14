@@ -176,21 +176,21 @@ access token을 발급받기 위해 'google-auth-library' 패키지를 설치해
 ### 3. 웹 페이지 index.html에 있는 firebase_init.js
 ```javascript
 // Firebase 설정
-const firebaseConfig = {
-    apiKey: "AIzaSyAM5B_EnbfkAcAOeyGEN5cROg02QF-9RtY",
+    const firebaseConfig = {
+    apiKey: "-.....-9RtY",
     authDomain: "<your_project_id>.firebaseapp.com",
     projectId: "<your_project_id>",
     storageBucket: "<your_project_id>.appspot.com",
-    messagingSenderId: "436817793271",
-    appId: "1:436817793271:web:3b7ae336147b66aef1c3f2",
-    measurementId: "G-Y1LBQSGVD8"
-};
+    messagingSenderId: "........",
+    appId: ".................",
+    measurementId: "G-....."
+  };
 
 // Firebase 초기화
 firebase.initializeApp(firebaseConfig);
 
 // VAPID 키 설정 (Firebase Cloud Messaging을 위해 필요)
-const vapidKey = 'BAye6moKVAtBl6N1KqcypE6leFl1W28kNm02y6d6pNH2tmfoqwIZ_mMsBjU-WguiBQKLPycfiPYPYyNLo7CI0ww';
+const vapidKey = '.....-Wgu.....';
 
 // Firebase Messaging 인스턴스 가져오기
 const messaging = firebase.messaging();
@@ -263,16 +263,16 @@ firebase에서 fcm 보낼 때는 firebase-messaging-sw.js라는 파일 명의 se
   importScripts('https://www.gstatic.com/firebasejs/9.15.0/firebase-messaging-compat.js');
 
   // Firebase 설정
-  const firebaseConfig = {
-    apiKey: "-.....-9RtY",
-    authDomain: "<your_project_id>.firebaseapp.com",
-    projectId: "<your_project_id>",
-    storageBucket: "<your_project_id>.appspot.com",
-    messagingSenderId: "........",
-    appId: ".................",
-    measurementId: "G-....."
-  };
-
+    const firebaseConfig = {
+      apiKey: "-.....-9RtY",
+      authDomain: "<your_project_id>.firebaseapp.com",
+      projectId: "<your_project_id>",
+      storageBucket: "<your_project_id>.appspot.com",
+      messagingSenderId: "........",
+      appId: ".................",
+      measurementId: "G-....."
+    };
+    
   // Firebase 초기화
   firebase.initializeApp(firebaseConfig);
 
@@ -302,9 +302,9 @@ firebase에서 fcm 보낼 때는 firebase-messaging-sw.js라는 파일 명의 se
   "type": ".....",
   "project_id": "<your_project_id>",
   "private_key_id": ".............",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIB........+akcgaJAJj6wOQ34xllUiRok/.....",
+  "private_key": "-----BEGIN PRIVATE KEY----lUiRok/.....",
   "client_email": "firebase-admin......0@<your_project_id>.iam.....com",
-  "client_id": "105706711658084451842",
+  "client_id": ".......",
   "auth_uri": "https://a..................",
   "token_uri": "https://...............n",
   "auth_provider_x509_cert_url": "........",
