@@ -1,10 +1,170 @@
 ---
 layout: post
-title:  ⌜HTML⌟ 스티커 추가 및 그림 그리기 기능
-date:   2024-09-24 +0900
+title:  ⌜HTML⌟ canvas 에 mouse로 그림 그리기 (2)
+date:   2024-07-13 +0900
 categories: HTML
 ---
+## 1️⃣ 선 지우기
+```html
+<div class="controls">
+        <label for="line-width">선 두께: </label>
+        <input type="range" id="line-width" min="1" max="10" value="1">
+        <button id="eraser">지우개 켜기</button>
+        <button id="allclear">모두 지우기</button>
+    </div>
+```
 
+Javascript
+  ```javascript
+
+          // 지우개 버튼 클릭 이벤트 리스너
+        document.getElementById('eraser').addEventListener('click', function() {
+            isErasing = !isErasing;  // 지우개 모드를 토글
+            if (isErasing) {
+                this.textContent = '지우개 끄기';
+                // document.querySelectorAll('.color-button').forEach(btn => btn.classList.remove('selected'));  // 모든 색상 버튼 선택 해제
+            } else {
+                this.textContent = '지우개 켜기';
+            }
+        });
+
+        document.getElementById('allclear').addEventListener('click', function() {
+            drawingContext.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+        }); // 모두 지우기
+
+        function handleMouseMove(event) {
+            // 마우스가 canvas 태그내에서 움직였을 때 실행되는 함수
+
+            if (!isDrawing) return;  // isDrawing이 false일 때는 return으로 함수를 종료
+
+            // 마우스가 움직일 때 isDrawing이 true이면 현재 위치를 가져옴
+            const currentX = event.offsetX;
+            const currentY = event.offsetY;
+
+            drawingContext.lineWidth = lineWidth; // 지정한 선 두께
+            drawingContext.strokeStyle = strokeStyle; // 지정한 선 색상
+            drawingContext.lineCap = lineCap; // 지정한 선 모양
+
+            drawingContext.beginPath(); // context의 새로운 경로를 시작
+            drawingContext.moveTo(lastX, lastY); // 마지막 마우스 위치
+            drawingContext.lineTo(currentX, currentY); // moveTo로 지정한 이전 마우스 위치에서 현재 마우스 위치까지 선 그리기
+
+
+            if (isErasing) {
+                drawingContext.globalCompositeOperation = 'destination-out';
+                drawingContext.stroke();
+                drawingContext.globalCompositeOperation = 'source-over';
+            } else {
+                drawingContext.stroke();
+            }
+            
+            // drawingContext.closePath(); // context의 경로를 종료
+
+
+            [lastX, lastY] = [currentX, currentY]; // 현재 위치를 저장
+        }
+
+  ```
+
+    if (isErasing) 조건일 경우
+    drawingContext.globalCompositeOperation = 'destination-out';
+    drawingContext.stroke();
+    drawingContext.globalCompositeOperation = 'source-over'; 를 추가하여 그린 경로만큼 투명하게 변경됩니다.
+
+    그리고 모두지우기를 누를 경우에는 캔버스를 새로 다시 그려 리셋합니다.
+
+  <br><br>
+
+## 2️⃣ 사진 위에 그림 그리기
+
+  HTML
+  ```html 
+    <button id="save">저장</button>
+
+    <div class="canvas-container">
+        <canvas id="background-canvas" width="500" height="500"></canvas>
+        <canvas id="drawing-canvas" width="500" height="500"></canvas>
+    </div>
+  ```
+
+  Javascript
+  ```javascript  
+        var backgroundCanvas = document.getElementById("background-canvas"); // 그림 배경 canvas
+        var drawingCanvas = document.getElementById("drawing-canvas"); // 선 그리기 canvas
+
+        var backgroundContext = backgroundCanvas.getContext("2d"); // backgroundCanvas의 context
+        var drawingContext = drawingCanvas.getContext("2d"); // drawingContext의 context
+
+        var image = new Image();
+        window.onload = drawImage();
+
+        function drawImage() {
+            const canvasWidth = backgroundCanvas.width;
+            const canvasHeight = backgroundCanvas.height;
+
+            image.onload = () => {
+                backgroundContext.drawImage(image, 0, 0, canvasWidth, canvasHeight);
+            };
+            image.onerror = () => {
+                console.error('Error loading image:', image.src);
+            };
+            image.src = 'IMG_5445.jpg'; 
+        }
+
+            function saveCanvas() {
+                var compositeCanvas = document.createElement('canvas'); // 그림 + 선 캠퍼스 합치기 위한 canvas 생성
+                compositeCanvas.width = backgroundCanvas.width;
+                compositeCanvas.height = backgroundCanvas.height;
+                var compositeContext = compositeCanvas.getContext('2d'); //  compositeCanvas의 context 생성
+
+                // 배경 캔버스와 드로잉 캔버스를 합침
+                compositeContext.drawImage(backgroundCanvas, 0, 0);
+                compositeContext.drawImage(drawingCanvas, 0, 0);
+
+                // 합친 캔버스를 이미지로 변환하여 다운로드
+                var dataURL = compositeCanvas.toDataURL('image/png');
+                var link = document.createElement('a');
+                link.href = dataURL;
+                link.download = `${getCurrentDateTimeString()}.png`;
+                link.click();
+            }
+
+            function getCurrentDateTimeString() {
+                var today = new Date();
+                var year = today.getFullYear();
+                var month = String(today.getMonth() + 1).padStart(2, '0');
+                var day = String(today.getDate()).padStart(2, '0');
+                var hours = String(today.getHours()).padStart(2, '0');
+                var minutes = String(today.getMinutes()).padStart(2, '0');
+                var seconds = String(today.getSeconds()).padStart(2, '0');
+
+                // Return formatted date and time string
+                return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+            }
+
+            document.getElementById('save').addEventListener('click', saveCanvas);
+  ```
+ 이렇게 선 그리는 캔버스와 사진 캔버스를 따로 한 이유는 하나로 했을때 이미지까지 지워지는 문제로 이미지 위에 선을 그릴 수 있게 수정하였습니다.
+
+ public 폴더 안에 있어야지 사진을 인식해서 웹 화면에 보여줄 수 있습니다.
+
+ getCurrentDateTimeString() 함수로 이미지르 저장할때 현재시간으로 파일명을 지정할 수 있습니다.
+
+ <center>
+  <img src="
+  https://github.com/201960003/study_blog/blob/main/img/post21/1.png?raw=true" alt="첫번째 사진">
+</center>
+
+<br><br><br>
+
+ 최종 화면 이미지는 아래처럼 사진 위에 수정이 가능합니다.
+
+<center>
+  <img src="
+  https://github.com/201960003/study_blog/blob/main/img/post21/2.png?raw=true" alt="두번째 사진">
+</center>
+
+<br><br>
 
 ### 🤓 전체 코드
   ``` html
@@ -13,7 +173,7 @@ categories: HTML
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>사진꾸미기</title>
+        <title>캔버스에 마우스로 그림 그리기</title>
         <!-- jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -273,180 +433,6 @@ categories: HTML
     </html>
 
   ```
-
-아래는 배경화면 추가 안하고 작업한 결과물입니다. 
-  
-  <div class="controls">
-    <label for="line-width">선 두께: </label>
-    <input type="range" id="line-width" min="1" max="10" value="1">
-    <button id="eraser">지우개 켜기</button>
-    <button id="allclear">모두 지우기</button>
-  </div>
-        
-  <div class="color-picker">
-    <div class="color-button black selected" data-color="black"><span>&#10003;</span></div>
-    <div class="color-button red" data-color="red"><span>&#10003;</span></div>
-    <div class="color-button orange" data-color="orange"><span>&#10003;</span></div>
-    <div class="color-button yellow" data-color="yellow"><span>&#10003;</span></div>
-    <div class="color-button green" data-color="green"><span>&#10003;</span></div>
-    <div class="color-button blue" data-color="blue"><span>&#10003;</span></div>
-    <div class="color-button indigo" data-color="indigo"><span>&#10003;</span></div>
-    <div class="color-button violet" data-color="violet"><span>&#10003;</span></div>
-  </div>
-        
-      
-  <button id="save">저장</button>
-
-  <div class="canvas-container">
-      <!-- <canvas id="background-canvas" width="500" height="500"></canvas> -->
-      <canvas id="drawing-canvas" width="500" height="500"></canvas>
-  </div>
-
-  
-
-  <script>
-    // canvas part
-    var drawingCanvas = document.getElementById("drawing-canvas"); // 선 그리기 canvas
-    var drawingContext = drawingCanvas.getContext("2d"); // drawingContext의 context
-
-    function saveCanvas() {
-                    var compositeCanvas = document.createElement('canvas'); // 그림 + 선 캠퍼스 합치기 위한 canvas 생성
-                    compositeCanvas.width = backgroundCanvas.width;
-                    compositeCanvas.height = backgroundCanvas.height;
-                    var compositeContext = compositeCanvas.getContext('2d'); //  compositeCanvas의 context 생성
-
-                    // 배경 캔버스와 드로잉 캔버스를 합침
-                    compositeContext.drawImage(backgroundCanvas, 0, 0);
-                    compositeContext.drawImage(drawingCanvas, 0, 0);
-
-                    // 합친 캔버스를 이미지로 변환하여 다운로드
-                    var dataURL = compositeCanvas.toDataURL('image/png');
-                    var link = document.createElement('a');
-                    link.href = dataURL;
-                    link.download = `${getCurrentDateTimeString()}.png`;
-                    link.click();
-                }
-
-                function getCurrentDateTimeString() {
-                    var today = new Date();
-                    var year = today.getFullYear();
-                    var month = String(today.getMonth() + 1).padStart(2, '0');
-                    var day = String(today.getDate()).padStart(2, '0');
-                    var hours = String(today.getHours()).padStart(2, '0');
-                    var minutes = String(today.getMinutes()).padStart(2, '0');
-                    var seconds = String(today.getSeconds()).padStart(2, '0');
-
-                    // Return formatted date and time string
-                    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-                }
-
-                document.getElementById('save').addEventListener('click', saveCanvas);
-
-
-
-
-
-            // line-controller part
-
-            var lastX = 0; // 마지막 마우스 위치 x 값
-            var lastY = 0; // 마지막 마우스 위치 y 값
-            var isDrawing = false; // 그리기 상태, false : 안그리기
-            var strokeStyle = 'black';  // 기본 선 색상
-            var lineWidth = 1; // 기본 선 두께
-            var lineCap = "round";  // 기본 선 모양
-            var isErasing = false;  // 지우개 모드 여부
-
-
-            function handleMouseDown(event) {
-                // 마우스 클릭했을 때 실행되는 함수
-                isDrawing = true;
-                [lastX, lastY] = [event.offsetX, event.offsetY];
-                // 현재 마우스 위치인 [event.offsetX, event.offsetY] 를 각각 lastX, lastY 에 저장
-            }
-
-
-            function handleMouseMove(event) {
-                // 마우스가 canvas 태그내에서 움직였을 때 실행되는 함수
-
-                if (!isDrawing) return;  // isDrawing이 false일 때는 return으로 함수를 종료
-
-                // 마우스가 움직일 때 isDrawing이 true이면 현재 위치를 가져옴
-                const currentX = event.offsetX;
-                const currentY = event.offsetY;
-
-                drawingContext.lineWidth = lineWidth; // 지정한 선 두께
-                drawingContext.strokeStyle = strokeStyle; // 지정한 선 색상
-                drawingContext.lineCap = lineCap; // 지정한 선 모양
-
-                drawingContext.beginPath(); // context의 새로운 경로를 시작
-                drawingContext.moveTo(lastX, lastY); // 마지막 마우스 위치
-                drawingContext.lineTo(currentX, currentY); // moveTo로 지정한 이전 마우스 위치에서 현재 마우스 위치까지 선 그리기
-
-
-                if (isErasing) {
-                    drawingContext.globalCompositeOperation = 'destination-out';
-                    drawingContext.stroke();
-                    drawingContext.globalCompositeOperation = 'source-over';
-                } else {
-                    drawingContext.stroke();
-                }
-                
-                // drawingContext.closePath(); // context의 경로를 종료
-
-
-                [lastX, lastY] = [currentX, currentY]; // 현재 위치를 저장
-            }
-
-            function handleMouseUp() {
-                // 마우스 클릭 해제했을 때 실행되는 함수
-                isDrawing = false;
-            }
-
-            function handleMouseLeave() {
-                // 마우스가 canvas 태그를 벗어났을 때 실행되는 함수
-                isDrawing = false;
-            }
-
-            // 선 두께 슬라이더 이벤트 리스너
-            document.getElementById('line-width').addEventListener('input', function() {
-                lineWidth = this.value;
-            });
-
-            // 지우개 버튼 클릭 이벤트 리스너
-            document.getElementById('eraser').addEventListener('click', function() {
-                isErasing = !isErasing;  // 지우개 모드를 토글
-                if (isErasing) {
-                    this.textContent = '지우개 끄기';
-                    // document.querySelectorAll('.color-button').forEach(btn => btn.classList.remove('selected'));  // 모든 색상 버튼 선택 해제
-                } else {
-                    this.textContent = '지우개 켜기';
-                }
-            });
-
-            document.querySelectorAll('.color-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    document.querySelectorAll('.color-button').forEach(btn => btn.classList.remove('selected')); // 기존에 체크되었던 색상은 해제
-                    this.classList.add('selected'); // 선택한건 체크표시 나오게
-                    strokeStyle = this.getAttribute('data-color'); // data-color 속성값으로 지정한 섹상변경
-                    isErasing = false;  // 지우개 모드를 해제
-                });
-            });
-
-
-
-            drawingCanvas.addEventListener('mousedown', handleMouseDown);
-            drawingCanvas.addEventListener('mousemove', handleMouseMove);
-            drawingCanvas.addEventListener('mouseup', handleMouseUp);
-            drawingCanvas.addEventListener('mouseleave', handleMouseLeave);
-
-
-
-            document.getElementById('allclear').addEventListener('click', function() {
-                drawingContext.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
-            }); // 모두 지우기
-
-
-      </script>
 
 
 <br><br>
