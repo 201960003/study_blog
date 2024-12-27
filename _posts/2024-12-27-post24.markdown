@@ -21,6 +21,7 @@ background-clip 속성은 배경 이미지를 표시하는 영역을 지정합�
         border: 10px dashed grey;  
     }
   ```
+
   <style>
     .box {
         font-size: 2em;
@@ -31,37 +32,45 @@ background-clip 속성은 배경 이미지를 표시하는 영역을 지정합�
         background-position: center;
         border: 10px dashed grey;  
     }
+
 </style>
   <br><br>
 
 - border-box 
     - 배경 이미지는 border까지 표시됩니다.
     - 즉, 배경이 content, padding, 그리고 border 영역에 모두 표시됩니다.
+
   ``` html
   <div class="box" style="background-clip: border-box;">border-box</div>
   ```
+
   <div class="box" style="background-clip: border-box;">border-box</div>
 <br><br>
 
 - padding-box :
     - 배경 이미지는 padding까지 표시됩니다.
     - border 영역에는 배경이 표시되지 않습니다.
+
   ``` html
   <div class="box" style="background-clip: padding-box;">padding-box</div>
   ```
+
   <div class="box" style="background-clip: padding-box;">padding-box</div>
 <br><br>
 
 - content-box
     - 배경 이미지는 content까지 표시됩니다.
     - padding과 border 영역에는 배경이 표시되지 않습니다.
+
   ``` html
   <div class="box" style="background-clip: content-box;">content-box</div>
   ```
+
   <div class="box" style="background-clip: content-box;">content-box</div>
 <br><br>
 
 - text : 배경이 텍스트에만 적용됩니다.
+
   ``` html
   <div class="box" style="-webkit-background-clip: text; color: transparent; background-clip: text;">text</div>
   ```
@@ -76,6 +85,7 @@ contenteditable='boolean'
 
 
 기본 CSS
+
   ``` CSS
     .input-box {
         background: #eee;
@@ -86,6 +96,7 @@ contenteditable='boolean'
         padding: 15px;
     }
   ```
+  
   <style>
     .input-box {
         background: #eee;
