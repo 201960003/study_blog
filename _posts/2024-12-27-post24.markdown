@@ -1,0 +1,49 @@
+---
+layout: post
+title:  ⌜HTML⌟ div 태그의 contentediatable, background-clip 속성 알아보기
+date:   2024-12-27 +0900
+categories: HTML
+---
+
+
+### background-clip 속성
+background-clip 속성은 배경 이미지를 표시하는 영역을 지정합니다.
+
+- border-box : 배경 이미지는 border까지 표시됩니다.
+  ``` html
+  <div style="background-color: #f0f0f0; background-clip: border-box;">border-box</div>
+  ```
+  <div style="background-color: #f0f0f0; background-clip: border-box;">border-box</div>
+
+
+- padding-box : 배경 이미지는 padding까지 표시됩니다.
+  ``` html
+  <div style="background-color: #f0f0f0; background-clip: padding-box;">padding-box</div>
+  ```
+  <div style="background-color: #f0f0f0; background-clip: padding-box;">padding-box</div>
+
+
+- content-box : 배경 이미지는 content까지 표시됩니다.
+  ``` html
+  <div style="background-color: #f0f0f0; background-clip: content-box;">content-box</div>
+  ```
+  <div style="background-color: #f0f0f0; background-clip: content-box;">content-box</div>
+
+
+- text : 배경 이미지는 text까지 표시됩니다.
+  ``` html
+  <div style="background-color: #f0f0f0; color: transparent; background-clip: content-box;">content-box</div>
+  ```
+  <div style="background-color: #f0f0f0; color: transparent; background-clip: content-box;">content-box</div>
+
+
+- none : 배경 이미지는 표시되지 않습니다.
+
+### contentediatable 속성
+
+<br><br>
+
+### 🧐 오늘의 소감은?
+최종적으로 이미지를 프로젝트 폴더 안에 public 폴더 안에 직접 사진을 넣어서 작업을 한 부분이 아쉽긴 하지만 그래도 이 코드 이후에 확장성이 좋다고 생각을 하기 떄문에 살짝 뿌듯... 함이 있긴 합니다. 최근 플러터로 작업을 하다가 이렇게 웹으르 조금 다루니까 살짝 재미있어진 것 같아요. 요즘 아직 간단한것만 하는데 그래도 점점 어려운 것도 해내는 아기 개발자가 되고 싶어요!! 열심히 빠샤빠샤
+
+<br>
