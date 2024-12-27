@@ -110,12 +110,14 @@ contenteditable='boolean'
   </style>
 
   ``` html
-  <div class="input-box" contenteditable="true">
+  <div class="input-box"
+    contenteditable="true">
     <p>안녕하세요! 반갑습니다!</p>
   </div>
   ```
 
-  <div class="input-box" contenteditable="true">
+  <div class="input-box"
+    contenteditable="true">
     <p>안녕하세요! 반갑습니다!</p>
   </div>
 <br><br>
