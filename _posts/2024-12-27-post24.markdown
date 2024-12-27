@@ -9,11 +9,26 @@ categories: HTML
 ### background-clip 속성
 background-clip 속성은 배경 이미지를 표시하는 영역을 지정합니다.
 
+기본 CSS
+  ``` CSS
+    div {
+        font-size: 2em;
+        font-weight: 900;
+        text-align: center;
+        padding: 30px;
+        background-image: url("flower.jpg");
+        background-position: center;
+        background-clip: border-box; /* 초깃값 */
+    }
+  ```
+  <br><br>
+
 - border-box : 배경 이미지는 border까지 표시됩니다.
   ``` html
   <div style="background-color: #f0f0f0; background-clip: border-box;">border-box</div>
   ```
   <div style="background-color: #f0f0f0; background-clip: border-box;">border-box</div>
+<br>
 
 
 - padding-box : 배경 이미지는 padding까지 표시됩니다.
