@@ -112,14 +112,22 @@ contenteditable='boolean'
   ``` html
   <div class="input-box"
     contenteditable="true">
-    <p>안녕하세요! 반갑습니다!</p>
+    <p id="result">안녕하세요! 반갑습니다!</p>
   </div>
   ```
 
   <div class="input-box"
     contenteditable="true">
-    <p>안녕하세요! 반갑습니다!</p>
+    <p id="result">안녕하세요! 반갑습니다!</p>
   </div>
+
+```javascript
+  const result = document.getElementById('result').innerText;
+
+  console.log(result);
+```
+해당 값도 이런식으로 가져올 수 있습니다.
+
 <br><br>
 
 ### 🧐 오늘의 소감은?
