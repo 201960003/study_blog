@@ -11,54 +11,103 @@ background-clip 속성은 배경 이미지를 표시하는 영역을 지정합�
 
 기본 CSS
   ``` CSS
-    div {
+    .box {
         font-size: 2em;
         font-weight: 900;
         text-align: center;
         padding: 30px;
-        background-image: url("flower.jpg");
+        background-image: url("example.PNG");
         background-position: center;
-        background-clip: border-box; /* 초깃값 */
+        border: 10px dashed grey;  
     }
   ```
+  <style>
+    .box {
+        font-size: 2em;
+        font-weight: 900;
+        text-align: center;
+        padding: 30px;
+        background-image: url("https://raw.githubusercontent.com/201960003/study_blog/refs/heads/main/img/post24/IMG_1375.PNG");
+        background-position: center;
+        border: 10px dashed grey;  
+    }
+</style>
   <br><br>
 
-- border-box : 배경 이미지는 border까지 표시됩니다.
+- border-box 
+    - 배경 이미지는 border까지 표시됩니다.
+    - 즉, 배경이 content, padding, 그리고 border 영역에 모두 표시됩니다.
   ``` html
-  <div style="background-color: #f0f0f0; background-clip: border-box;">border-box</div>
+  <div class="box" style="background-clip: border-box;">border-box</div>
   ```
-  <div style="background-color: #f0f0f0; background-clip: border-box;">border-box</div>
-<br>
+  <div class="box" style="background-clip: border-box;">border-box</div>
+<br><br>
 
-
-- padding-box : 배경 이미지는 padding까지 표시됩니다.
+- padding-box :
+    - 배경 이미지는 padding까지 표시됩니다.
+    - border 영역에는 배경이 표시되지 않습니다.
   ``` html
-  <div style="background-color: #f0f0f0; background-clip: padding-box;">padding-box</div>
+  <div class="box" style="background-clip: padding-box;">padding-box</div>
   ```
-  <div style="background-color: #f0f0f0; background-clip: padding-box;">padding-box</div>
+  <div class="box" style="background-clip: padding-box;">padding-box</div>
+<br><br>
 
-
-- content-box : 배경 이미지는 content까지 표시됩니다.
+- content-box
+    - 배경 이미지는 content까지 표시됩니다.
+    - padding과 border 영역에는 배경이 표시되지 않습니다.
   ``` html
-  <div style="background-color: #f0f0f0; background-clip: content-box;">content-box</div>
+  <div class="box" style="background-clip: content-box;">content-box</div>
   ```
-  <div style="background-color: #f0f0f0; background-clip: content-box;">content-box</div>
+  <div class="box" style="background-clip: content-box;">content-box</div>
+<br><br>
 
-
-- text : 배경 이미지는 text까지 표시됩니다.
+- text : 배경이 텍스트에만 적용됩니다.
   ``` html
-  <div style="background-color: #f0f0f0; color: transparent; background-clip: content-box;">content-box</div>
+  <div class="box" style="-webkit-background-clip: text; color: transparent; background-clip: text;">text</div>
   ```
-  <div style="background-color: #f0f0f0; color: transparent; background-clip: content-box;">content-box</div>
+  <div class="box" style="-webkit-background-clip: text; color: transparent; background-clip: text; ">text</div>
+<br><br>
 
-
-- none : 배경 이미지는 표시되지 않습니다.
 
 ### contentediatable 속성
+contenteditable='boolean'
+- true는 요소가 편집 가능함을 나타냅니다.
+- false는 요소가 편집 불가능함을 나타냅니다.
 
+
+기본 CSS
+  ``` CSS
+    .input-box {
+        background: #eee;
+        border-radius: 5px;
+        margin: 16px 0;
+    }
+    .input-box p {
+        padding: 15px;
+    }
+  ```
+  <style>
+    .input-box {
+        background: #eee;
+        border-radius: 5px;
+        margin: 16px 0;
+    }
+    .input-box p {
+        padding: 15px;
+    }
+</style>
+
+  ``` html
+  <div class="input-box"contenteditable="true">
+    <p>안녕하세요! 반갑습니다!</p>
+  </div>
+  ```
+  <div class="input-box"contenteditable="true">
+    <p>안녕하세요! 반갑습니다!</p>
+  </div>
 <br><br>
 
 ### 🧐 오늘의 소감은?
-최종적으로 이미지를 프로젝트 폴더 안에 public 폴더 안에 직접 사진을 넣어서 작업을 한 부분이 아쉽긴 하지만 그래도 이 코드 이후에 확장성이 좋다고 생각을 하기 떄문에 살짝 뿌듯... 함이 있긴 합니다. 최근 플러터로 작업을 하다가 이렇게 웹으르 조금 다루니까 살짝 재미있어진 것 같아요. 요즘 아직 간단한것만 하는데 그래도 점점 어려운 것도 해내는 아기 개발자가 되고 싶어요!! 열심히 빠샤빠샤
+div 태그에 이런 속성이 있는지 처음 알았어요ㅠㅠ 정말 공부할게 너무 많네요 일을 하다보니 이제 새해가 얼마 남지 않았어요! 정말 올해도 너무 알차고 뿌듯하게 열실히 해서 기분이 좋습니다!
 
 <br>
