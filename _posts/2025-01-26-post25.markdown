@@ -61,8 +61,8 @@ categories: HTML
     }
 </style>
 <div class="canvas-container">
-    <canvas id="background-canvas" width="300" height="300"></canvas>
-    <canvas id="drawing-canvas" width="300" height="300"></canvas>
+    <canvas id="background-canvas" width="500" height="500"></canvas>
+    <canvas id="drawing-canvas" width="500" height="500"></canvas>
 </div>
 
 <div class="controls">
@@ -84,8 +84,8 @@ categories: HTML
 </div>
 
 <div class=sticker-container>
-    <img class="sticker" src="https://github.com/201960003/study_blog/blob/main/img/post25/four_leaf_clover.png?raw=true"></img>
-    <img class="sticker" src="https://github.com/201960003/study_blog/blob/main/img/post25/three_leaf_clover.png?raw=true"></img>
+    <img class="sticker" src="https://github.com/201960003/study_blog/blob/main/img/post25/four_leaf_clover.png?raw=true">
+    <img class="sticker" src="https://github.com/201960003/study_blog/blob/main/img/post25/three_leaf_clover.png?raw=true">
 </div>
         
 <button id="save" onclick="saveCanvas()">저장</button>
