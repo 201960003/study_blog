@@ -1,0 +1,213 @@
+---
+layout: post
+# title:  ⌜HTML⌟ 스티커 추가 및 그림 그리기 기능
+title:  ⌜HTML⌟ 그림 그리기 기능
+date:   2024-01-26 +0900
+categories: HTML
+---
+<style>
+    #drawing-canvas {
+        border: 1px solid black;
+        background-color: white;
+        display: block;
+        margin: 20px auto;
+    }
+
+     /*  color-picker  */
+    .color-picker {
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    .color-button {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .color-button span {
+        display: none;
+        color: white;
+        font-size: 20px;
+    }
+
+    .color-button.selected span {
+        display: block;
+    }
+
+    .black { background-color: black; color: white; }
+    .red { background-color: red; }
+    .orange { background-color: orange; }
+    .yellow { background-color: yellow; }
+    .green { background-color: green; }
+    .blue { background-color: blue; }
+    .indigo { background-color: indigo; }
+    .violet { background-color: violet; }
+</style>
+<div class="canvas-container">
+    <!-- <canvas id="background-canvas" width="300" height="300"></canvas> -->
+    <canvas id="drawing-canvas" width="300" height="300"></canvas>
+</div>
+
+<div class="controls">
+    <label for="line-width">선 두께: </label>
+    <input type="range" id="line-width" min="1" max="10" value="1">
+    <button id="eraser">지우개 켜기</button>
+    <button id="allclear">모두 지우기</button>
+</div>
+        
+<div class="color-picker">
+    <div class="color-button black selected" data-color="black"><span>&#10003;</span></div>
+    <div class="color-button red" data-color="red"><span>&#10003;</span></div>
+    <div class="color-button orange" data-color="orange"><span>&#10003;</span></div>
+    <div class="color-button yellow" data-color="yellow"><span>&#10003;</span></div>
+    <div class="color-button green" data-color="green"><span>&#10003;</span></div>
+    <div class="color-button blue" data-color="blue"><span>&#10003;</span></div>
+    <div class="color-button indigo" data-color="indigo"><span>&#10003;</span></div>
+    <div class="color-button violet" data-color="violet"><span>&#10003;</span></div>
+</div>
+        
+<button id="save" onclick="saveCanvas()">저장</button>
+
+<script>
+    // canvas part
+    var drawingCanvas = document.getElementById("drawing-canvas"); // 선 그리기 canvas
+    var drawingContext = drawingCanvas.getContext("2d"); // drawingContext의 context
+
+    function saveCanvas() {
+        var compositeCanvas = document.createElement('canvas'); // 그림 + 선 캠퍼스 합치기 위한 canvas 생성
+        compositeCanvas.width = backgroundCanvas.width;
+        compositeCanvas.height = backgroundCanvas.height;
+        var compositeContext = compositeCanvas.getContext('2d'); //  compositeCanvas의 context 생성
+
+        // 배경 캔버스와 드로잉 캔버스를 합침
+        compositeContext.drawImage(backgroundCanvas, 0, 0);
+        compositeContext.drawImage(drawingCanvas, 0, 0);
+
+        // 합친 캔버스를 이미지로 변환하여 다운로드
+        var dataURL = compositeCanvas.toDataURL('image/png');
+        var link = document.createElement('a');
+        link.href = dataURL;
+        link.download = `${getCurrentDateTimeString()}.png`;
+        link.click();
+    }
+
+    function getCurrentDateTimeString() {
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = String(today.getMonth() + 1).padStart(2, '0');
+        var day = String(today.getDate()).padStart(2, '0');
+        var hours = String(today.getHours()).padStart(2, '0');
+        var minutes = String(today.getMinutes()).padStart(2, '0');
+        var seconds = String(today.getSeconds()).padStart(2, '0');
+
+        // Return formatted date and time string
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+
+    // line-controller part
+    var lastX = 0; // 마지막 마우스 위치 x 값
+    var lastY = 0; // 마지막 마우스 위치 y 값
+    var isDrawing = false; // 그리기 상태, false : 안그리기
+    var strokeStyle = 'black';  // 기본 선 색상
+    var lineWidth = 1; // 기본 선 두께
+    var lineCap = "round";  // 기본 선 모양
+    var isErasing = false;  // 지우개 모드 여부
+
+
+    function handleMouseDown(event) {
+        // 마우스 클릭했을 때 실행되는 함수
+        isDrawing = true;
+        [lastX, lastY] = [event.offsetX, event.offsetY];
+        // 현재 마우스 위치인 [event.offsetX, event.offsetY] 를 각각 lastX, lastY 에 저장
+    };
+
+
+    function handleMouseMove(event) {
+        // 마우스가 canvas 태그내에서 움직였을 때 실행되는 함수
+        if (!isDrawing) return;  // isDrawing이 false일 때는 return으로 함수를 종료
+        // 마우스가 움직일 때 isDrawing이 true이면 현재 위치를 가져옴
+        const currentX = event.offsetX;
+        const currentY = event.offsetY;
+
+        drawingContext.lineWidth = lineWidth; // 지정한 선 두께
+        drawingContext.strokeStyle = strokeStyle; // 지정한 선 색상
+        drawingContext.lineCap = lineCap; // 지정한 선 모양
+
+        drawingContext.beginPath(); // context의 새로운 경로를 시작
+        drawingContext.moveTo(lastX, lastY); // 마지막 마우스 위치
+        drawingContext.lineTo(currentX, currentY); // moveTo로 지정한 이전 마우스 위치에서 현재 마우스 위치까지 선 그리기
+
+
+        if (isErasing) {
+            drawingContext.globalCompositeOperation = 'destination-out';
+            drawingContext.stroke();
+            drawingContext.globalCompositeOperation = 'source-over';
+        } else {
+            drawingContext.stroke();
+        }
+                
+        // drawingContext.closePath(); // context의 경로를 종료
+
+        [lastX, lastY] = [currentX, currentY]; // 현재 위치를 저장
+    };
+
+    function handleMouseUp() {
+        // 마우스 클릭 해제했을 때 실행되는 함수
+        isDrawing = false;
+    };
+
+    function handleMouseLeave() {
+        // 마우스가 canvas 태그를 벗어났을 때 실행되는 함수
+        isDrawing = false;
+    };
+
+    // 선 두께 슬라이더 이벤트 리스너
+    document.getElementById('line-width').addEventListener('input', function() {
+        lineWidth = this.value;
+    });
+
+    // 지우개 버튼 클릭 이벤트 리스너
+    document.getElementById('eraser').addEventListener('click', function() {
+        isErasing = !isErasing;  // 지우개 모드를 토글
+        if (isErasing) {
+            this.textContent = '지우개 끄기';
+            // document.querySelectorAll('.color-button').forEach(btn => btn.classList.remove('selected'));  // 모든 색상 버튼 선택 해제
+        } else {
+            this.textContent = '지우개 켜기';
+        }
+    });
+
+    document.querySelectorAll('.color-button').forEach(button => {
+        button.addEventListener('click', function() {
+            document.querySelectorAll('.color-button').forEach(btn => btn.classList.remove('selected')); // 기존에 체크되었던 색상은 해제
+            this.classList.add('selected'); // 선택한건 체크표시 나오게
+            strokeStyle = this.getAttribute('data-color'); // data-color 속성값으로 지정한 섹상변경
+            isErasing = false;  // 지우개 모드를 해제
+        });
+    });
+    
+    drawingCanvas.addEventListener('mousedown', handleMouseDown);
+    drawingCanvas.addEventListener('mousemove', handleMouseMove);
+    drawingCanvas.addEventListener('mouseup', handleMouseUp);
+    drawingCanvas.addEventListener('mouseleave', handleMouseLeave);
+
+    document.getElementById('allclear').addEventListener('click', function() {
+        drawingContext.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+    }); // 모두 지우기
+
+</script>
+
+
+<!-- <br><br> -->
+
+### 🧐 오늘의 소감은?
+최종적으로 이미지를 프로젝트 폴더 안에 public 폴더 안에 직접 사진을 넣어서 작업을 한 부분이 아쉽긴 하지만 그래도 이 코드 이후에 확장성이 좋다고 생각을 하기 떄문에 살짝 뿌듯... 함이 있긴 합니다. 최근 플러터로 작업을 하다가 이렇게 웹으르 조금 다루니까 살짝 재미있어진 것 같아요. 요즘 아직 간단한것만 하는데 그래도 점점 어려운 것도 해내는 아기 개발자가 되고 싶어요!! 열심히 빠샤빠샤
+
+<br>
