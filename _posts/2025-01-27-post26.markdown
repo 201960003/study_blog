@@ -5,9 +5,6 @@ date:   2025-01-26 +0900
 categories: HTML
 ---
 
-
-<h1>TTS와 STT 예제</h1>
-
 <!-- TTS 섹션 -->
 <div class="container">
     <h2>Text-to-Speech (TTS)</h2>
@@ -45,6 +42,29 @@ categories: HTML
     const startButton = document.getElementById('start-record-button');
     const stopButton = document.getElementById('stop-record-button');
     const permissionStatusSpan = document.getElementById('permission-status');
+
+
+    startButton.addEventListener('click', () => {
+        recognition.start();
+        startButton.disabled = true;
+        stopButton.disabled = false;
+    });
+
+    stopButton.addEventListener('click', () => {
+        recognition.stop();
+        startButton.disabled = false;
+        stopButton.disabled = true;
+    });
+
+    recognition.addEventListener('result', (event) => {
+        const transcript = event.results[0][0].transcript; // 인식된 텍스트
+        recognizedText.textContent = transcript;
+    });
+
+    recognition.addEventListener('end', () => {
+        startButton.disabled = false;
+        stopButton.disabled = true;
+    });
 
     // 마이크 권한 확인 및 상태 업데이트
     async function checkMicrophonePermission() {
