@@ -1,8 +1,7 @@
 ---
 layout: post
-# title:  ⌜HTML⌟ 스티커 추가 및 그림 그리기 기능
-title:  ⌜HTML⌟ 그림 그리기 기능
-date:   2024-01-26 +0900
+title:  ⌜HTML⌟ 스티커 추가 및 그림 그리기 기능
+date:   2025-01-26 +0900
 categories: HTML
 ---
 <style>
@@ -51,7 +50,7 @@ categories: HTML
     .violet { background-color: violet; }
 </style>
 <div class="canvas-container">
-    <!-- <canvas id="background-canvas" width="300" height="300"></canvas> -->
+    <canvas id="background-canvas" width="300" height="300"></canvas>
     <canvas id="drawing-canvas" width="300" height="300"></canvas>
 </div>
 
@@ -78,7 +77,9 @@ categories: HTML
 <script>
     // canvas part
     var drawingCanvas = document.getElementById("drawing-canvas"); // 선 그리기 canvas
-    var drawingContext = drawingCanvas.getContext("2d"); // drawingContext의 context
+    var backgroundCanvas = document.getElementById("background-canvas"); // 스티커 그리기 canvas
+    var drawingContext = drawingCanvas.getContext("2d"); // backgroundCanvas의 context
+    var backgroundContext = drawingCanvas.getContext("2d"); // backgroundCanvas의 context
 
     function saveCanvas() {
         var compositeCanvas = document.createElement('canvas'); // 그림 + 선 캠퍼스 합치기 위한 canvas 생성
@@ -192,11 +193,17 @@ categories: HTML
             isErasing = false;  // 지우개 모드를 해제
         });
     });
-    
+
+    // 마우스 이벤트
     drawingCanvas.addEventListener('mousedown', handleMouseDown);
     drawingCanvas.addEventListener('mousemove', handleMouseMove);
     drawingCanvas.addEventListener('mouseup', handleMouseUp);
     drawingCanvas.addEventListener('mouseleave', handleMouseLeave);
+
+    // 터치 이벤트 리스너 추가
+    drawingCanvas.addEventListener('touchstart', handleMouseDown);
+    drawingCanvas.addEventListener('touchmove', handleMouseMove);
+    drawingCanvas.addEventListener('touchend', handleMouseUp);
 
     document.getElementById('allclear').addEventListener('click', function() {
         drawingContext.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
