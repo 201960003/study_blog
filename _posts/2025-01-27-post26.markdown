@@ -32,7 +32,7 @@ categories: HTML
     });
 
 
-    function ttsRead(text) {
+    async function ttsRead(text) {
          const speech = new SpeechSynthesisUtterance(text);
         speech.lang = 'ko-KR'; // 한국어 설정
         window.speechSynthesis.speak(speech);
@@ -41,7 +41,8 @@ categories: HTML
     // STT (Speech-to-Text)
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
     recognition.lang = 'ko-KR'; // 한국어 설정
-    recognition.interimResults = false;
+    recognition.continuous = true; // 연속 모드 활성화
+    recognition.interimResults = false; // 중간 결과 비활성화
 
 
     const startButton = document.getElementById('start-record-button');
@@ -67,10 +68,17 @@ categories: HTML
         recognizedText.textContent = transcript;
     });
 
+    // 음성 인식 종료 이벤트
     recognition.addEventListener('end', () => {
-        startButton.disabled = false;
-        stopButton.disabled = true;
-        ttsRead(recognizedText.textContent);
+        if (!stopButton.disabled) {
+            // stopButton이 클릭되지 않았다면 음성 인식을 재시작
+            recognition.start();
+        } else {
+            // stopButton 클릭 이후 종료되었을 때만 TTS 실행
+            ttsRead(recognizedText.textContent).then(() => {
+                recognizedText.textContent = ''; // 텍스트 초기화
+            });
+        }
     });
 
     // 마이크 권한 확인 및 상태 업데이트
