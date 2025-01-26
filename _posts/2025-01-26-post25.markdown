@@ -247,9 +247,258 @@ categories: HTML
     drawingCanvas.addEventListener('drop', onDrop);
 </script>
 
-<!-- <br><br> -->
+<br>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <style>
+    #drawing-canvas {
+        border: 1px solid black;
+        background-color: white;
+        display: block;
+    }
+
+    .color-picker {
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    .color-button {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .color-button span {
+        display: none;
+        color: white;
+        font-size: 20px;
+    }
+
+    .color-button.selected span {
+        display: block;
+    }
+
+    .black { background-color: black; color: white; }
+    .red { background-color: red; }
+    .orange { background-color: orange; }
+    .yellow { background-color: yellow; }
+    .green { background-color: green; }
+    .blue { background-color: blue; }
+    .indigo { background-color: indigo; }
+    .violet { background-color: violet; }
+
+    .sticker-container {
+        width: 50%;
+        height: 30%;
+    }
+
+    .sticker {
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+
+<div class="canvas-container">
+    <canvas id="drawing-canvas" width="500" height="500"></canvas>
+</div>
+
+<div class="controls">
+    <label for="line-width">선 두께: </label>
+    <input type="range" id="line-width" min="1" max="10" value="1">
+    <button id="eraser">지우개 켜기</button>
+    <button id="allclear">모두 지우기</button>
+</div>
+
+<div class="color-picker">
+    <div class="color-button black selected" data-color="black"><span>&#10003;</span></div>
+    <div class="color-button red" data-color="red"><span>&#10003;</span></div>
+    <div class="color-button orange" data-color="orange"><span>&#10003;</span></div>
+    <div class="color-button yellow" data-color="yellow"><span>&#10003;</span></div>
+    <div class="color-button green" data-color="green"><span>&#10003;</span></div>
+    <div class="color-button blue" data-color="blue"><span>&#10003;</span></div>
+    <div class="color-button indigo" data-color="indigo"><span>&#10003;</span></div>
+    <div class="color-button violet" data-color="violet"><span>&#10003;</span></div>
+</div>
+
+<div class="sticker-container">
+    <img class="sticker" src="https://github.com/201960003/study_blog/blob/main/img/post25/four_leaf_clover.png?raw=true">
+    <img class="sticker" src="https://github.com/201960003/study_blog/blob/main/img/post25/three_leaf_clover.png?raw=true">
+
+</div>
+
+<script>
+    // 캔버스 및 컨텍스트 설정
+    const drawingCanvas = document.getElementById("drawing-canvas");
+    const ctx = drawingCanvas.getContext("2d");
+
+    // 그림 그리기 관련 변수
+    let isDrawing = false;
+    let lastX = 0;
+    let lastY = 0;
+    let strokeStyle = 'black';
+    let lineWidth = 1;
+    let isErasing = false;
+
+    // 스티커 관련 변수
+    let selectedSticker = null;
+
+    // 마우스 및 터치 이벤트 핸들러
+    function startDrawing(e) {
+        isDrawing = true;
+        [lastX, lastY] = getEventPosition(e);
+    }
+
+    function draw(e) {
+        if (!isDrawing) return;
+        const [x, y] = getEventPosition(e);
+
+        ctx.lineWidth = lineWidth;
+        ctx.strokeStyle = isErasing ? 'white' : strokeStyle;
+        ctx.lineCap = 'round';
+
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+
+        [lastX, lastY] = [x, y];
+    }
+
+    function stopDrawing() {
+        isDrawing = false;
+    }
+
+
+
+    // 이벤트 위치 계산 (마우스 및 터치 지원)
+    function getEventPosition(e) {
+        const rect = drawingCanvas.getBoundingClientRect();
+        if (e.touches) {
+            return [e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top];
+        } else {
+            return [e.offsetX, e.offsetY];
+        }
+    }
+
+    // 스티커 클릭 이벤트 핸들러
+    document.querySelectorAll('.sticker').forEach(sticker => {
+        sticker.addEventListener('click', () => {
+            selectedSticker = sticker.src;
+        });
+    });
+
+    // 캔버스 클릭 이벤트 핸들러 (스티커 추가)
+    drawingCanvas.addEventListener('click', (e) => {
+        if (selectedSticker) {
+            const [x, y] = getEventPosition(e);
+            const img = new Image();
+            img.src = selectedSticker;
+            img.onload = () => {
+                ctx.drawImage(img, x - 50, y - 50, 100, 100); // 스티커 크기: 100x100
+            };
+        }
+    });
+
+    // 컨트롤 이벤트 핸들러
+    document.getElementById('line-width').addEventListener('input', (e) => {
+        lineWidth = e.target.value;
+    });
+
+    document.getElementById('eraser').addEventListener('click', () => {
+        isErasing = !isErasing;
+        document.getElementById('eraser').textContent = isErasing ? '지우개 끄기' : '지우개 켜기';
+    });
+
+    document.getElementById('allclear').addEventListener('click', () => {
+        ctx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+    });
+
+
+    document.querySelectorAll('.color-button').forEach(button => {
+        button.addEventListener('click', function () {
+            document.querySelectorAll('.color-button').forEach(btn => btn.classList.remove('selected')); // 기존에 체크되었던 색상은 해제
+            this.classList.add('selected'); // 선택한건 체크표시 나오게
+            strokeStyle = this.getAttribute('data-color'); // data-color 속성값으로 지정한 섹상변경
+            isErasing = false;  // 지우개 모드를 해제
+        });
+    });
+
+    // 드래그 오버 이벤트 핸들러
+    function onDragOver(e) {
+        e.preventDefault(); // 기본 동작 방지 (필수)
+    }
+
+    // 드롭 이벤트 핸들러
+    function onDrop(e) {
+        e.preventDefault(); // 기본 동작 방지 (필수)
+
+        // 드롭 위치 계산
+        const rect = drawingCanvas.getBoundingClientRect();
+        const x = e.clientX - rect.left; // 캔버스 내부 X 좌표
+        const y = e.clientY - rect.top;  // 캔버스 내부 Y 좌표
+
+        // 드래그된 스티커의 이미지 소스 가져오기
+        const stickerSrc = e.dataTransfer.getData('text/plain');
+
+        // 스티커를 캔버스에 그리기
+        if (stickerSrc) {
+            const img = new Image();
+            img.src = stickerSrc;
+            img.onload = () => {
+                ctx.drawImage(img, x - 50, y - 50, 100, 100); // 스티커 크기: 100x100
+            };
+        }
+    }
+
+    // 스티커 드래그 시작 이벤트 핸들러
+    function onDragStart(e) {
+        // 드래그할 스티커의 이미지 소스를 저장
+        e.dataTransfer.setData('text/plain', e.target.src);
+    }
+
+    // 스티커에 드래그 이벤트 리스너 추가
+    document.querySelectorAll('.sticker').forEach(sticker => {
+        sticker.addEventListener('dragstart', onDragStart);
+    });
+
+    // 이벤트 리스너 등록
+    drawingCanvas.addEventListener('mousedown', startDrawing);
+    drawingCanvas.addEventListener('mousemove', draw);
+    drawingCanvas.addEventListener('mouseup', stopDrawing);
+    drawingCanvas.addEventListener('mouseleave', stopDrawing);
+
+    drawingCanvas.addEventListener('touchstart', startDrawing);
+    drawingCanvas.addEventListener('touchmove', draw);
+    drawingCanvas.addEventListener('touchend', stopDrawing);
+
+    // 캔버스에 드래그 앤 드롭 이벤트 리스너 추가
+    drawingCanvas.addEventListener('dragover', onDragOver);
+    drawingCanvas.addEventListener('drop', onDrop);
+</script>
+    
+</body>
+</html>
+```
+
+<br><br>
 
 ### 🧐 오늘의 소감은?
-최종적으로 이미지를 프로젝트 폴더 안에 public 폴더 안에 직접 사진을 넣어서 작업을 한 부분이 아쉽긴 하지만 그래도 이 코드 이후에 확장성이 좋다고 생각을 하기 떄문에 살짝 뿌듯... 함이 있긴 합니다. 최근 플러터로 작업을 하다가 이렇게 웹으르 조금 다루니까 살짝 재미있어진 것 같아요. 요즘 아직 간단한것만 하는데 그래도 점점 어려운 것도 해내는 아기 개발자가 되고 싶어요!! 열심히 빠샤빠샤
+간략하게 이미지를 캔버스 위에 그려서 스티커처럼 할 수 있게 해봤습니다. 이번 꺼는 그 전에 마우스로 선 그리기의 다음버전인 셈인데요 간단한 것 같은데 이렇게 버벅이다니 참... 아직 멀었습니다. 벌써 25년 새해인데 공부도 열심히 하고 일도 열심히 하는 해가 됐으면 좋겠습니다.
 
 <br>
