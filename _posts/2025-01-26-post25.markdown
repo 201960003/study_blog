@@ -70,6 +70,7 @@ categories: HTML
     <button id="allclear">모두 지우기</button>
 </div>
 
+<span>✍️ 선 색성을 변경해 보세요 ^^✍️</span>
 <div class="color-picker">
     <div class="color-button black selected" data-color="black"><span>&#10003;</span></div>
     <div class="color-button red" data-color="red"><span>&#10003;</span></div>
@@ -81,10 +82,10 @@ categories: HTML
     <div class="color-button violet" data-color="violet"><span>&#10003;</span></div>
 </div>
 
+<span>✍️ 이미지를 드래그해서 캔버스에 그려보세요 ^^✍️</span>
 <div class="sticker-container">
     <img class="sticker" src="https://github.com/201960003/study_blog/blob/main/img/post25/four_leaf_clover.png?raw=true">
     <img class="sticker" src="https://github.com/201960003/study_blog/blob/main/img/post25/three_leaf_clover.png?raw=true">
-
 </div>
 
 <!-- <button id="save" onclick="saveCanvas()">저장</button> -->

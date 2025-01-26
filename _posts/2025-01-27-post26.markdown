@@ -1,0 +1,110 @@
+---
+layout: post
+title:  ⌜HTML⌟ Web Speech API로 TTS 및 STT 구현하기
+date:   2025-01-26 +0900
+categories: HTML
+---
+
+
+<h1>TTS와 STT 예제</h1>
+
+<!-- TTS 섹션 -->
+<div class="container">
+    <h2>Text-to-Speech (TTS)</h2>
+    <textarea id="tts-text" rows="3" cols="50" placeholder="여기에 텍스트를 입력하세요"></textarea><br>
+    <button id="speak-button">읽기</button>
+</div>
+
+<!-- STT 섹션 -->
+<div class="container">
+    <h2>Speech-to-Text (STT)</h2>
+    <p id="status-message">마이크 권한 상태:
+        <span id="permission-status">확인 중...</span>
+    </p>
+    <button id="start-record-button">녹음 시작</button>
+    <button id="stop-record-button" disabled>녹음 중지</button>
+    <p>인식된 텍스트: <span id="recognized-text"></span></p>
+</div>
+
+<script>
+
+    // TTS (Text-to-Speech)
+    document.getElementById('speak-button').addEventListener('click', () => {
+        const text = document.getElementById('tts-text').value;
+        const speech = new SpeechSynthesisUtterance(text);
+        speech.lang = 'ko-KR'; // 한국어 설정
+        window.speechSynthesis.speak(speech);
+    });
+
+    // STT (Speech-to-Text)
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'ko-KR'; // 한국어 설정
+    recognition.interimResults = false;
+
+
+    const startButton = document.getElementById('start-record-button');
+    const stopButton = document.getElementById('stop-record-button');
+    const permissionStatusSpan = document.getElementById('permission-status');
+
+    // 마이크 권한 확인 및 상태 업데이트
+    async function checkMicrophonePermission() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            if (stream) {
+                updateUI('granted');
+            }
+        } catch (error) {
+            updateUI('denied');
+        }
+    }
+
+    // UI 업데이트 함수
+    function updateUI(status) {
+        if (status === 'granted') {
+            permissionStatusSpan.textContent = '허용됨';
+            permissionStatusSpan.style.color = 'green';
+            startButton.disabled = false;
+            stopButton.disabled = true;
+        } else if (status === 'denied') {
+            permissionStatusSpan.textContent = '거부됨';
+            permissionStatusSpan.style.color = 'red';
+            startButton.disabled = true;
+            stopButton.disabled = true;
+        } else {
+            permissionStatusSpan.textContent = '알 수 없음';
+            permissionStatusSpan.style.color = 'orange';
+            startButton.disabled = true;
+            stopButton.disabled = true;
+        }
+    }
+
+    // 권한 변경 감지
+    async function monitorPermissionChanges() {
+        try {
+            const permissionStatus = await navigator.permissions.query({ name: 'microphone' });
+            updateUI(permissionStatus.state); // 초기 상태 설정
+
+            // 권한 변경 이벤트 리스너 등록
+            permissionStatus.onchange = () => {
+                updateUI(permissionStatus.state);
+            };
+        } catch (error) {
+            console.error('권한 상태를 확인할 수 없습니다.', error);
+            updateUI('unknown');
+        }
+    }
+
+    // 윈도우 로드 시 실행
+    window.addEventListener('load', () => {
+        checkMicrophonePermission(); // 권한 초기 확인
+        monitorPermissionChanges(); // 권한 변경 감지
+    });
+</script>
+
+
+<br><br>
+
+<!-- ### 🧐 오늘의 소감은? -->
+
+
+<br>
