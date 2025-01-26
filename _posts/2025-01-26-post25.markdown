@@ -9,7 +9,7 @@ categories: HTML
         border: 1px solid black;
         background-color: white;
         display: block;
-        margin: 20px auto;
+        /* margin: 20px auto; */
     }
 
      /*  color-picker  */
@@ -48,6 +48,17 @@ categories: HTML
     .blue { background-color: blue; }
     .indigo { background-color: indigo; }
     .violet { background-color: violet; }
+
+
+    .sticker-container {
+        width: 50%;
+        height: 30%
+    }
+
+    .sticker {
+        width: 100px;
+        height: 100px;
+    }
 </style>
 <div class="canvas-container">
     <canvas id="background-canvas" width="300" height="300"></canvas>
@@ -71,15 +82,20 @@ categories: HTML
     <div class="color-button indigo" data-color="indigo"><span>&#10003;</span></div>
     <div class="color-button violet" data-color="violet"><span>&#10003;</span></div>
 </div>
+
+<div class=sticker-container>
+    <img class="sticker" src="https://github.com/201960003/study_blog/blob/main/img/post25/four_leaf_clover.png?raw=true"></img>
+    <img class="sticker" src="https://github.com/201960003/study_blog/blob/main/img/post25/three_leaf_clover.png?raw=true"></img>
+</div>
         
 <button id="save" onclick="saveCanvas()">저장</button>
 
 <script>
     // canvas part
     var drawingCanvas = document.getElementById("drawing-canvas"); // 선 그리기 canvas
-    var backgroundCanvas = document.getElementById("background-canvas"); // 스티커 그리기 canvas
-    var drawingContext = drawingCanvas.getContext("2d"); // backgroundCanvas의 context
-    var backgroundContext = drawingCanvas.getContext("2d"); // backgroundCanvas의 context
+    var stickerBoard = document.getElementById("background-canvas"); // 스티커 그리기 canvas
+    var drawingContext = drawingCanvas.getContext("2d"); // drawingCanvas의 context
+    var backgroundContext = stickerBoard.getContext("2d"); // backgroundCanvas의 context
 
     function saveCanvas() {
         var compositeCanvas = document.createElement('canvas'); // 그림 + 선 캠퍼스 합치기 위한 canvas 생성
@@ -201,13 +217,234 @@ categories: HTML
     drawingCanvas.addEventListener('mouseleave', handleMouseLeave);
 
     // 터치 이벤트 리스너 추가
-    drawingCanvas.addEventListener('touchstart', handleMouseDown);
+    drawingCanvas.addEventListener('touchstart', ()=>{
+        handleMouseDown
+        console.log("ddjdjdjdj")
+    });
     drawingCanvas.addEventListener('touchmove', handleMouseMove);
     drawingCanvas.addEventListener('touchend', handleMouseUp);
+    drawingCanvas.addEventListener('touchcancel',handleMouseLeave);
 
     document.getElementById('allclear').addEventListener('click', function() {
         drawingContext.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
     }); // 모두 지우기
+
+    // 스티커 컨테이너
+    const stickers = document.querySelectorAll('.sticker img');
+    stickers.forEach(sticker => {
+        sticker.addEventListener('click', onClick);
+        sticker.addEventListener('touchstart', onClick, { passive: false });
+    });
+
+    stickerBoard.addEventListener('dragover', onDragOver);
+    stickerBoard.addEventListener('drop', onDrop);
+    stickerBoard.addEventListener('touchstart', onTouchStart, { passive: false });
+    stickerBoard.addEventListener('touchmove', onTouchMove, { passive: false });
+    stickerBoard.addEventListener('touchend', onTouchEnd);
+
+    function onClick(e) {
+        e.preventDefault();
+        const rect = stickerBoard.getBoundingClientRect();
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            draggedSticker = e.target;
+
+            placeSticker(centerX, centerY);
+        }
+
+        function onDragOver(e) {
+            e.preventDefault();
+        }
+
+        function onDrop(e) {
+            e.preventDefault();
+            const rect = stickerBoard.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            placeSticker(x, y);
+        }
+
+        function onTouchMove(e) {
+            if (draggedSticker && stickerBoard.contains(draggedSticker)) {
+                if (e.touches.length === 2) {
+                    e.preventDefault();  // 기본 터치 동작 방지 (줌 등)
+
+                    const currentDistance = getDistance(e.touches[0], e.touches[1]);
+                    const currentAngle = getAngle(e.touches[0], e.touches[1]);
+                    const scale = currentDistance / initialDistance;
+                    draggedSticker.style.transform = `scale(${scale}) rotate(${currentAngle}deg)`;
+
+
+                } else if (e.touches.length === 1) {
+                    // 드래그 처리
+                    e.preventDefault();
+                    const touch = e.touches[0];
+                    const rect = stickerBoard.getBoundingClientRect();
+                    const x = touch.clientX - rect.left - 50;
+                    const y = touch.clientY - rect.top - 50;
+
+                    if (y > rect.height * 0.6) {
+                        showTrashBin(true);
+                    } else {
+                        showTrashBin(false);
+                    }
+
+                    updateStickerPosition(x, y);
+
+                }
+
+            }
+        }
+
+        function getDistance(touch1, touch2) {
+            const dx = touch1.clientX - touch2.clientX;
+            const dy = touch1.clientY - touch2.clientY;
+            return Math.sqrt(dx * dx + dy * dy);
+        }
+
+        function getAngle(touch1, touch2) {
+            const dx = touch1.clientX - touch2.clientX;
+            const dy = touch1.clientY - touch2.clientY;
+            return Math.atan2(dy, dx) * (180 / Math.PI);
+        }
+
+        function updateStickerPosition(x, y) {
+            if (!draggedSticker) return;
+
+            const stickerBoardRect = stickerBoard.getBoundingClientRect();
+            const stickerWidth = draggedSticker.offsetWidth;
+            const stickerHeight = draggedSticker.offsetHeight;
+
+            let newX = Math.max(0, Math.min(x, stickerBoardRect.width));
+            let newY = Math.max(0, Math.min(y, stickerBoardRect.height));
+
+            draggedSticker.style.left = `${newX}px`;
+            draggedSticker.style.top = `${newY}px`;
+        }
+
+
+
+        function onTouchEnd(e) {
+            e.preventDefault();
+            const touch = e.changedTouches[0];
+            const rect = stickerBoard.getBoundingClientRect();
+            const x = touch.clientX - rect.left;
+            const y = touch.clientY - rect.top;
+
+            if (isOverTrashBin(x, y)) {
+                deleteSticker(draggedSticker);
+            }
+            showTrashBin(false);
+            draggedSticker = null;
+        }
+
+
+
+        function placeSticker(x, y) {
+            if (!draggedSticker) return;
+
+            const stickerWidth = draggedSticker.offsetWidth;
+            const stickerHeight = draggedSticker.offsetHeight;
+            const newX = x - stickerWidth / 2;
+            const newY = y - stickerHeight / 2;
+
+            const rotation = draggedSticker.dataset.rotation || 0;
+
+            if (draggedSticker.parentElement === stickerBoard) {
+                // 이미 스티커보드에 있는 경우 위치만 업데이트
+                draggedSticker.style.left = newX + 'px';
+                draggedSticker.style.top = newY + 'px';
+                draggedSticker.style.transform = `rotate(${rotation}deg)`;
+            } else {
+                // 스티커보드에 새로 추가할 경우
+                const newSticker = document.createElement('img');
+                newSticker.src = draggedSticker.src;
+                newSticker.style.position = 'absolute';
+                newSticker.style.left = newX + 'px';
+                newSticker.style.top = newY + 'px';
+                newSticker.style.width = "100px";
+                newSticker.style.height = "100px";
+                newSticker.draggable = true;
+
+                newSticker.addEventListener('dragstart', onDragStart);
+                newSticker.addEventListener('touchstart', onTouchStart, { passive: false });
+
+                stickerBoard.appendChild(newSticker);
+            }
+            draggedSticker = null;
+        }
+
+        function onDragStart(e) {
+            draggedSticker = e.target;
+            e.dataTransfer.setData('text/plain', null);
+        }
+
+        function onTouchStart(e) {
+            if (e.touches.length === 1) {
+                const touch = e.touches[0];
+                const target = touch.target;
+
+                if (target.tagName.toLowerCase() === 'img' && stickerBoard.contains(target)) {
+                    draggedSticker = target;
+
+                    const rect = draggedSticker.getBoundingClientRect();
+                    offsetX = touch.clientX - rect.left;
+                    offsetY = touch.clientY - rect.top;
+                }
+            } else if (e.touches.length === 2) {
+                // 두 손가락 터치 - 크기 및 각도 조절 시작
+                initialDistance = getDistance(e.touches[0], e.touches[1]);
+                initialAngle = getAngle(e.touches[0], e.touches[1]);
+            }
+        }
+
+
+        function showTrashBin(show) {
+            if (show) {
+                trashBin.classList.add('visible');
+            } else {
+                trashBin.classList.remove('visible');
+            }
+        }
+
+
+        function checkForTrashBinHover(x, y) {
+            const rect = stickerBoard.getBoundingClientRect();
+            const stickerX = x - rect.left;
+            const stickerY = y - rect.top;
+
+            if (isOverTrashBin(stickerX, stickerY)) {
+                trashBin.style.backgroundColor = 'red';
+            } else {
+                trashBin.style.backgroundColor = 'gray';
+            }
+        }
+
+        function isOverTrashBin(x, y) {
+            const trashRect = trashBin.getBoundingClientRect();
+            const stickerBoardRect = stickerBoard.getBoundingClientRect();
+
+            // Trash bin의 좌표를 스티커 보드 좌표로 변환
+            const trashBinLeft = trashRect.left - stickerBoardRect.left;
+            const trashBinTop = trashRect.top - stickerBoardRect.top;
+
+            return (
+                x >= trashBinLeft &&
+                x <= trashBinLeft + trashRect.width &&
+                y >= trashBinTop &&
+                y <= trashBinTop + trashRect.height
+            );
+        }
+
+
+
+        function deleteSticker(sticker) {
+            if (sticker && sticker.parentNode) {
+                sticker.parentNode.removeChild(sticker);
+            }
+        }
+
 
 </script>
 
