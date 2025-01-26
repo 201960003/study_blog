@@ -230,8 +230,8 @@ categories: HTML
     drawingCanvas.addEventListener('touchend', stopDrawing);
 
     // 캔버스에 드래그 앤 드롭 이벤트 리스너 추가
-    stickerBoard.addEventListener('dragover', onDragOver);
-    stickerBoard.addEventListener('drop', onDrop);
+    drawingCanvas.addEventListener('dragover', onDragOver);
+    drawingCanvas.addEventListener('drop', onDrop);
 </script>
 
 <!-- <br><br> -->
