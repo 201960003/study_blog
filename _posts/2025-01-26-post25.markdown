@@ -158,9 +158,11 @@ categories: HTML
             img.src = selectedSticker;
             img.onload = () => {
                 ctx.drawImage(img, x - 50, y - 50, 100, 100); // 스티커 크기: 100x100
+                selectedSticker = null; // 스티커 선택 상태 초기화
             };
         }
     });
+
 
     // 컨트롤 이벤트 핸들러
     document.getElementById('line-width').addEventListener('input', (e) => {
