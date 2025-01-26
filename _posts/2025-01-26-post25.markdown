@@ -91,361 +91,90 @@ categories: HTML
 <button id="save" onclick="saveCanvas()">저장</button>
 
 <script>
-    // canvas part
-    var drawingCanvas = document.getElementById("drawing-canvas"); // 선 그리기 canvas
-    var stickerBoard = document.getElementById("background-canvas"); // 스티커 그리기 canvas
-    var drawingContext = drawingCanvas.getContext("2d"); // drawingCanvas의 context
-    var backgroundContext = stickerBoard.getContext("2d"); // backgroundCanvas의 context
+    // Canvas 요소 가져오기
+    var stickerBoard = document.getElementById("background-canvas");
+    var stickerContext = stickerBoard.getContext("2d");
 
-    function saveCanvas() {
-        var compositeCanvas = document.createElement('canvas'); // 그림 + 선 캠퍼스 합치기 위한 canvas 생성
-        compositeCanvas.width = backgroundCanvas.width;
-        compositeCanvas.height = backgroundCanvas.height;
-        var compositeContext = compositeCanvas.getContext('2d'); //  compositeCanvas의 context 생성
+    var draggedSticker = null; // 현재 드래그 중인 스티커
+    var offsetX = 0; // 터치 또는 드래그 시작 시 X 오프셋
+    var offsetY = 0; // 터치 또는 드래그 시작 시 Y 오프셋
 
-        // 배경 캔버스와 드로잉 캔버스를 합침
-        compositeContext.drawImage(backgroundCanvas, 0, 0);
-        compositeContext.drawImage(drawingCanvas, 0, 0);
-
-        // 합친 캔버스를 이미지로 변환하여 다운로드
-        var dataURL = compositeCanvas.toDataURL('image/png');
-        var link = document.createElement('a');
-        link.href = dataURL;
-        link.download = `${getCurrentDateTimeString()}.png`;
-        link.click();
-    }
-
-    function getCurrentDateTimeString() {
-        var today = new Date();
-        var year = today.getFullYear();
-        var month = String(today.getMonth() + 1).padStart(2, '0');
-        var day = String(today.getDate()).padStart(2, '0');
-        var hours = String(today.getHours()).padStart(2, '0');
-        var minutes = String(today.getMinutes()).padStart(2, '0');
-        var seconds = String(today.getSeconds()).padStart(2, '0');
-
-        // Return formatted date and time string
-        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-    }
-
-    // line-controller part
-    var lastX = 0; // 마지막 마우스 위치 x 값
-    var lastY = 0; // 마지막 마우스 위치 y 값
-    var isDrawing = false; // 그리기 상태, false : 안그리기
-    var strokeStyle = 'black';  // 기본 선 색상
-    var lineWidth = 1; // 기본 선 두께
-    var lineCap = "round";  // 기본 선 모양
-    var isErasing = false;  // 지우개 모드 여부
-
-
-    function handleMouseDown(event) {
-        // 마우스 클릭했을 때 실행되는 함수
-        isDrawing = true;
-        [lastX, lastY] = [event.offsetX, event.offsetY];
-        // 현재 마우스 위치인 [event.offsetX, event.offsetY] 를 각각 lastX, lastY 에 저장
-    };
-
-
-    function handleMouseMove(event) {
-        // 마우스가 canvas 태그내에서 움직였을 때 실행되는 함수
-        if (!isDrawing) return;  // isDrawing이 false일 때는 return으로 함수를 종료
-        // 마우스가 움직일 때 isDrawing이 true이면 현재 위치를 가져옴
-        const currentX = event.offsetX;
-        const currentY = event.offsetY;
-
-        drawingContext.lineWidth = lineWidth; // 지정한 선 두께
-        drawingContext.strokeStyle = strokeStyle; // 지정한 선 색상
-        drawingContext.lineCap = lineCap; // 지정한 선 모양
-
-        drawingContext.beginPath(); // context의 새로운 경로를 시작
-        drawingContext.moveTo(lastX, lastY); // 마지막 마우스 위치
-        drawingContext.lineTo(currentX, currentY); // moveTo로 지정한 이전 마우스 위치에서 현재 마우스 위치까지 선 그리기
-
-
-        if (isErasing) {
-            drawingContext.globalCompositeOperation = 'destination-out';
-            drawingContext.stroke();
-            drawingContext.globalCompositeOperation = 'source-over';
-        } else {
-            drawingContext.stroke();
-        }
-                
-        // drawingContext.closePath(); // context의 경로를 종료
-
-        [lastX, lastY] = [currentX, currentY]; // 현재 위치를 저장
-    };
-
-    function handleMouseUp() {
-        // 마우스 클릭 해제했을 때 실행되는 함수
-        isDrawing = false;
-    };
-
-    function handleMouseLeave() {
-        // 마우스가 canvas 태그를 벗어났을 때 실행되는 함수
-        isDrawing = false;
-    };
-
-    // 선 두께 슬라이더 이벤트 리스너
-    document.getElementById('line-width').addEventListener('input', function() {
-        lineWidth = this.value;
-    });
-
-    // 지우개 버튼 클릭 이벤트 리스너
-    document.getElementById('eraser').addEventListener('click', function() {
-        isErasing = !isErasing;  // 지우개 모드를 토글
-        if (isErasing) {
-            this.textContent = '지우개 끄기';
-            // document.querySelectorAll('.color-button').forEach(btn => btn.classList.remove('selected'));  // 모든 색상 버튼 선택 해제
-        } else {
-            this.textContent = '지우개 켜기';
-        }
-    });
-
-    document.querySelectorAll('.color-button').forEach(button => {
-        button.addEventListener('click', function() {
-            document.querySelectorAll('.color-button').forEach(btn => btn.classList.remove('selected')); // 기존에 체크되었던 색상은 해제
-            this.classList.add('selected'); // 선택한건 체크표시 나오게
-            strokeStyle = this.getAttribute('data-color'); // data-color 속성값으로 지정한 섹상변경
-            isErasing = false;  // 지우개 모드를 해제
-        });
-    });
-
-    // 마우스 이벤트
-    drawingCanvas.addEventListener('mousedown', handleMouseDown);
-    drawingCanvas.addEventListener('mousemove', handleMouseMove);
-    drawingCanvas.addEventListener('mouseup', handleMouseUp);
-    drawingCanvas.addEventListener('mouseleave', handleMouseLeave);
-
-    // 터치 이벤트 리스너 추가
-    drawingCanvas.addEventListener('touchstart', ()=>{
-        handleMouseDown
-        console.log("ddjdjdjdj")
-    });
-    drawingCanvas.addEventListener('touchmove', handleMouseMove);
-    drawingCanvas.addEventListener('touchend', handleMouseUp);
-    drawingCanvas.addEventListener('touchcancel',handleMouseLeave);
-
-    document.getElementById('allclear').addEventListener('click', function() {
-        drawingContext.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
-    }); // 모두 지우기
-
-    // 스티커 컨테이너
-    const stickers = document.querySelectorAll('.sticker img');
+    // 스티커 클릭 및 터치 이벤트
+    const stickers = document.querySelectorAll('.sticker');
     stickers.forEach(sticker => {
-        sticker.addEventListener('click', onClick);
-        sticker.addEventListener('touchstart', onClick, { passive: false });
+        sticker.addEventListener('mousedown', onStickerGrab);
+        sticker.addEventListener('touchstart', onStickerGrab, { passive: false });
     });
 
-    stickerBoard.addEventListener('dragover', onDragOver);
-    stickerBoard.addEventListener('drop', onDrop);
-    stickerBoard.addEventListener('touchstart', onTouchStart, { passive: false });
-    stickerBoard.addEventListener('touchmove', onTouchMove, { passive: false });
-    stickerBoard.addEventListener('touchend', onTouchEnd);
+    // 캔버스에 마우스 및 터치 이벤트 추가
+    stickerBoard.addEventListener('mousemove', onStickerMove);
+    stickerBoard.addEventListener('mouseup', onStickerDrop);
+    stickerBoard.addEventListener('mouseleave', onStickerDrop);
+    stickerBoard.addEventListener('touchmove', onStickerMove, { passive: false });
+    stickerBoard.addEventListener('touchend', onStickerDrop);
 
-    function onClick(e) {
+    // 스티커 잡기
+    function onStickerGrab(e) {
+        e.preventDefault();
+
+        // 터치 또는 마우스 이벤트에서 스티커 요소 가져오기
+        draggedSticker = e.target;
+        const rect = draggedSticker.getBoundingClientRect();
+
+        if (e.touches) {
+            // 터치 이벤트
+            offsetX = e.touches[0].clientX - rect.left;
+            offsetY = e.touches[0].clientY - rect.top;
+        } else {
+            // 마우스 이벤트
+            offsetX = e.clientX - rect.left;
+            offsetY = e.clientY - rect.top;
+        }
+    }
+
+    // 스티커 이동
+    function onStickerMove(e) {
+        if (!draggedSticker) return;
+
         e.preventDefault();
         const rect = stickerBoard.getBoundingClientRect();
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
 
-            draggedSticker = e.target;
-
-            placeSticker(centerX, centerY);
+        let x, y;
+        if (e.touches) {
+            x = e.touches[0].clientX - rect.left - offsetX;
+            y = e.touches[0].clientY - rect.top - offsetY;
+        } else {
+            x = e.clientX - rect.left - offsetX;
+            y = e.clientY - rect.top - offsetY;
         }
 
-        function onDragOver(e) {
-            e.preventDefault();
+        // 현재 위치에 스티커 미리보기 (옵션)
+        stickerContext.clearRect(0, 0, stickerBoard.width, stickerBoard.height);
+        stickerContext.drawImage(draggedSticker, x, y, 100, 100); // 크기 조정
+    }
+
+    // 스티커 놓기
+    function onStickerDrop(e) {
+        if (!draggedSticker) return;
+
+        e.preventDefault();
+        const rect = stickerBoard.getBoundingClientRect();
+
+        let x, y;
+        if (e.changedTouches) {
+            x = e.changedTouches[0].clientX - rect.left - offsetX;
+            y = e.changedTouches[0].clientY - rect.top - offsetY;
+        } else {
+            x = e.clientX - rect.left - offsetX;
+            y = e.clientY - rect.top - offsetY;
         }
 
-        function onDrop(e) {
-            e.preventDefault();
-            const rect = stickerBoard.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            placeSticker(x, y);
-        }
+        // 스티커를 캔버스에 그리기
+        stickerContext.drawImage(draggedSticker, x, y, 100, 100);
 
-        function onTouchMove(e) {
-            if (draggedSticker && stickerBoard.contains(draggedSticker)) {
-                if (e.touches.length === 2) {
-                    e.preventDefault();  // 기본 터치 동작 방지 (줌 등)
-
-                    const currentDistance = getDistance(e.touches[0], e.touches[1]);
-                    const currentAngle = getAngle(e.touches[0], e.touches[1]);
-                    const scale = currentDistance / initialDistance;
-                    draggedSticker.style.transform = `scale(${scale}) rotate(${currentAngle}deg)`;
-
-
-                } else if (e.touches.length === 1) {
-                    // 드래그 처리
-                    e.preventDefault();
-                    const touch = e.touches[0];
-                    const rect = stickerBoard.getBoundingClientRect();
-                    const x = touch.clientX - rect.left - 50;
-                    const y = touch.clientY - rect.top - 50;
-
-                    if (y > rect.height * 0.6) {
-                        showTrashBin(true);
-                    } else {
-                        showTrashBin(false);
-                    }
-
-                    updateStickerPosition(x, y);
-
-                }
-
-            }
-        }
-
-        function getDistance(touch1, touch2) {
-            const dx = touch1.clientX - touch2.clientX;
-            const dy = touch1.clientY - touch2.clientY;
-            return Math.sqrt(dx * dx + dy * dy);
-        }
-
-        function getAngle(touch1, touch2) {
-            const dx = touch1.clientX - touch2.clientX;
-            const dy = touch1.clientY - touch2.clientY;
-            return Math.atan2(dy, dx) * (180 / Math.PI);
-        }
-
-        function updateStickerPosition(x, y) {
-            if (!draggedSticker) return;
-
-            const stickerBoardRect = stickerBoard.getBoundingClientRect();
-            const stickerWidth = draggedSticker.offsetWidth;
-            const stickerHeight = draggedSticker.offsetHeight;
-
-            let newX = Math.max(0, Math.min(x, stickerBoardRect.width));
-            let newY = Math.max(0, Math.min(y, stickerBoardRect.height));
-
-            draggedSticker.style.left = `${newX}px`;
-            draggedSticker.style.top = `${newY}px`;
-        }
-
-
-
-        function onTouchEnd(e) {
-            e.preventDefault();
-            const touch = e.changedTouches[0];
-            const rect = stickerBoard.getBoundingClientRect();
-            const x = touch.clientX - rect.left;
-            const y = touch.clientY - rect.top;
-
-            if (isOverTrashBin(x, y)) {
-                deleteSticker(draggedSticker);
-            }
-            showTrashBin(false);
-            draggedSticker = null;
-        }
-
-
-
-        function placeSticker(x, y) {
-            if (!draggedSticker) return;
-
-            const stickerWidth = draggedSticker.offsetWidth;
-            const stickerHeight = draggedSticker.offsetHeight;
-            const newX = x - stickerWidth / 2;
-            const newY = y - stickerHeight / 2;
-
-            const rotation = draggedSticker.dataset.rotation || 0;
-
-            if (draggedSticker.parentElement === stickerBoard) {
-                // 이미 스티커보드에 있는 경우 위치만 업데이트
-                draggedSticker.style.left = newX + 'px';
-                draggedSticker.style.top = newY + 'px';
-                draggedSticker.style.transform = `rotate(${rotation}deg)`;
-            } else {
-                // 스티커보드에 새로 추가할 경우
-                const newSticker = document.createElement('img');
-                newSticker.src = draggedSticker.src;
-                newSticker.style.position = 'absolute';
-                newSticker.style.left = newX + 'px';
-                newSticker.style.top = newY + 'px';
-                newSticker.style.width = "100px";
-                newSticker.style.height = "100px";
-                newSticker.draggable = true;
-
-                newSticker.addEventListener('dragstart', onDragStart);
-                newSticker.addEventListener('touchstart', onTouchStart, { passive: false });
-
-                stickerBoard.appendChild(newSticker);
-            }
-            draggedSticker = null;
-        }
-
-        function onDragStart(e) {
-            draggedSticker = e.target;
-            e.dataTransfer.setData('text/plain', null);
-        }
-
-        function onTouchStart(e) {
-            if (e.touches.length === 1) {
-                const touch = e.touches[0];
-                const target = touch.target;
-
-                if (target.tagName.toLowerCase() === 'img' && stickerBoard.contains(target)) {
-                    draggedSticker = target;
-
-                    const rect = draggedSticker.getBoundingClientRect();
-                    offsetX = touch.clientX - rect.left;
-                    offsetY = touch.clientY - rect.top;
-                }
-            } else if (e.touches.length === 2) {
-                // 두 손가락 터치 - 크기 및 각도 조절 시작
-                initialDistance = getDistance(e.touches[0], e.touches[1]);
-                initialAngle = getAngle(e.touches[0], e.touches[1]);
-            }
-        }
-
-
-        function showTrashBin(show) {
-            if (show) {
-                trashBin.classList.add('visible');
-            } else {
-                trashBin.classList.remove('visible');
-            }
-        }
-
-
-        function checkForTrashBinHover(x, y) {
-            const rect = stickerBoard.getBoundingClientRect();
-            const stickerX = x - rect.left;
-            const stickerY = y - rect.top;
-
-            if (isOverTrashBin(stickerX, stickerY)) {
-                trashBin.style.backgroundColor = 'red';
-            } else {
-                trashBin.style.backgroundColor = 'gray';
-            }
-        }
-
-        function isOverTrashBin(x, y) {
-            const trashRect = trashBin.getBoundingClientRect();
-            const stickerBoardRect = stickerBoard.getBoundingClientRect();
-
-            // Trash bin의 좌표를 스티커 보드 좌표로 변환
-            const trashBinLeft = trashRect.left - stickerBoardRect.left;
-            const trashBinTop = trashRect.top - stickerBoardRect.top;
-
-            return (
-                x >= trashBinLeft &&
-                x <= trashBinLeft + trashRect.width &&
-                y >= trashBinTop &&
-                y <= trashBinTop + trashRect.height
-            );
-        }
-
-
-
-        function deleteSticker(sticker) {
-            if (sticker && sticker.parentNode) {
-                sticker.parentNode.removeChild(sticker);
-            }
-        }
-
-
+        // 드래그 상태 초기화
+        draggedSticker = null;
+    }
 </script>
 
 
