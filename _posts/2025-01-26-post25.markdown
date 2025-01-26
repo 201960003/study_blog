@@ -191,7 +191,7 @@ categories: HTML
         e.preventDefault(); // 기본 동작 방지 (필수)
 
         // 드롭 위치 계산
-        const rect = stickerBoard.getBoundingClientRect();
+        const rect = drawingCanvas.getBoundingClientRect();
         const x = e.clientX - rect.left; // 캔버스 내부 X 좌표
         const y = e.clientY - rect.top;  // 캔버스 내부 Y 좌표
 
@@ -203,7 +203,7 @@ categories: HTML
             const img = new Image();
             img.src = stickerSrc;
             img.onload = () => {
-                stickerBoardContext.drawImage(img, x - 50, y - 50, 100, 100); // 스티커 크기: 100x100
+                ctx.drawImage(img, x - 50, y - 50, 100, 100); // 스티커 크기: 100x100
             };
         }
     }
