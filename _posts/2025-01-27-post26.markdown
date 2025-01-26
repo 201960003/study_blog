@@ -28,10 +28,15 @@ categories: HTML
     // TTS (Text-to-Speech)
     document.getElementById('speak-button').addEventListener('click', () => {
         const text = document.getElementById('tts-text').value;
-        const speech = new SpeechSynthesisUtterance(text);
+        ttsRead(text);
+    });
+
+
+    function ttsRead(text) {
+         const speech = new SpeechSynthesisUtterance(text);
         speech.lang = 'ko-KR'; // 한국어 설정
         window.speechSynthesis.speak(speech);
-    });
+    }
 
     // STT (Speech-to-Text)
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
@@ -41,6 +46,7 @@ categories: HTML
 
     const startButton = document.getElementById('start-record-button');
     const stopButton = document.getElementById('stop-record-button');
+    const recognizedText = document.getElementById('recognized-text');
     const permissionStatusSpan = document.getElementById('permission-status');
 
 
@@ -64,6 +70,7 @@ categories: HTML
     recognition.addEventListener('end', () => {
         startButton.disabled = false;
         stopButton.disabled = true;
+        ttsRead(recognizedText.textContent);
     });
 
     // 마이크 권한 확인 및 상태 업데이트
