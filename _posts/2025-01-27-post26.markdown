@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  ⌜HTML⌟ Web Speech API로 TTS 및 STT 구현하기
-date:   2025-01-26 +0900
+date:   2025-01-27 +0900
 categories: HTML
 ---
 
@@ -10,7 +10,12 @@ categories: HTML
     <h2>Text-to-Speech (TTS)</h2>
     <textarea id="tts-text" rows="3" cols="50" placeholder="여기에 텍스트를 입력하세요"></textarea><br>
     <button id="speak-button">읽기</button>
+    <button id="pause-button" disabled>일시 중지</button>
+    <button id="resume-button" disabled>다시 재생</button>
+    <button id="stop-button" disabled>중지</button>
 </div>
+
+<br><br>
 
 <!-- STT 섹션 -->
 <div class="container">
@@ -24,19 +29,80 @@ categories: HTML
 </div>
 
 <script>
+    const speakButton = document.getElementById('speak-button');
+    const pauseButton = document.getElementById('pause-button');
+    const resumeButton = document.getElementById('resume-button');
+    const stopButton = document.getElementById('stop-button');
+    const ttsText = document.getElementById('tts-text');
 
-    // TTS (Text-to-Speech)
-    document.getElementById('speak-button').addEventListener('click', () => {
-        const text = document.getElementById('tts-text').value;
-        ttsRead(text);
+    let currentSpeech = null; // 현재 진행 중인 SpeechSynthesisUtterance 객체
+
+    // TTS 시작
+    speakButton.addEventListener('click', () => {
+        const text = ttsText.value.trim();
+        if (!text) {
+            alert("읽을 텍스트를 입력하세요.");
+            return;
+        }
+
+        // 현재 진행 중인 TTS가 있다면 중지
+        if (window.speechSynthesis.speaking || window.speechSynthesis.paused) {
+            window.speechSynthesis.cancel();
+        }
+
+        // 새로운 TTS 시작
+        currentSpeech = new SpeechSynthesisUtterance(text);
+        currentSpeech.lang = 'ko-KR'; // 한국어 설정
+        currentSpeech.rate = 1; // 음성 속도, 0.1 ~ 10 사이의 값
+        currentSpeech.pitch = 1; // 음높이, 0 ~ 2 사이의 값
+        currentSpeech.volume = 1; // 음량, 0 ~ 1 사이의 값
+
+        // TTS가 끝날 때 버튼 상태 초기화
+        currentSpeech.onend = () => {
+            speakButton.disabled = false;
+            pauseButton.disabled = true;
+            resumeButton.disabled = true;
+            stopButton.disabled = true;
+        };
+
+        window.speechSynthesis.speak(currentSpeech);
+
+        // 버튼 상태 업데이트
+        speakButton.disabled = true;
+        pauseButton.disabled = false;
+        resumeButton.disabled = true;
+        stopButton.disabled = false;
     });
 
+    // TTS 일시 중지
+    pauseButton.addEventListener('click', () => {
+        if (window.speechSynthesis.speaking) {
+            window.speechSynthesis.pause();
+            pauseButton.disabled = true;
+            resumeButton.disabled = false;
+        }
+    });
 
-    async function ttsRead(text) {
-         const speech = new SpeechSynthesisUtterance(text);
-        speech.lang = 'ko-KR'; // 한국어 설정
-        window.speechSynthesis.speak(speech);
-    }
+    // TTS 다시 재생
+    resumeButton.addEventListener('click', () => {
+        if (window.speechSynthesis.paused) {
+            window.speechSynthesis.resume();
+            pauseButton.disabled = false;
+            resumeButton.disabled = true;
+        }
+    });
+
+    // TTS 중지
+    stopButton.addEventListener('click', () => {
+        if (window.speechSynthesis.speaking || window.speechSynthesis.paused) {
+            window.speechSynthesis.cancel();
+            speakButton.disabled = false;
+            pauseButton.disabled = true;
+            resumeButton.disabled = true;
+            stopButton.disabled = true;
+        }
+    });
+
 
     // STT (Speech-to-Text)
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
@@ -68,17 +134,12 @@ categories: HTML
         recognizedText.textContent = transcript;
     });
 
-    // 음성 인식 종료 이벤트
     recognition.addEventListener('end', () => {
-        if (!stopButton.disabled) {
-            // stopButton이 클릭되지 않았다면 음성 인식을 재시작
-            recognition.start();
-        } else {
-            // stopButton 클릭 이후 종료되었을 때만 TTS 실행
-            ttsRead(recognizedText.textContent).then(() => {
-                recognizedText.textContent = ''; // 텍스트 초기화
-            });
-        }
+        currentSpeech = new SpeechSynthesisUtterance(recognizedText.textContent);
+        window.speechSynthesis.speak(currentSpeech);
+        setTimeout(()=>{
+            recognizedText.textContent = '';
+        }, 1000); // 1초 후에 빈 텍스트로 업데이트
     });
 
     // 마이크 권한 확인 및 상태 업데이트
@@ -136,9 +197,223 @@ categories: HTML
     });
 </script>
 
+<hr>
+
+## TTS 코드
+
+### html
+```html
+<div class="container">
+    <h2>Speech-to-Text (STT)</h2>
+    <p id="status-message">마이크 권한 상태:
+        <span id="permission-status">확인 중...</span>
+    </p>
+    <button id="start-record-button">녹음 시작</button>
+    <button id="stop-record-button" disabled>녹음 중지</button>
+    <p>인식된 텍스트: <span id="recognized-text"></span></p>
+</div>
+
+```
+
+
+
+
+```javascript
+    const speakButton = document.getElementById('speak-button');
+    const pauseButton = document.getElementById('pause-button');
+    const resumeButton = document.getElementById('resume-button');
+    const stopButton = document.getElementById('stop-button');
+    const ttsText = document.getElementById('tts-text');
+
+    let currentSpeech = null; // 현재 진행 중인 SpeechSynthesisUtterance 객체
+
+    // TTS 시작
+    speakButton.addEventListener('click', () => {
+        const text = ttsText.value.trim();
+        if (!text) {
+            alert("읽을 텍스트를 입력하세요.");
+            return;
+        }
+
+        // 현재 진행 중인 TTS가 있다면 중지
+        if (window.speechSynthesis.speaking || window.speechSynthesis.paused) {
+            window.speechSynthesis.cancel();
+        }
+
+        // 새로운 TTS 시작
+        currentSpeech = new SpeechSynthesisUtterance(text);
+        currentSpeech.lang = 'ko-KR'; // 한국어 설정
+        currentSpeech.lang = 'ko-KR'; // 한국어 설정
+        currentSpeech.rate = 1; // 음성 속도, 0.1 ~ 10 사이의 값
+        currentSpeech.pitch = 1; // 음높이, 0 ~ 2 사이의 값
+        currentSpeech.volume = 1; // 음량, 0 ~ 1 사이의 값
+
+
+        // TTS가 끝날 때 버튼 상태 초기화
+        currentSpeech.onend = () => {
+            speakButton.disabled = false;
+            pauseButton.disabled = true;
+            resumeButton.disabled = true;
+            stopButton.disabled = true;
+        };
+
+        window.speechSynthesis.speak(currentSpeech);
+
+        // 버튼 상태 업데이트
+        speakButton.disabled = true;
+        pauseButton.disabled = false;
+        resumeButton.disabled = true;
+        stopButton.disabled = false;
+    });
+
+    // TTS 일시 중지
+    pauseButton.addEventListener('click', () => {
+        if (window.speechSynthesis.speaking) {
+            window.speechSynthesis.pause();
+            pauseButton.disabled = true;
+            resumeButton.disabled = false;
+        }
+    });
+
+    // TTS 다시 재생
+    resumeButton.addEventListener('click', () => {
+        if (window.speechSynthesis.paused) {
+            window.speechSynthesis.resume();
+            pauseButton.disabled = false;
+            resumeButton.disabled = true;
+        }
+    });
+
+    // TTS 중지
+    stopButton.addEventListener('click', () => {
+        if (window.speechSynthesis.speaking || window.speechSynthesis.paused) {
+            window.speechSynthesis.cancel();
+            speakButton.disabled = false;
+            pauseButton.disabled = true;
+            resumeButton.disabled = true;
+            stopButton.disabled = true;
+        }
+    });
+```
+
+
+## STT 코드
+
+### html
+```html
+<div class="container">
+    <h2>Text-to-Speech (TTS)</h2>
+    <textarea id="tts-text" rows="3" cols="50" placeholder="여기에 텍스트를 입력하세요"></textarea><br>
+    <button id="speak-button">읽기</button>
+    <button id="pause-button" disabled>일시 중지</button>
+    <button id="resume-button" disabled>다시 재생</button>
+    <button id="stop-button" disabled>중지</button>
+</div>
+```
+
+먼저 <code>textarea</code> 태그에 TTS 를 적용시킬 텍스트를 입력 받을 준비를 합니다.
+<code>button</code> 을 눌러 입력한 텍스트를 재생시키위한 코드를 작성합니다.
+
+
+```javascript
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'ko-KR'; // 한국어 설정
+    recognition.continuous = true; // 연속 모드 활성화
+    recognition.interimResults = false; // 중간 결과 비활성화
+
+
+    const startButton = document.getElementById('start-record-button');
+    const stopButton = document.getElementById('stop-record-button');
+    const recognizedText = document.getElementById('recognized-text');
+    const permissionStatusSpan = document.getElementById('permission-status');
+
+
+    startButton.addEventListener('click', () => {
+        recognition.start();
+        startButton.disabled = true;
+        stopButton.disabled = false;
+    });
+
+    stopButton.addEventListener('click', () => {
+        recognition.stop();
+        startButton.disabled = false;
+        stopButton.disabled = true;
+    });
+
+    recognition.addEventListener('result', (event) => {
+        const transcript = event.results[0][0].transcript; // 인식된 텍스트
+        recognizedText.textContent = transcript;
+    });
+
+    recognition.addEventListener('end', () => {
+        currentSpeech = new SpeechSynthesisUtterance(recognizedText.textContent);
+        window.speechSynthesis.speak(currentSpeech);
+        setTimeout(()=>{
+            recognizedText.textContent = '';
+        }, 1000); // 1초 후에 빈 텍스트로 업데이트
+    });
+
+    // 마이크 권한 확인 및 상태 업데이트
+    async function checkMicrophonePermission() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            if (stream) {
+                updateUI('granted');
+            }
+        } catch (error) {
+            updateUI('denied');
+        }
+    }
+
+    // UI 업데이트 함수
+    function updateUI(status) {
+        if (status === 'granted') {
+            permissionStatusSpan.textContent = '허용됨';
+            permissionStatusSpan.style.color = 'green';
+            startButton.disabled = false;
+            stopButton.disabled = true;
+        } else if (status === 'denied') {
+            permissionStatusSpan.textContent = '거부됨';
+            permissionStatusSpan.style.color = 'red';
+            startButton.disabled = true;
+            stopButton.disabled = true;
+        } else {
+            permissionStatusSpan.textContent = '알 수 없음';
+            permissionStatusSpan.style.color = 'orange';
+            startButton.disabled = true;
+            stopButton.disabled = true;
+        }
+    }
+
+    // 권한 변경 감지
+    async function monitorPermissionChanges() {
+        try {
+            const permissionStatus = await navigator.permissions.query({ name: 'microphone' });
+            updateUI(permissionStatus.state); // 초기 상태 설정
+
+            // 권한 변경 이벤트 리스너 등록
+            permissionStatus.onchange = () => {
+                updateUI(permissionStatus.state);
+            };
+        } catch (error) {
+            console.error('권한 상태를 확인할 수 없습니다.', error);
+            updateUI('unknown');
+        }
+    }
+
+    // 윈도우 로드 시 실행
+    window.addEventListener('load', () => {
+        checkMicrophonePermission(); // 권한 초기 확인
+        monitorPermissionChanges(); // 권한 변경 감지
+    });
+```
+
+마이크 권한을 허용할때만 STT가 실행되게 합니다.
+
+
+
 
 <br><br>
-
 <!-- ### 🧐 오늘의 소감은? -->
 
 
