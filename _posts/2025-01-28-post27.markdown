@@ -1,0 +1,131 @@
+---
+layout: post
+title: ⌜Javascript⌟ Pyscript를 이용해서 파이썬 코드를 웹에 적용시키기
+date: 2025-01-28 +0900
+categories: [Javascript, Pyscript]
+---
+<!-- PyScript CSS 및 JS 파일 불러오기 -->
+<link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+<!-- 로딩 CSS  -->
+<style>
+    #loading { outline: none; border: none; background: transparent }
+</style>
+
+<!-- 파이스크립트가 완전히 로드되면 로딩 닫기 -->
+<script type="module">
+    const loading = document.getElementById('loading');
+    addEventListener('py:ready', () => loading.close());
+    loading.showModal();
+</script>
+
+<!-- 로딩 html  -->
+<dialog id="loading">
+    <h1>Loading...</h1>
+</dialog>
+
+
+## Pyscript란?
+파이스크립트는 웹 브라우저에서 Python 코드를 실행할 수 있게 해주는 프레임워크입니다.
+이를 통해 웹 페이지에서 Python 코드를 직접 실행하고, 결과를 HTML 요소에 표시할 수 있습니다.
+
+   
+먼저, 파이스크립트를 사용하기 위해 HTML 파일에 파이스크립트 라이브러리를 추가해야 합니다. 
+이는 <code>`<head>`</code> 태그 안에 <code>`<link>`</code> 와 <code>`<script>`</code> 태그를 사용하여 추가할 수 있습니다.
+
+```html
+<!-- PyScript CSS 및 JS 파일 불러오기 -->
+<link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+```
+
+
+<script type="py">
+    from pyscript import display
+    from datetime import datetime
+
+    # 간단한 로그
+    print("안녕하세요, PyScript입니다!")
+
+    # 오늘 날짜 보이게
+    now = datetime.now()
+    display("오늘 날짜")
+    display(now.strftime("%m/%d/%Y, %H:%M:%S"))
+
+    display("")
+    display("----------------------------------")
+
+    # 간단한 계산
+    display("간단한 계산")
+    result = 5 * 10
+    display(f"5 x 10 = {result}")
+
+    display("")
+    display("----------------------------------")
+</script>
+
+
+
+
+```Javascript
+<script type="py">
+    from pyscript import display
+    from datetime import datetime
+
+    # 간단한 로그
+    print("안녕하세요, PyScript입니다!")
+
+    # 오늘 날짜 보이게
+    now = datetime.now()
+    display("오늘 날짜")
+    display(now.strftime("%m/%d/%Y, %H:%M:%S"))
+
+    display("")
+    display("----------------------------------")
+
+    # 간단한 계산
+    display("간단한 계산")
+    result = 5 * 10
+    display(f"5 x 10 = {result}")
+
+    display("")
+    display("----------------------------------")
+</script>
+```
+
+> [!IMPORTANT] 중요한 점 ⭐️
+> 여기서 중요한 점은 페이지 로드시간보다 파이스크립트를 로드하는데 시간이 더 오래 걸립니다.
+그래서 파이스크립트의 결과가 나중에 보여집니다.
+
+
+|      Pyscript        |          Javascript          |
+|----------------------|------------------------------|
+| <code>print()</code> |  <code>consol.log()</code>   |
+|<code>display()</code>|<code>element.innerText</code>|
+
+위와 같은 표처럼 기능을 생각하면 되는데 <code>element.innerText</code> 는 그나마 비슷한 기능을 하는 것으로 적어보았습니다.
+
+예를들어서
+```javascript
+// 1. span 태그를 생성합니다.
+let spanElement = document.createElement("span");
+
+// 2. 생성한 span에 텍스트를 넣습니다.
+spanElement.innerText = "텍스트!";
+
+// 3. 생성한 span 태그를 페이지의 body에 추가합니다.
+document.body.appendChild(spanElement);
+```
+이런식으로 텍스트가 보이게 할 수 있습니다.
+
+
+
+<br><br>
+### 🧐 오늘의 소감은?
+파이스크립트가 다른 라이브러리도 설치 가능하다고 했는데 어떻게 작동되는지 웹에서도 설치가 되어서 작동이 되는지가 궁금한데요?!
+이렇게 웹에서도 간단한 파이썬 코드를 작성할 수 있으면 기존 파이썬에서 다루었던 그래프나 도표 등 다양한 자료를 웹에서 더 쉽게 보여줄 수 있는지 궁금해졌습니다. 예전 파이스크립트를 잠깐 보고 공부를 제대로 하고 싶어서 공식 도큐먼트를 찾아봤는데 코드 작성법이 아주 조금 달라졌더라고요 예전에는 <code>`<py-script>`</code> 로 작성했다면  최신버전은 <code>`<script type="py">`</code>이런식로 작성하는 방법이 달라져서 조금 당황한 점도 있었습니다ㅠㅠ
+웹으로 할 수 있는게 이렇게 많다니 뚫고 가야하는 산이 너무 많은 것 같아요
+
+<br>
