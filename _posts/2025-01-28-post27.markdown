@@ -4,14 +4,18 @@ title: ⌜Javascript⌟ Pyscript를 이용해서 파이썬 코드를 웹에 적�
 date: 2025-01-28 +0900
 categories: [Javascript]
 ---
+
+
 <!-- PyScript CSS 및 JS 파일 불러오기 -->
 <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
 <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
 
 <!-- 로딩 CSS  -->
 <style>
     #loading { outline: none; border: none; background: transparent }
 </style>
+
 
 <!-- 파이스크립트가 완전히 로드되면 로딩 닫기 -->
 <script type="module">
@@ -20,10 +24,12 @@ categories: [Javascript]
     loading.showModal();
 </script>
 
+
 <!-- 로딩 html  -->
 <dialog id="loading">
     <h1>Loading...</h1>
 </dialog>
+
 
 
 ## Pyscript란?
@@ -33,6 +39,7 @@ categories: [Javascript]
    
 먼저, 파이스크립트를 사용하기 위해 HTML 파일에 파이스크립트 라이브러리를 추가해야 합니다. 
 이는 <code>`<head>`</code> 태그 안에 <code>`<link>`</code> 와 <code>`<script>`</code> 태그를 사용하여 추가할 수 있습니다.
+
 
 ```html
 <!-- PyScript CSS 및 JS 파일 불러오기 -->
@@ -95,9 +102,11 @@ categories: [Javascript]
 </script>
 ```
 
+
 > [!IMPORTANT] 중요한 점 ⭐️
 > 여기서 중요한 점은 페이지 로드시간보다 파이스크립트를 로드하는데 시간이 더 오래 걸립니다.
 그래서 파이스크립트의 결과가 나중에 보여집니다.
+
 
 
 |      Pyscript        |          Javascript          |
@@ -105,9 +114,15 @@ categories: [Javascript]
 | <code>print()</code> |  <code>consol.log()</code>   |
 |<code>display()</code>|<code>element.innerText</code>|
 
+
+
 위와 같은 표처럼 기능을 생각하면 되는데 <code>element.innerText</code> 는 그나마 비슷한 기능을 하는 것으로 적어보았습니다.
 
+
+
 예를들어서
+
+
 ```javascript
 // 1. span 태그를 생성합니다.
 let spanElement = document.createElement("span");
@@ -118,6 +133,8 @@ spanElement.innerText = "텍스트!";
 // 3. 생성한 span 태그를 페이지의 body에 추가합니다.
 document.body.appendChild(spanElement);
 ```
+
+
 이런식으로 텍스트가 보이게 할 수 있습니다.
 
 
