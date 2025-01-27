@@ -8,8 +8,9 @@ categories: [Javascript, Pyscript]
 <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
 <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 
-<h1> Pyscript를 이용해서 파이썬 코드를 웹에 적용시키기</h1>
-
+<!-- PyScript CSS 및 JS 파일 불러오기 -->
+<link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 
 <script type="py">
     from pyscript import display
@@ -20,21 +21,23 @@ categories: [Javascript, Pyscript]
 
     # 오늘 날짜 보이게
     now = datetime.now()
+    display("오늘 날짜")
     display(now.strftime("%m/%d/%Y, %H:%M:%S"))
 
-
     # 간단한 계산
+    display("간단한 계산")
     result = 5 * 10
     display(f"5 x 10 = {result}")
 </script>
 
 <!-- NumPy와 Pandas 라이브러리 추가 -->
-<py-env>
-    - numpy
-    - pandas
-</py-env>
-
 <script type="py">
+    import micropip
+
+    # NumPy와 Pandas 설치
+    await micropip.install("numpy")
+    await micropip.install("pandas")
+
     import numpy as np
     import pandas as pd
 
@@ -50,14 +53,14 @@ categories: [Javascript, Pyscript]
 </script>
 
 <!-- 사용자 입력 받아 처리 -->
-<h2>숫자를 입력하면 제곱값을 계산합니다.</h2>
+<h3>숫자를 입력하면 제곱값을 계산합니다.</h3>
 <input id="number" type="number" placeholder="숫자 입력">
 <button id="calculate">계산하기</button>
 <p id="result"></p>
 
 <script type="py">
     from js import document
-        
+
     # 버튼 클릭 이벤트 처리
     def calculate_square(event):
         input_value = document.getElementById("number").value
@@ -70,7 +73,6 @@ categories: [Javascript, Pyscript]
     # 이벤트 리스너 등록
     document.getElementById("calculate").addEventListener("click", calculate_square)
 </script>
-
 
 
 <br><br>
