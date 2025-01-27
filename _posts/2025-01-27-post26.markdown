@@ -216,8 +216,6 @@ categories: HTML
 ```
 
 
-
-
 ```javascript
     const speakButton = document.getElementById('speak-button');
     const pauseButton = document.getElementById('pause-button');
