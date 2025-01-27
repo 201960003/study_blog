@@ -68,6 +68,7 @@ categories: [Javascript, Pyscript]
 
 
 
+
 ```Javascript
 <script type="py">
     from pyscript import display
