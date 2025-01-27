@@ -2,7 +2,7 @@
 layout: post
 title:  ⌜Flutter⌟  How to fix 'Invalid Reuse after Initialization Failure' Error in Xcode
 date:   2023-07-17 +0900
-categories: flutter
+categories: [Flutter, Xcode]
 ---
 
 <!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->

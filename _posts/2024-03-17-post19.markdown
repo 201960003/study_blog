@@ -2,7 +2,7 @@
 layout: post
 title:  ⌜MySQL⌟ connect ECONNREFUSED ERROR 해결 방법
 date:   2024-03-17 +0900
-categories: MySQL
+categories: [MySQL, node.js]
 ---
 
 node.js에서 MySQL을 다루고 있었는데 아래와 같은 오류가 생겼었습니다.

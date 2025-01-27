@@ -2,7 +2,7 @@
 layout: post
 title:  ⌜HTML⌟ 웹에서 FCM 보내기
 date:   2024-07-14 +0900
-categories: HTML
+categories: [HTML, FCM, Javascript]
 ---
 
 node.js 환경에서 FCM 보내기를 하려고 합니다.

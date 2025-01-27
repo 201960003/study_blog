@@ -2,7 +2,7 @@
 layout: post
 title:  ⌜Flutter⌟ firebase (Client doesn't have permission to... error)
 date:   2023-07-12 +0900
-categories: flutter
+categories: [Flutter, Firebase]
 ---
 
 

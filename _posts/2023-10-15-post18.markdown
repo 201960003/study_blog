@@ -2,7 +2,7 @@
 layout: post
 title:  ⌜BEAKJOON⌟ 10988번 팰린드롬인지 확인하기 - dart
 date:   2023-07-17 +0900
-categories: BEAKJOON
+categories: [BEAKJOON, dart]
 ---
 <center>
   <img src="https://github.com/201960003/study_blog/blob/main/img/post18/logo%402x.png?raw=true" alt="main 사진">
