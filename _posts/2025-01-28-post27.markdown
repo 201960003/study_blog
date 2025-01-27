@@ -1,0 +1,16 @@
+---
+layout: post
+title:  ⌜Javascript⌟ Pyscript를 이용해서 파이썬 코드를 웹에 적용시키기
+date:   2025-01-28 +0900
+categories: [Javascript, Pyscript]
+---
+
+
+
+<br><br>
+
+<!-- ### 🧐 오늘의 소감은? -->
+
+
+
+<br>

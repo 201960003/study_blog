@@ -26,6 +26,9 @@ url: "https://201960003.github.io/study_blog/" # the base hostname & protocol fo
 # twitter_username: jekyllrb
 # github_username:  jekyll
 # Build settings
+collections:
+  posts:
+    output: true
 theme: minima
 plugins:
   - jekyll-feed
