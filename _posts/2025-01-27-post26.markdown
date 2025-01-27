@@ -111,22 +111,22 @@ categories: HTML
     recognition.interimResults = false; // 중간 결과 비활성화
 
 
-    const startButton = document.getElementById('start-record-button');
-    const stopButton = document.getElementById('stop-record-button');
+    const startButtonRec = document.getElementById('start-record-button');
+    const stopButtonRec = document.getElementById('stop-record-button');
     const recognizedText = document.getElementById('recognized-text');
     const permissionStatusSpan = document.getElementById('permission-status');
 
 
-    startButton.addEventListener('click', () => {
+    startButtonRec.addEventListener('click', () => {
         recognition.start();
-        startButton.disabled = true;
-        stopButton.disabled = false;
+        startButtonRec.disabled = true;
+        stopButtonRec.disabled = false;
     });
 
-    stopButton.addEventListener('click', () => {
+    stopButtonRec.addEventListener('click', () => {
         recognition.stop();
-        startButton.disabled = false;
-        stopButton.disabled = true;
+        startButtonRec.disabled = false;
+        stopButtonRec.disabled = true;
     });
 
     recognition.addEventListener('result', (event) => {
@@ -159,18 +159,18 @@ categories: HTML
         if (status === 'granted') {
             permissionStatusSpan.textContent = '허용됨';
             permissionStatusSpan.style.color = 'green';
-            startButton.disabled = false;
-            stopButton.disabled = true;
+            startButtonRec.disabled = false;
+            stopButtonRec.disabled = true;
         } else if (status === 'denied') {
             permissionStatusSpan.textContent = '거부됨';
             permissionStatusSpan.style.color = 'red';
-            startButton.disabled = true;
-            stopButton.disabled = true;
+            startButtonRec.disabled = true;
+            stopButtonRec.disabled = true;
         } else {
             permissionStatusSpan.textContent = '알 수 없음';
             permissionStatusSpan.style.color = 'orange';
-            startButton.disabled = true;
-            stopButton.disabled = true;
+            startButtonRec.disabled = true;
+            stopButtonRec.disabled = true;
         }
     }
 
@@ -320,22 +320,22 @@ categories: HTML
     recognition.interimResults = false; // 중간 결과 비활성화
 
 
-    const startButton = document.getElementById('start-record-button');
-    const stopButton = document.getElementById('stop-record-button');
+    const startButtonRec = document.getElementById('start-record-button');
+    const stopButtonRec = document.getElementById('stop-record-button');
     const recognizedText = document.getElementById('recognized-text');
     const permissionStatusSpan = document.getElementById('permission-status');
 
 
-    startButton.addEventListener('click', () => {
+    startButtonRec.addEventListener('click', () => {
         recognition.start();
-        startButton.disabled = true;
-        stopButton.disabled = false;
+        startButtonRec.disabled = true;
+        stopButtonRec.disabled = false;
     });
 
-    stopButton.addEventListener('click', () => {
+    stopButtonRec.addEventListener('click', () => {
         recognition.stop();
-        startButton.disabled = false;
-        stopButton.disabled = true;
+        startButtonRec.disabled = false;
+        stopButtonRec.disabled = true;
     });
 
     recognition.addEventListener('result', (event) => {
@@ -368,18 +368,18 @@ categories: HTML
         if (status === 'granted') {
             permissionStatusSpan.textContent = '허용됨';
             permissionStatusSpan.style.color = 'green';
-            startButton.disabled = false;
-            stopButton.disabled = true;
+            startButtonRec.disabled = false;
+            stopButtonRec.disabled = true;
         } else if (status === 'denied') {
             permissionStatusSpan.textContent = '거부됨';
             permissionStatusSpan.style.color = 'red';
-            startButton.disabled = true;
-            stopButton.disabled = true;
+            startButtonRec.disabled = true;
+            stopButtonRec.disabled = true;
         } else {
             permissionStatusSpan.textContent = '알 수 없음';
             permissionStatusSpan.style.color = 'orange';
-            startButton.disabled = true;
-            stopButton.disabled = true;
+            startButtonRec.disabled = true;
+            stopButtonRec.disabled = true;
         }
     }
 
@@ -408,11 +408,11 @@ categories: HTML
 
 마이크 권한을 허용할때만 STT가 실행되게 합니다.
 
-
-
-
 <br><br>
-<!-- ### 🧐 오늘의 소감은? -->
+
+### 🧐 오늘의 소감은?
+플러터에서 패키지로 받아서 사용했던 것처럼 node.js 에서 패키지 받아서 사용하는 줄 알았는데 Web Speech API가 있어서 자바스크립트 내에서 해결을 할 수 있어서 신기했습니다.
+물론 네이버 클로바처럼 자연스러운 말투는 아니지만 나름 만족하면서 기능구현했습니다.
 
 
 <br>
