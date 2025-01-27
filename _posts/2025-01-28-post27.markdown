@@ -1,10 +1,48 @@
 ---
 layout: post
 title:  ⌜Javascript⌟ Pyscript를 이용해서 파이썬 코드를 웹에 적용시키기
-date:   2025-01-28 +0900
+date:   2025-01-27 +0900
 categories: [Javascript, Pyscript]
 ---
+<!-- PyScript CSS 및 JS 파일 불러오기 -->
+<link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 
+<h1> Pyscript를 이용해서 파이썬 코드를 웹에 적용시키기</h1>
+
+<!-- Python 코드 실행 -->
+<py-script>
+    print("안녕하세요, PyScript입니다!")
+</py-script>
+
+<!-- Python 데이터를 HTML로 출력 -->
+<py-script>
+    # 간단한 계산
+    result = 5 * 10
+    display(f"5 x 10 = {result}")
+</py-script>
+
+<!-- 사용자 입력 받아 처리 -->
+<h2>숫자를 입력하면 제곱값을 계산합니다.</h2>
+<input id="number" type="number" placeholder="숫자 입력">
+<button id="calculate">계산하기</button>
+<p id="result"></p>
+
+<py-script>
+    from js import document
+        
+    # 버튼 클릭 이벤트 처리
+    def calculate_square(event):
+        input_value = document.getElementById("number").value
+        if input_value:
+            result = int(input_value) ** 2
+            document.getElementById("result").innerText = f"결과: {result}"
+        else:
+            document.getElementById("result").innerText = "숫자를 입력하세요!"
+
+    # 이벤트 리스너 등록
+    document.getElementById("calculate").addEventListener("click", calculate_square)
+</py-script>
 
 
 <br><br>
