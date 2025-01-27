@@ -2,7 +2,7 @@
 layout: post
 title: ⌜Javascript⌟ Pyscript를 이용해서 파이썬 코드를 웹에 적용시키기
 date: 2025-01-28 +0900
-categories: [Javascript, Pyscript]
+categories: [Javascript]
 ---
 <!-- PyScript CSS 및 JS 파일 불러오기 -->
 <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
