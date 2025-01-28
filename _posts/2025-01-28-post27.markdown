@@ -102,7 +102,7 @@ categories: [Javascript]
 ```
 
 
-> [!IMPORTANT] 중요한 점 ⭐️
+> <strong> 중요한 점 ⭐️ </strong> <br>
 > 여기서 중요한 점은 페이지 로드시간보다 파이스크립트를 로드하는데 시간이 더 오래 걸립니다.
 그래서 파이스크립트의 결과가 나중에 보여집니다.
 
@@ -110,7 +110,7 @@ categories: [Javascript]
 
 |      Pyscript        |          Javascript          |
 |----------------------|------------------------------|
-| <code>print()</code> |  <code>consol.log()</code>   |
+| <code>print()</code> |  <code>console.log()</code>   |
 |<code>display()</code>|<code>element.innerText</code>|
 
 
