@@ -49,12 +49,14 @@ categories: [Javascript, Pyscript]
 </dialog>
 
 <h2>NumPy</h2>
+
 <div class="parents">
     <div class="text" id="text1"></div>
-    <div class="text"id="text2"></div>
+    <div class="text" id="text2"></div>
     <div class="text" id="ArrayOperations1"></div>
     <div class="text" id="ArrayOperations2"></div>
 </div>
+
 
 <hr>
 
