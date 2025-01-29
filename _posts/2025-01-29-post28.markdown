@@ -1,0 +1,266 @@
+---
+layout: post
+title:  ⌜Javascript⌟ Pyscript를 이용해서 Pandas, Numpy를 웹에 적용시키기
+date:   2025-01-28 +0900
+categories: [Javascript, Pyscript]
+---
+<!-- PyScript CSS 및 JS 파일 불러오기 -->
+<link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    
+<style>
+    #loading { 
+        outline: none; border: none; background: transparent 
+    }
+
+    .parents {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .parents:has(#csv-text) {
+        flex-direction: column;
+    }
+
+    .graph-container,
+    #csv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .text {
+        font-weight: bold;
+        text-align: center;
+    }
+
+</style>
+<script type="module">
+    const loading = document.getElementById('loading');
+    addEventListener('py:ready', () => loading.close());
+    loading.showModal();
+</script>
+
+<dialog id="loading">
+    <h1>Loading...</h1>
+</dialog>
+
+<h2>NumPy</h2>
+<div class="parents">
+    <span class="text" id="text1"></span>
+    <span class="text"id="text2"></span>
+    <div class="text" id="ArrayOperations1"></div>
+    <div class="text" id="ArrayOperations2"></div>
+</div>
+
+<hr>
+
+<h2>Matplotlib</h2>
+<div class="parents">
+    <div class="graph-container">
+        <div id="graph1"></div>
+    </div>
+    <div class="graph-container">
+        <div id="graph2"></div>
+    </div>
+</div>
+
+
+<hr>
+
+<h2>Pandas</h2>
+<div class="parents">
+    <div class="text" id="csv-text"></div>
+    <div id="csv"></div>
+</div>
+
+
+
+<!-- 설치할 패키지 -->
+<py-config>
+    {
+        "packages": ["numpy", "pandas", "matplotlib"]
+    }
+</py-config>
+
+
+<script type="py">
+    from pyscript import display
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import pandas as pd
+
+    # NumPy로 배열 생성
+    array = np.array([1, 2, 3, 4, 5])
+    targetArray = np.array([2, 8, 4, 10, 6])
+    display(f"array 배열: {array}", target="text1")
+    display(f"targetArray 배열: {targetArray}", target="text2")
+
+    # 배열 연산
+    display(f"array - targetArray 연산: {array - targetArray}", target="ArrayOperations1")
+    display(f"targetArray - array 연산: {targetArray - array}", target="ArrayOperations2")
+
+    # 첫 번째 그래프 그리기
+    plt.figure()  # 새로운 Figure 생성
+    plt.plot(array)
+    plt.title("first graph: array")
+    display(plt, target="graph1")
+
+    # 두 번째 그래프 그리기
+    plt.figure()  # 새로운 Figure 생성
+    plt.plot(targetArray)
+    plt.title("second graph: targetArray")
+    display(plt, target="graph2")
+
+    # Pandas로 데이터프레임 생성
+    data = {'이름': ['Alice', 'Bob', 'Charlie'], '나이': [25, 30, 35]}
+    df = pd.DataFrame(data)
+    display("Pandas 데이터프레임:",  target="csv-text")
+    display(df, target="csv")
+</script>
+<hr>
+<br><br>
+
+# Pyscript
+
+1. <code>pyscript</code> 브라우저에서 동작하도록 설계되었으며, <code>Matplotlib</code> 그래프를 자동으로 HTML 요소로 변환합니다.
+
+2. <code>pyscript</code> 에서  <code>display</code>함수의 <strong>target</strong> 속성은 출력을 특정 HTML 요소에 표시하기 위해 사용됩니다.
+이 속성을 사용하려면 해당 HTML 요소가 존재해야 합니다. 예를 들어, <code>`<div id="원하는 id값"></div>`</code>와 같은 요소가 HTML에 있어야 
+<code>display("출력할 텍스트", target="원하는 id값")</code> 식으로 사용하여 아이디에 표시할 수 있습니다.
+
+<br><br>
+
+# 📌 Python 주요 라이브러리 설명
+
+## 1. NumPy 🧮
+
+### 📌 개요
+NumPy(Numerical Python)는 대규모 다차원 배열과 행렬 연산을 효율적으로 수행할 수 있도록 설계된 라이브러리입니다. 벡터 연산과 다양한 수학 함수를 포함하고 있습니다.
+
+### 📌 주요 기능
+ndarray 객체를 제공하여 다차원 배열(행렬) 연산 가능
+벡터화된 연산을 통해 반복문 없이 고속 연산 수행
+선형대수, 난수 생성, 푸리에 변환 등의 기능 제공
+
+#### ndarray란?
+NumPy 라이브러리에서 제공하는 다차원 배열 객체입니다. "N-dimensional array"의 약자로, N차원 배열을 의미합니다.
+이 배열은 동일한 데이터 타입의 요소들로 구성됩니다.
+
+### 📌 예제 코드
+아래 코드는 NumPy 배열을 생성하고, 이를 display() 함수를 이용해 출력하는 예제입니다.
+
+```python
+from pyscript import display
+import numpy as np
+
+# NumPy로 배열 생성
+array = np.array([1, 2, 3, 4, 5])
+targetArray = np.array([2, 8, 4, 10, 6])
+display(f"array 배열: {array}", target="text1")
+display(f"targetArray 배열: {targetArray}", target="text2")
+
+# 배열 연산
+display(f"array - targetArray 연산: {array - targetArray}", target="ArrayOperations1")
+display(f"targetArray - array 연산: {targetArray - array}", target="ArrayOperations2")
+# array - targetArray 연산: [-1 -6 -1 -6 -1]
+# targetArray - array 연산: [1 6 1 6 1]
+```
+
+
+### 🔍 설명:
+두 개의 ndarray를 생성
+array = np.array([1, 2, 3, 4, 5]): 1차원 배열 생성
+targetArray = np.array([2, 8, 4, 10, 6]) : 1차원 배열 생성
+display()를 사용하여 배열을 출력
+배열에서 같은 인덱스의 값끼리 연산
+
+
+
+## 2. Matplotlib 📊
+
+### 📌 개요
+Matplotlib은 Python에서 데이터를 시각화할 때 가장 많이 사용되는 라이브러리입니다. pyplot 모듈을 활용하여 다양한 그래프를 생성할 수 있으며, 간단한 라인 그래프부터 복잡한 3D 그래프까지 지원합니다.
+
+### 📌 주요 기능
+다양한 그래프 (라인, 바 차트, 히스토그램 등) 생성
+축 및 제목 설정 가능
+여러 개의 그래프를 하나의 Figure에서 그릴 수 있음
+
+### 📌 예제 코드
+아래는 array와 targetArray를 사용하여 각각 그래프를 그리는 코드입니다.
+
+```python
+from pyscript import display
+import matplotlib.pyplot as plt
+
+# 첫 번째 그래프 그리기
+plt.figure()  # 새로운 Figure 생성
+plt.plot(array)
+plt.title("first graph: array")
+display(plt, target="graph1")
+
+# 두 번째 그래프 그리기
+plt.figure()  # 새로운 Figure 생성
+plt.plot(targetArray)
+plt.title("second graph: targetArray")
+display(plt, target="graph2")
+```
+
+
+### 🔍 설명:
+plt.figure(): 새로운 그래프를 그릴 때마다 Figure를 새로 생성
+plt.plot(array): array 데이터를 이용해 그래프 생성
+plt.title("first graph: array"): 그래프 제목 설정
+display(plt, target="graph1"): 그래프를 특정 타겟 위치에 표시
+
+
+## 3. Pandas 🗂
+
+### 📌 개요
+Pandas는 데이터 분석 및 처리를 위한 라이브러리로, DataFrame과 Series 객체를 제공하여 엑셀과 같은 테이블 형식의 데이터를 쉽게 다룰 수 있도록 도와줍니다.
+
+### 📌 주요 기능
+DataFrame 및 Series를 이용한 데이터 구조화
+데이터 정제 및 변환 (결측치 처리, 필터링 등)
+CSV, Excel, SQL과 같은 다양한 데이터 포맷 지원
+
+### 📌 예제 코드
+아래는 Pandas를 사용하여 데이터프레임을 생성하고 이를 출력하는 코드입니다.
+
+```python
+from pyscript import display
+import pandas as pd
+
+# Pandas로 데이터프레임 생성
+data = {'이름': ['Alice', 'Bob', 'Charlie'], '나이': [25, 30, 35]}
+df = pd.DataFrame(data)
+display("Pandas 데이터프레임:", target="csv-text")
+display(df, target="csv")
+```
+
+
+### 🔍 설명:
+data = {'이름': ['Alice', 'Bob', 'Charlie'], '나이': [25, 30, 35]}: 딕셔너리 형태의 데이터를 생성
+df = pd.DataFrame(data): 데이터를 DataFrame으로 변환
+display(df, target="csv"): 생성된 데이터프레임을 특정 타겟 위치에 출력
+
+
+
+## ✨ 최종 요약
+
+|   라이브러리  |              주요 기능               |
+|------------|------------------------------------|
+|    NumPy   |    다차원 배열 및 수치 연산을 빠르게 수행   |
+| Matplotlib |   데이터 시각화를 위한 그래프 및 차트 생성  |
+|   Pandas	 | 데이터 분석 및 가공을 위한 DataFrame 제공 |
+
+
+<br><br><br>
+
+
+### 🧐 오늘의 소감은?
+파이스크립트로 이렇게 웹에서 파이썬 패키지를 다룰 수 있다는 것에 놀라운데요 나중에 API를 통해서 연산이나 통계할 수 있을 것 같고 더 복잡한 계산까지 가능할 것으로 예상됩니다.
+
+<br>
