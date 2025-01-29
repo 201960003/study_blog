@@ -18,7 +18,8 @@ categories: [Javascript, Pyscript]
         flex-direction: row;
     }
 
-    .parents:has(#csv-text) {
+    .parents:has(#csv-text),
+    .parents:has(#text1) {
         flex-direction: column;
     }
 
@@ -36,6 +37,7 @@ categories: [Javascript, Pyscript]
     }
 
 </style>
+
 <script type="module">
     const loading = document.getElementById('loading');
     addEventListener('py:ready', () => loading.close());
@@ -48,8 +50,8 @@ categories: [Javascript, Pyscript]
 
 <h2>NumPy</h2>
 <div class="parents">
-    <span class="text" id="text1"></span>
-    <span class="text"id="text2"></span>
+    <div class="text" id="text1"></div>
+    <div class="text"id="text2"></div>
     <div class="text" id="ArrayOperations1"></div>
     <div class="text" id="ArrayOperations2"></div>
 </div>
