@@ -4,8 +4,6 @@ title: 전체 포스트
 permalink: /categories/all/
 ---
 
-# 전체 포스트
-
 모든 포스트 목록입니다.
 
 <ul>

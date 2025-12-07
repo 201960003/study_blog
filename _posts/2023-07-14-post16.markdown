@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  ⌜Flutter⌟ Wrap text on overflow 해결 방법 (ellipsis, fade 등)
+title:  Wrap text on overflow 해결 방법 (ellipsis, fade 등)
 date:   2023-07-14 +0900
 categories: flutter
 ---

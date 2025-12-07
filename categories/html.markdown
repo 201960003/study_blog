@@ -4,8 +4,6 @@ title: HTML/CSS 카테고리
 permalink: /categories/html/
 ---
 
-# HTML/CSS 카테고리
-
 HTML, CSS 관련 포스트 목록입니다.
 
 <ul>

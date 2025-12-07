@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  ⌜MySQL⌟ connect ECONNREFUSED ERROR 해결 방법
+title:  connect ECONNREFUSED ERROR 해결 방법
 date:   2024-03-17 +0900
 categories: [MySQL, node.js]
 ---

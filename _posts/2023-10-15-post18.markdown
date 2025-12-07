@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  ⌜BEAKJOON⌟ 10988번 팰린드롬인지 확인하기 - dart
+title:  10988번 팰린드롬인지 확인하기 - dart
 date:   2023-07-17 +0900
 categories: [BEAKJOON, dart]
 ---

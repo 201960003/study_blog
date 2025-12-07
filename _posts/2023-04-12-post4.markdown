@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  ⌜Git⌟ How to change Git branch
+title:  How to change Git branch
 date:   2023-04-12 +0900
 categories: git
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ⌜Javascript⌟ 3D 하트 인터랙티브 애니메이션
+title: 3D 하트 인터랙티브 애니메이션
 categories: [Javascript]
 ---
 

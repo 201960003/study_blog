@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  ⌜Java⌟ pvsm & sout
+title:  pvsm & sout
 date:   2023-07-04 +0900
 categories: Java
 ---

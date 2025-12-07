@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  ⌜Flutter⌟ How to fix the 'The sandbox is not in sync with the Podfile.lock' error
+title:  How to fix the 'The sandbox is not in sync with the Podfile.lock' error
 date:   2023-04-22 +0900
 categories: flutter
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  ⌜Flutter⌟ flutter version downgrade
+title:  flutter version downgrade
 date:   2023-07-05 +0900
 categories: flutter
 ---

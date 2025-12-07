@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  ⌜HTML⌟ 웹에서 FCM 보내기
+title:  웹에서 FCM 보내기
 date:   2024-07-14 +0900
 categories: [HTML, FCM, Javascript]
 ---

@@ -4,8 +4,6 @@ title: Firebase 카테고리
 permalink: /categories/firebase/
 ---
 
-# Firebase 카테고리
-
 Firebase 관련 포스트 목록입니다.
 
 <ul>

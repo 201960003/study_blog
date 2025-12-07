@@ -4,8 +4,6 @@ title: Javascript 카테고리
 permalink: /categories/javascript/
 ---
 
-# Javascript 카테고리
-
 JavaScript 관련 포스트 목록입니다.
 
 <ul>

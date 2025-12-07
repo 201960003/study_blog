@@ -4,8 +4,6 @@ title: Node.js 카테고리
 permalink: /categories/node/
 ---
 
-# Node.js 카테고리
-
 Node.js 관련 포스트 목록입니다.
 
 <ul>

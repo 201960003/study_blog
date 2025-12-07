@@ -4,8 +4,6 @@ title: Java 카테고리
 permalink: /categories/java/
 ---
 
-# ☕ Java 카테고리
-
 Java 관련 포스트 목록입니다.
 
 <ul>

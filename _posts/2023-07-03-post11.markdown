@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  ⌜Flutter⌟ StatefulWidget ElevatedButton & Switch widget
+title:  StatefulWidget ElevatedButton & Switch widget
 date:   2023-07-03 +0900
 categories: flutter
 ---

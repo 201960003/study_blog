@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  ⌜HTML⌟ canvas 에 mouse로 그림 그리기 (2)
+title:  canvas 에 mouse로 그림 그리기 (2)
 date:   2024-07-13 +0900
 categories: [HTML, Javascript]
 ---

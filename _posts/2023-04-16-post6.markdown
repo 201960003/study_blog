@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  ⌜Git⌟ How to create and check Git branches
+title:  How to create and check Git branches
 date:   2023-04-16 +0900
 categories: git
 ---

@@ -4,8 +4,6 @@ title: Flutter 카테고리
 permalink: /categories/flutter/
 ---
 
-# Flutter 카테고리
-
 Flutter 관련 포스트 목록입니다.
 
 <ul>

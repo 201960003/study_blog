@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  ⌜HTML⌟ div 태그의 contentediatable, background-clip 속성 알아보기
+title:  div 태그의 contentediatable, background-clip 속성 알아보기
 date:   2024-12-27 +0900
 categories: [HTML, CSS]
 ---

@@ -4,8 +4,6 @@ title: Git 카테고리
 permalink: /categories/git/
 ---
 
-# Git 카테고리
-
 Git 관련 포스트 목록입니다.
 
 <ul>
