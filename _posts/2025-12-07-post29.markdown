@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 3D 하트 인터랙티브 애니메이션
-categories: 
+title: ⌜Javascript⌟ 3D 하트 인터랙티브 애니메이션
+categories: [Javascript]
 ---
 
 ## 3D 하트 인터랙티브 애니메이션
@@ -10,7 +10,7 @@ categories:
 
 ### 애니메이션 실행
 
-{% include post30/heart-animation.html %}
+{% include html/post30/heart-animation.html %}
 
 ### 기능 설명
 

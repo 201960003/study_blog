@@ -152,7 +152,7 @@ Javascript
 
  <center>
   <img src="
-  https://github.com/201960003/study_blog/blob/main/img/post21/1.png?raw=true" alt="첫번째 사진">
+  {{ site.baseurl }}img/post21/1.png" alt="첫번째 사진">
 </center>
 
 <br><br><br>
@@ -161,7 +161,7 @@ Javascript
 
 <center>
   <img src="
-  https://github.com/201960003/study_blog/blob/main/img/post21/2.png?raw=true" alt="두번째 사진">
+  {{ site.baseurl }}img/post21/2.png" alt="두번째 사진">
 </center>
 
 <br><br>

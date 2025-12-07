@@ -15,7 +15,7 @@ FCM은 HTTPv1(버전)으로 기준으로 작성하였습니다.
 
 
 <center>
-  <img src="https://github.com/201960003/study_blog/blob/main/img/post22/1.png?raw=true" alt="첫번째 사진">
+  <img src="{{ site.baseurl }}img/post22/1.png" alt="첫번째 사진">
 </center>
 
 

@@ -7,7 +7,7 @@ categories: flutter
 
 <!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->
 <center>
-  <img src="https://github.com/201960003/study_blog/blob/main/img/post8/flutter.png?raw=true" alt="main 사진">
+  <img src="{{ site.baseurl }}img/post8/flutter.png" alt="main 사진">
 </center>
 
 Container 나 SizedBox를 사용하다보면 정해진 사이즈보다 텍스트의 길이가 더 길면 textoverflow가 생깁니다.<br>

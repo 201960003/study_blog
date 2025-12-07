@@ -7,7 +7,7 @@ categories: [Flutter, Xcode]
 
 <!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->
 <center>
-  <img src="https://github.com/201960003/study_blog/blob/main/img/post16/xcode.jpeg?raw=true" alt="main 사진">
+  <img src="{{ site.baseurl }}img/post16/xcode.jpeg" alt="main 사진">
 </center>
 
 <br><br>

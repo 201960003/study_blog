@@ -7,7 +7,7 @@ categories: node
 
 
 <center>
-  <img src="https://github.com/201960003/study_blog/blob/main/img/post7/nodejs.png?raw=true" alt="main 사진">
+  <img src="{{ site.baseurl }}img/post7/nodejs.png" alt="main 사진">
 </center>
 
 ## node 버전 설정하는 방법!
