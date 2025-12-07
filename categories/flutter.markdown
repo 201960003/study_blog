@@ -8,7 +8,8 @@ Flutter 관련 포스트 목록입니다.
 
 <ul>
   {% for post in site.posts %}
-    {% if post.categories contains 'Flutter' or post.categories contains 'flutter' %}
+    {% assign post_categories = post.categories | join: ',' | downcase %}
+    {% if post_categories contains 'flutter' %}
       <li>
         <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
         <span style="color: #666; font-size: 0.9em;"> - {{ post.date | date: "%Y년 %m월 %d일" }}</span>

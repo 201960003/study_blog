@@ -1,11 +1,11 @@
 /* 드롭다운 메뉴 스타일 */
 
-.site-nav .dropdown {
+.site-nav .trigger .dropdown {
   position: relative;
   display: inline-block;
 }
 
-.site-nav .dropdown-toggle {
+.site-nav .trigger .dropdown-toggle {
   cursor: pointer;
   padding: 0;
   border: none;
@@ -14,13 +14,14 @@
   font-size: inherit;
   font-family: inherit;
   text-decoration: none;
+  display: inline-block;
 }
 
-.site-nav .dropdown-toggle:hover {
+.site-nav .trigger .dropdown-toggle:hover {
   text-decoration: underline;
 }
 
-.site-nav .dropdown-content {
+.site-nav .trigger .dropdown-content {
   display: none;
   position: absolute;
   background-color: #fff;
@@ -35,7 +36,7 @@
   border: 1px solid #e1e4e8;
 }
 
-.site-nav .dropdown-content a {
+.site-nav .trigger .dropdown-content a {
   color: #24292e;
   padding: 12px 16px;
   text-decoration: none;
@@ -44,20 +45,20 @@
   border-bottom: 1px solid #e1e4e8;
 }
 
-.site-nav .dropdown-content a:last-child {
+.site-nav .trigger .dropdown-content a:last-child {
   border-bottom: none;
 }
 
-.site-nav .dropdown-content a:hover {
+.site-nav .trigger .dropdown-content a:hover {
   background-color: #f6f8fa;
   color: #0366d6;
 }
 
-.site-nav .dropdown:hover .dropdown-content {
+.site-nav .trigger .dropdown:hover .dropdown-content {
   display: block;
 }
 
-.site-nav .dropdown-toggle::after {
+.site-nav .trigger .dropdown-toggle::after {
   content: ' ▼';
   font-size: 0.7em;
   opacity: 0.6;
@@ -66,7 +67,12 @@
 
 /* 모바일 반응형 - 햄버거 메뉴일 때 */
 @media (max-width: 600px) {
-  .site-nav .dropdown-content {
+  .site-nav .trigger .dropdown {
+    display: block;
+    width: 100%;
+  }
+  
+  .site-nav .trigger .dropdown-content {
     position: static;
     display: none;
     box-shadow: none;
@@ -74,21 +80,40 @@
     margin-top: 0;
     border: none;
     min-width: auto;
+    padding-left: 0;
   }
   
-  .site-nav .dropdown.active .dropdown-content,
-  .site-nav .nav-trigger:checked ~ .trigger .dropdown .dropdown-content {
+  /* 햄버거 메뉴가 열려있을 때 드롭다운 활성화 */
+  .site-nav .nav-trigger:checked ~ .trigger .dropdown.active .dropdown-content {
     display: block;
   }
   
-  .site-nav .dropdown-content a {
+  /* 데스크톱 호버는 모바일에서 비활성화 */
+  .site-nav .trigger .dropdown:hover .dropdown-content {
+    display: none;
+  }
+  
+  .site-nav .trigger .dropdown.active .dropdown-content {
+    display: block;
+  }
+  
+  .site-nav .trigger .dropdown-content a {
     padding-left: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     border-bottom: 1px solid #e1e4e8;
   }
   
-  .site-nav .dropdown-toggle {
+  .site-nav .trigger .dropdown-toggle {
     display: block;
     width: 100%;
+    padding: 0.5rem 0;
+    cursor: pointer;
+  }
+  
+  .site-nav .trigger .dropdown-toggle::after {
+    float: right;
+    margin-right: 1rem;
   }
 }
 
