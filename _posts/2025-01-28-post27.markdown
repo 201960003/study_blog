@@ -5,32 +5,7 @@ date: 2025-01-28 +0900
 categories: [Javascript]
 ---
 
-
-<!-- PyScript CSS 및 JS 파일 불러오기 -->
-<link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
-<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
-
-
-<!-- 로딩 CSS  -->
-<style>
-    #loading { outline: none; border: none; background: transparent }
-</style>
-
-
-<!-- 파이스크립트가 완전히 로드되면 로딩 닫기 -->
-<script type="module">
-    const loading = document.getElementById('loading');
-    addEventListener('py:ready', () => loading.close());
-    loading.showModal();
-</script>
-
-
-<!-- 로딩 html  -->
-<dialog id="loading">
-    <h1>Loading...</h1>
-</dialog>
-
-
+{% include html/post27/pyscript-init.html %}
 
 ## Pyscript란?
 파이스크립트는 웹 브라우저에서 Python 코드를 실행할 수 있게 해주는 프레임워크입니다.
@@ -47,31 +22,6 @@ categories: [Javascript]
 <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 
 ```
-
-
-<script type="py">
-    from pyscript import display
-    from datetime import datetime
-
-    # 간단한 로그
-    print("안녕하세요, PyScript입니다!")
-
-    # 오늘 날짜 보이게
-    now = datetime.now()
-    display("오늘 날짜")
-    display(now.strftime("%m/%d/%Y, %H:%M:%S"))
-
-    display("")
-    display("----------------------------------")
-
-    # 간단한 계산
-    display("간단한 계산")
-    result = 5 * 10
-    display(f"5 x 10 = {result}")
-
-    display("")
-    display("----------------------------------")
-</script>
 
 
 

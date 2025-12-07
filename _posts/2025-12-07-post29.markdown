@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 3D 하트 인터랙티브 애니메이션
+date:   2025-12-07+0900
 categories: [Javascript]
 ---
 
@@ -10,7 +11,7 @@ categories: [Javascript]
 
 ### 애니메이션 실행
 
-{% include html/post30/heart-animation.html %}
+{% include html/post29/heart-animation.html %}
 
 ### 기능 설명
 

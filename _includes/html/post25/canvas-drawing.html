@@ -1,22 +1,4 @@
----
-layout: post
-title:  스티커 추가 및 그림 그리기 기능
-date:   2025-01-26 +0900
-categories: [HTML, Javascript]
----
-
-{% include html/post25/canvas-drawing.html %}
-
-<br>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-        <style>
+<style>
     #drawing-canvas {
         border: 1px solid black;
         background-color: white;
@@ -70,9 +52,6 @@ categories: [HTML, Javascript]
         cursor: pointer;
     }
 </style>
-</head>
-<body>
-
 
 <div class="canvas-container">
     <canvas id="drawing-canvas" width="500" height="500"></canvas>
@@ -85,6 +64,7 @@ categories: [HTML, Javascript]
     <button id="allclear">모두 지우기</button>
 </div>
 
+<span>✍️ 선 색성을 변경해 보세요 ^^✍️</span>
 <div class="color-picker">
     <div class="color-button black selected" data-color="black"><span>&#10003;</span></div>
     <div class="color-button red" data-color="red"><span>&#10003;</span></div>
@@ -96,11 +76,13 @@ categories: [HTML, Javascript]
     <div class="color-button violet" data-color="violet"><span>&#10003;</span></div>
 </div>
 
+<span>✍️ 이미지를 드래그해서 캔버스에 그려보세요 ^^✍️</span>
 <div class="sticker-container">
     <img class="sticker" src="{{ site.baseurl }}_includes/img/post25/four_leaf_clover.png">
     <img class="sticker" src="{{ site.baseurl }}_includes/img/post25/three_leaf_clover.png">
-
 </div>
+
+<!-- <button id="save" onclick="saveCanvas()">저장</button> -->
 
 <script>
     // 캔버스 및 컨텍스트 설정
@@ -163,7 +145,7 @@ categories: [HTML, Javascript]
         });
     });
 
-     // 캔버스 클릭 이벤트 핸들러 (스티커 추가)
+    // 캔버스 클릭 이벤트 핸들러 (스티커 추가)
     drawingCanvas.addEventListener('click', (e) => {
         if (selectedSticker) {
             const [x, y] = getEventPosition(e);
@@ -175,6 +157,7 @@ categories: [HTML, Javascript]
             };
         }
     });
+
 
     // 컨트롤 이벤트 핸들러
     document.getElementById('line-width').addEventListener('input', (e) => {
@@ -199,6 +182,14 @@ categories: [HTML, Javascript]
             isErasing = false;  // 지우개 모드를 해제
         });
     });
+
+    // 저장 기능
+    function saveCanvas() {
+        const link = document.createElement('a');
+        link.href = drawingCanvas.toDataURL('image/png');
+        link.download = 'drawing.png';
+        link.click();
+    }
 
     // 드래그 오버 이벤트 핸들러
     function onDragOver(e) {
@@ -252,14 +243,4 @@ categories: [HTML, Javascript]
     drawingCanvas.addEventListener('dragover', onDragOver);
     drawingCanvas.addEventListener('drop', onDrop);
 </script>
-    
-</body>
-</html>
-```
 
-<br><br>
-
-### 🧐 오늘의 소감은?
-간략하게 이미지를 캔버스 위에 그려서 스티커처럼 할 수 있게 해봤습니다. 이번 꺼는 그 전에 마우스로 선 그리기의 다음버전인 셈인데요 간단한 것 같은데 이렇게 버벅이다니 참... 아직 멀었습니다. 벌써 25년 새해인데 공부도 열심히 하고 일도 열심히 하는 해가 됐으면 좋겠습니다.
-
-<br>

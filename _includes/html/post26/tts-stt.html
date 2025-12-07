@@ -1,18 +1,16 @@
----
-layout: post
-title:  Web Speech API로 TTS 및 STT 구현하기
-date:   2025-01-27 +0900
-categories: [HTML, Javascript]
----
+<!-- TTS 섹션 -->
+<div class="container">
+    <h2>Text-to-Speech (TTS)</h2>
+    <textarea id="tts-text" rows="3" cols="50" placeholder="여기에 텍스트를 입력하세요"></textarea><br>
+    <button id="speak-button">읽기</button>
+    <button id="pause-button" disabled>일시 중지</button>
+    <button id="resume-button" disabled>다시 재생</button>
+    <button id="stop-button" disabled>중지</button>
+</div>
 
-{% include html/post26/tts-stt.html %}
+<br><br>
 
-<hr>
-
-## TTS 코드
-
-### html
-```html
+<!-- STT 섹션 -->
 <div class="container">
     <h2>Speech-to-Text (STT)</h2>
     <p id="status-message">마이크 권한 상태:
@@ -23,10 +21,7 @@ categories: [HTML, Javascript]
     <p>인식된 텍스트: <span id="recognized-text"></span></p>
 </div>
 
-```
-
-
-```javascript
+<script>
     const speakButton = document.getElementById('speak-button');
     const pauseButton = document.getElementById('pause-button');
     const resumeButton = document.getElementById('resume-button');
@@ -51,11 +46,9 @@ categories: [HTML, Javascript]
         // 새로운 TTS 시작
         currentSpeech = new SpeechSynthesisUtterance(text);
         currentSpeech.lang = 'ko-KR'; // 한국어 설정
-        currentSpeech.lang = 'ko-KR'; // 한국어 설정
         currentSpeech.rate = 1; // 음성 속도, 0.1 ~ 10 사이의 값
         currentSpeech.pitch = 1; // 음높이, 0 ~ 2 사이의 값
         currentSpeech.volume = 1; // 음량, 0 ~ 1 사이의 값
-
 
         // TTS가 끝날 때 버튼 상태 초기화
         currentSpeech.onend = () => {
@@ -102,28 +95,9 @@ categories: [HTML, Javascript]
             stopButton.disabled = true;
         }
     });
-```
 
 
-## STT 코드
-
-### html
-```html
-<div class="container">
-    <h2>Text-to-Speech (TTS)</h2>
-    <textarea id="tts-text" rows="3" cols="50" placeholder="여기에 텍스트를 입력하세요"></textarea><br>
-    <button id="speak-button">읽기</button>
-    <button id="pause-button" disabled>일시 중지</button>
-    <button id="resume-button" disabled>다시 재생</button>
-    <button id="stop-button" disabled>중지</button>
-</div>
-```
-
-먼저 <code>textarea</code> 태그에 TTS 를 적용시킬 텍스트를 입력 받을 준비를 합니다.
-<code>button</code> 을 눌러 입력한 텍스트를 재생시키위한 코드를 작성합니다.
-
-
-```javascript
+    // STT (Speech-to-Text)
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
     recognition.lang = 'ko-KR'; // 한국어 설정
     recognition.continuous = true; // 연속 모드 활성화
@@ -214,15 +188,5 @@ categories: [HTML, Javascript]
         checkMicrophonePermission(); // 권한 초기 확인
         monitorPermissionChanges(); // 권한 변경 감지
     });
-```
+</script>
 
-마이크 권한을 허용할때만 STT가 실행되게 합니다.
-
-<br><br>
-
-### 🧐 오늘의 소감은?
-플러터에서 패키지로 받아서 사용했던 것처럼 node.js 에서 패키지 받아서 사용하는 줄 알았는데 Web Speech API가 있어서 자바스크립트 내에서 해결을 할 수 있어서 신기했습니다.
-물론 네이버 클로바처럼 자연스러운 말투는 아니지만 나름 만족하면서 기능구현했습니다.
-
-
-<br>
