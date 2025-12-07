@@ -6,7 +6,7 @@ categories: Java
 ---
 
 <center>
-  <img src="{{ site.baseurl }}img/post12/java.png" alt="main 사진">
+  <img src="{{ site.baseurl }}_includes/img/post12/java.png" alt="main 사진">
 </center>
 
 Java 완전 기초를 시작하기 전에 더더 기초가 될 단축어를 공부해볼까합니다.

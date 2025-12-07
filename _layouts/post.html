@@ -1,0 +1,60 @@
+---
+layout: default
+---
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        {{ page.date | date: date_format }}
+      </time>
+      {%- if page.author -%}
+        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
+      {%- endif -%}
+      {%- if page.categories.size > 0 -%}
+        <span class="post-categories">
+          {%- for category in page.categories -%}
+            <a href="{{ '/categories/' | append: category | downcase | relative_url }}" class="category-link">{{ category }}</a>
+            {%- unless forloop.last -%}, {%- endunless -%}
+          {%- endfor -%}
+        </span>
+      {%- endif -%}
+    </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  {%- if site.disqus.shortname -%}
+    {%- include disqus_comments.html -%}
+  {%- endif -%}
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+</article>
+
+<style>
+.category-link {
+  display: inline-block;
+  background-color: #0366d6;
+  color: white;
+  padding: 0.25em 0.6em;
+  border-radius: 4px;
+  font-size: 0.85em;
+  text-decoration: none;
+  margin-left: 0.5em;
+  transition: background-color 0.2s ease;
+}
+
+.category-link:hover {
+  background-color: #0256c2;
+  text-decoration: none;
+}
+
+.post-categories {
+  margin-left: 1em;
+}
+</style>
+

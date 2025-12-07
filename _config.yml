@@ -47,6 +47,10 @@ plugins:
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
+# Include _includes/img folder so images can be accessed
+include:
+  - _includes/img
+
 # exclude:
 #   - .sass-cache/
 #   - .jekyll-cache/

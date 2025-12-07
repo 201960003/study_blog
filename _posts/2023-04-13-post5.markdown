@@ -7,7 +7,7 @@ categories: git
 
 <!-- 똑같은 카테고리여서 post 4 사진 그대로 가져왔음-->
 <center>
-  <img src="{{ site.baseurl }}img/post4/git.png" alt="main 사진">
+  <img src="{{ site.baseurl }}_includes/img/post4/git.png" alt="main 사진">
 </center>
 
 ## git 사용자 이름 or 사용자 이메일 설정하는 방법!

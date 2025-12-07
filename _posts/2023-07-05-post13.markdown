@@ -7,7 +7,7 @@ categories: flutter
 
 <!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->
 <center>
-  <img src="{{ site.baseurl }}img/post8/flutter.png" alt="main 사진">
+  <img src="{{ site.baseurl }}_includes/img/post8/flutter.png" alt="main 사진">
 </center>
 
 네이버지도 api를 사용하면서 플러터 버전을 업그레이드를 했더니 <code>flutter run --no-sound-null-safety</code>를 사용을 할 수 없어서 굉장히 당황했었습니다ㅠ<br>
