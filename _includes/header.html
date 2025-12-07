@@ -18,9 +18,22 @@
         <div class="trigger">
           <a class="page-link" href="{{ "/" | relative_url }}">홈</a>
           <a class="page-link" href="{{ "/about" | relative_url }}">About</a>
-          <a class="page-link" href="{{ '/categories/javascript' | relative_url }}">Javascript</a>
-          <a class="page-link" href="{{ '/categories/html' | relative_url }}">HTML/CSS</a>
-          <a class="page-link" href="{{ '/categories/node' | relative_url }}">Node.js</a>
+          
+          <div class="dropdown">
+            <span class="page-link dropdown-toggle">프론트엔드</span>
+            <div class="dropdown-content">
+              <a href="{{ '/categories/javascript' | relative_url }}">Javascript</a>
+              <a href="{{ '/categories/html' | relative_url }}">HTML/CSS</a>
+            </div>
+          </div>
+          
+          <div class="dropdown">
+            <span class="page-link dropdown-toggle">백엔드</span>
+            <div class="dropdown-content">
+              <a href="{{ '/categories/node' | relative_url }}">Node.js</a>
+            </div>
+          </div>
+          
           <a class="page-link" href="{{ '/categories/flutter' | relative_url }}">Flutter</a>
           <a class="page-link" href="{{ '/categories/java' | relative_url }}">Java</a>
           <a class="page-link" href="{{ '/categories/git' | relative_url }}">Git</a>

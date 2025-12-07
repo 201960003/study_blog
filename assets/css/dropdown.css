@@ -1,0 +1,119 @@
+/* 드롭다운 메뉴 스타일 */
+
+.site-nav .trigger .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.site-nav .trigger .dropdown-toggle {
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.site-nav .trigger .dropdown-toggle:hover {
+  text-decoration: underline;
+}
+
+.site-nav .trigger .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 180px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1000;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #e1e4e8;
+}
+
+.site-nav .trigger .dropdown-content a {
+  color: #24292e;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.2s;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.site-nav .trigger .dropdown-content a:last-child {
+  border-bottom: none;
+}
+
+.site-nav .trigger .dropdown-content a:hover {
+  background-color: #f6f8fa;
+  color: #0366d6;
+}
+
+.site-nav .trigger .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.site-nav .trigger .dropdown-toggle::after {
+  content: ' ▼';
+  font-size: 0.7em;
+  opacity: 0.6;
+  margin-left: 4px;
+}
+
+/* 모바일 반응형 - 햄버거 메뉴일 때 */
+@media (max-width: 600px) {
+  .site-nav .trigger .dropdown {
+    display: block;
+    width: 100%;
+  }
+  
+  .site-nav .trigger .dropdown-content {
+    position: static;
+    display: none;
+    box-shadow: none;
+    background-color: transparent;
+    margin-top: 0;
+    border: none;
+    min-width: auto;
+    padding-left: 0;
+  }
+  
+  /* 햄버거 메뉴가 열려있을 때 드롭다운 활성화 */
+  .site-nav .nav-trigger:checked ~ .trigger .dropdown.active .dropdown-content {
+    display: block;
+  }
+  
+  /* 데스크톱 호버는 모바일에서 비활성화 */
+  .site-nav .trigger .dropdown:hover .dropdown-content {
+    display: none;
+  }
+  
+  .site-nav .trigger .dropdown.active .dropdown-content {
+    display: block;
+  }
+  
+  .site-nav .trigger .dropdown-content a {
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e1e4e8;
+  }
+  
+  .site-nav .trigger .dropdown-toggle {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
+    cursor: pointer;
+  }
+  
+  .site-nav .trigger .dropdown-toggle::after {
+    float: right;
+    margin-right: 1rem;
+  }
+}
+
