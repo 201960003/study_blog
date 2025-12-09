@@ -97,8 +97,8 @@ categories: [HTML, Javascript]
 </div>
 
 <div class="sticker-container">
-    <img class="sticker" src="{{ "/assets/images/" | relative_url }}post25/four_leaf_clover.png">
-    <img class="sticker" src="{{ "/assets/images/" | relative_url }}post25/three_leaf_clover.png">
+    <img class="sticker" src="/four_leaf_clover.png">
+    <img class="sticker" src="/three_leaf_clover.png">
 
 </div>
 
