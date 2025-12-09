@@ -7,7 +7,7 @@ categories: flutter
 
 <!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->
 <center>
-  <img src="{{ site.baseurl }}/_includes/img/post8/flutter.png" alt="main 사진">
+  <img src="{{ "/assets/images/" | relative_url }}post8/flutter.png" alt="main 사진">
 </center>
 
 오늘은 StatefulWidget을 좀 더 익숙해지기 위해서 기초적인 연습을 하려고 합니다.

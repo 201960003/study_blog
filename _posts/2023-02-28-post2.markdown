@@ -8,7 +8,7 @@ categories: javascript
   <img src="https://raw.githubusercontent.com/201960003/study_blog/main/img/post2/image.png?raw=true" alt="첫번째 사진">
 </center> -->
 <center>
-  <img src="{{ site.baseurl }}/_includes/img/post2/image.png" alt="첫번째 사진">
+  <img src="{{ "/assets/images/" | relative_url }}post2/image.png" alt="첫번째 사진">
 </center>
 
 

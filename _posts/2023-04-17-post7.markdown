@@ -7,7 +7,7 @@ categories: node
 
 
 <center>
-  <img src="{{ site.baseurl }}/_includes/img/post7/nodejs.png" alt="main 사진">
+  <img src="{{ "/assets/images/" | relative_url }}post7/nodejs.png" alt="main 사진">
 </center>
 
 ## node 버전 설정하는 방법!

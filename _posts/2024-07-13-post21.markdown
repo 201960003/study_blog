@@ -152,7 +152,7 @@ Javascript
 
  <center>
   <img src="
-  {{ site.baseurl }}/_includes/img/post21/1.png" alt="첫번째 사진">
+  {{ "/assets/images/" | relative_url }}post21/1.png" alt="첫번째 사진">
 </center>
 
 <br><br><br>
@@ -161,7 +161,7 @@ Javascript
 
 <center>
   <img src="
-  {{ site.baseurl }}/_includes/img/post21/2.png" alt="두번째 사진">
+  {{ "/assets/images/" | relative_url }}post21/2.png" alt="두번째 사진">
 </center>
 
 <br><br>
