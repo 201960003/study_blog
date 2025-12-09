@@ -7,7 +7,7 @@ categories: flutter
 
 <!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->
 <center>
-  <img src="{{ site.baseurl }}_includes/img/post8/flutter.png" alt="main 사진">
+  <img src="{{ site.baseurl }}/_includes/img/post8/flutter.png" alt="main 사진">
 </center>
 
 ## Flutter "MissingPluginException(No implementation found for method getAll on channel..." 에러 해결 방법!

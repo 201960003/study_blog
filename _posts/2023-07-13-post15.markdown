@@ -7,7 +7,7 @@ categories: flutter
 
 <!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->
 <center>
-  <img src="{{ site.baseurl }}_includes/img/post8/flutter.png" alt="main 사진">
+  <img src="{{ site.baseurl }}/_includes/img/post8/flutter.png" alt="main 사진">
 </center>
 
 플러터에서 텍스트 필드나 텍스트 폼 필드를 사용하다보면 화면이 밀려오면서 바텀 오버플로우가 생기는 오류입니다.<br>

@@ -21,7 +21,7 @@ categories: [Javascript]
 
 
 <center>
-  <img src="{{ site.baseurl }}_includes/img/post1/1.png" alt="첫번째 사진">
+  <img src="{{ site.baseurl }}/_includes/img/post1/1.png" alt="첫번째 사진">
 </center>
 
 

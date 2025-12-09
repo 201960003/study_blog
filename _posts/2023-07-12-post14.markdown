@@ -9,10 +9,10 @@ categories: [Flutter, Firebase]
 <table style="width:100%">
   <tr>
     <td style="width:50%">
-      <img src="{{ site.baseurl }}_includes/img/post8/flutter.png" alt="Flutter 이미지">
+      <img src="{{ site.baseurl }}/_includes/img/post8/flutter.png" alt="Flutter 이미지">
     </td>
     <td style="width:50%">
-      <img src="{{ site.baseurl }}_includes/img/post14/Firebase_Logo.png" alt="Firebase 이미지">
+      <img src="{{ site.baseurl }}/_includes/img/post14/Firebase_Logo.png" alt="Firebase 이미지">
     </td>
   </tr>
 </table>
