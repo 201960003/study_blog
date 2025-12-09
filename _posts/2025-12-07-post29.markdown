@@ -11,7 +11,7 @@ categories: [Javascript]
 
 ### 애니메이션 실행
 
-{% include html/post29/heart-animation.html %}
+{% include file/post29/heart-animation.html %}
 
 ### 기능 설명
 

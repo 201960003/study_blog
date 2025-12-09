@@ -5,7 +5,7 @@ date:   2025-01-28 +0900
 categories: [Javascript, Pyscript]
 ---
 
-{% include html/post28/pyscript-demo.html %}
+{% include file/post28/pyscript-demo.html %}
 
 <hr>
 <br><br>

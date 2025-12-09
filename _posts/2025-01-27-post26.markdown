@@ -5,7 +5,7 @@ date:   2025-01-27 +0900
 categories: [HTML, Javascript]
 ---
 
-{% include html/post26/tts-stt.html %}
+{% include file/post26/tts-stt.html %}
 
 <hr>
 

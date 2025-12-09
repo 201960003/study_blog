@@ -5,7 +5,7 @@ date: 2025-01-28 +0900
 categories: [Javascript]
 ---
 
-{% include html/post27/pyscript-init.html %}
+{% include file/post27/pyscript-init.html %}
 
 ## Pyscript란?
 파이스크립트는 웹 브라우저에서 Python 코드를 실행할 수 있게 해주는 프레임워크입니다.

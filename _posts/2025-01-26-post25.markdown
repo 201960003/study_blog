@@ -5,7 +5,7 @@ date:   2025-01-26 +0900
 categories: [HTML, Javascript]
 ---
 
-{% include html/post25/canvas-drawing.html %}
+{% include file/post25/canvas-drawing.html %}
 
 <br>
 
