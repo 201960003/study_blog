@@ -7,12 +7,12 @@ categories: [MySQL, node.js]
 
 node.js에서 MySQL을 다루고 있었는데 아래와 같은 오류가 생겼었습니다.
 <center>
-  <img src="https://raw.githubusercontent.com/201960003/study_blog/0058b7a11c5053e51fb4d2e7a57a02dedc2d514b/img/post19/1.png?raw=true" alt="첫번째 사진">
+  <img src="{{ site.baseurl }}_includes/img/post19/1.png" alt="첫번째 사진">
 </center>
 ECONNREFUSED 오류는 일반적으로 네트워크 연결 문제를 나타나는데 
 
 <center>
-  <img src="https://raw.githubusercontent.com/201960003/study_blog/0058b7a11c5053e51fb4d2e7a57a02dedc2d514b/img/post19/2.png?raw=true" alt="두번째 사진">
+  <img src="{{ site.baseurl }}_includes/img/post19/2.png" alt="두번째 사진">
 </center>
 위의 사진처럼 컴퓨터 전원을 재시작할 때마다 서버가 닫혀서 생기는 오류로, 제가 정확하게는 알지 못하지만 아래의 방법으로 해결을 했습니다.
 
@@ -21,7 +21,7 @@ ECONNREFUSED 오류는 일반적으로 네트워크 연결 문제를 나타나�
 ### 🤓 해결 방법
 
 <center>
-  <img src="https://raw.githubusercontent.com/201960003/study_blog/0058b7a11c5053e51fb4d2e7a57a02dedc2d514b/img/post19/3.png?raw=true" alt="세번째 사진">
+  <img src="{{ site.baseurl }}_includes/img/post19/3.png" alt="세번째 사진">
 </center>
 
 
@@ -46,7 +46,7 @@ mysql.start restart
 
 ### 🤓 오류 해결시 나오는 화면
 <center>
-  <img src="https://raw.githubusercontent.com/201960003/study_blog/0058b7a11c5053e51fb4d2e7a57a02dedc2d514b/img/post19/4.png?raw=true" alt="4번째 사진">
+  <img src="{{ site.baseurl }}_includes/img/post19/4.png" alt="네번째 사진">
 </center>
 위와 같이 server status가 'Running'로 나온다면 최종적으로 Node.js에서 MySQL을 사용할 수 있습니다.
 

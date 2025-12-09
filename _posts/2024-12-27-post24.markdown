@@ -28,7 +28,7 @@ background-clip 속성은 배경 이미지를 표시하는 영역을 지정합�
         font-weight: 900;
         text-align: center;
         padding: 30px;
-        background-image: url("https://raw.githubusercontent.com/201960003/study_blog/refs/heads/main/img/post24/IMG_1375.PNG");
+        background-image: url("{{ site.baseurl }}_includes/img/post24/IMG_1375.PNG");
         background-position: center;
         border: 10px dashed grey;  
     }

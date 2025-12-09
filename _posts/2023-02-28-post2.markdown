@@ -4,9 +4,13 @@ title:  javascript operator
 date:   2023-02-28 +0900
 categories: javascript
 ---
-<center>
+<!-- <center>
   <img src="https://raw.githubusercontent.com/201960003/study_blog/main/img/post2/image.png?raw=true" alt="첫번째 사진">
+</center> -->
+<center>
+  <img src="{{ site.baseurl }}_includes/img/post2/image.png" alt="첫번째 사진">
 </center>
+
 
 ## 목차 
 
