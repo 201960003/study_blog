@@ -3,12 +3,10 @@ layout: post
 title:  Wrap text on overflow 해결 방법 (ellipsis, fade 등)
 date:   2023-07-14 +0900
 categories: flutter
+image:
+  path: flutter.png
+img_path: /assets/images/post16/
 ---
-
-<!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->
-<center>
-  <img src="{{ "/assets/images/" | relative_url }}post8/flutter.png" alt="main 사진">
-</center>
 
 Container 나 SizedBox를 사용하다보면 정해진 사이즈보다 텍스트의 길이가 더 길면 textoverflow가 생깁니다.<br>
 오늘은 textoverflow를 해결하는 방법에 대해서 알아보려고 합니다.

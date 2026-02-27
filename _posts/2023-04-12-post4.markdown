@@ -3,12 +3,14 @@ layout: post
 title:  How to change Git branch
 date:   2023-04-12 +0900
 categories: git
+image:
+  path: git.png
+
+img_path: /assets/images/post4/
 ---
 
 
-<center>
-  <img src="{{ "/assets/images/" | relative_url }}post4/git.png" alt="main 사진">
-</center>
+![main 사진](git.png)
 
 ## git branch 바꾸는 방법!
 

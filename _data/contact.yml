@@ -1,0 +1,7 @@
+- type: github
+  icon: "fab fa-github"
+  noblank: false
+
+# You can add more social links here
+# - type: twitter
+#   icon: "fab fa-twitter"

@@ -3,12 +3,14 @@ layout: post
 title:  StatefulWidget ElevatedButton & Switch widget
 date:   2023-07-03 +0900
 categories: flutter
+image:
+  path: flutter.png
+
+img_path: /assets/images/post8/
 ---
 
 <!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->
-<center>
-  <img src="{{ "/assets/images/" | relative_url }}post8/flutter.png" alt="main 사진">
-</center>
+![main 사진](flutter.png)
 
 오늘은 StatefulWidget을 좀 더 익숙해지기 위해서 기초적인 연습을 하려고 합니다.
 <br><br>

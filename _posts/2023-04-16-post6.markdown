@@ -3,12 +3,14 @@ layout: post
 title:  How to create and check Git branches
 date:   2023-04-16 +0900
 categories: git
+image:
+  path: git.png
+
+img_path: /assets/images/post4/
 ---
 
 <!-- 똑같은 카테고리여서 post 4 사진 그대로 가져왔음-->
-<center>
-  <img src="{{ "/assets/images/" | relative_url }}post4/git.png" alt="main 사진">
-</center>
+![main 사진](git.png)
 
 ## git 브랜치 생성 및 확인하는 방법!
 

@@ -3,6 +3,10 @@ layout: post
 title:  웹에서 FCM 보내기
 date:   2024-07-14 +0900
 categories: [HTML, FCM, Javascript]
+image:
+  path: 1.png
+
+img_path: /assets/images/post22/
 ---
 
 node.js 환경에서 FCM 보내기를 하려고 합니다.
@@ -14,9 +18,7 @@ FCM은 HTTPv1(버전)으로 기준으로 작성하였습니다.
 
 
 
-<center>
-  <img src="{{ "/assets/images/" | relative_url }}post22/1.png" alt="첫번째 사진">
-</center>
+![첫번째 사진](1.png)
 
 
 

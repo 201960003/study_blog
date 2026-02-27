@@ -3,6 +3,9 @@ layout: post
 title:  canvas 에 mouse로 그림 그리기 (2)
 date:   2024-07-13 +0900
 categories: [HTML, Javascript]
+image:
+  path: 1.png
+img_path: /assets/images/post21/
 ---
 ## 1️⃣ 선 지우기
 ```html
@@ -150,19 +153,15 @@ Javascript
 
  getCurrentDateTimeString() 함수로 이미지르 저장할때 현재시간으로 파일명을 지정할 수 있습니다.
 
- <center>
-  <img src="
-  {{ "/assets/images/" | relative_url }}post21/1.png" alt="첫번째 사진">
-</center>
+ ![첫번째 사진](
+  1.png)
 
 <br><br><br>
 
  최종 화면 이미지는 아래처럼 사진 위에 수정이 가능합니다.
 
-<center>
-  <img src="
-  {{ "/assets/images/" | relative_url }}post21/2.png" alt="두번째 사진">
-</center>
+![두번째 사진](
+  2.png)
 
 <br><br>
 

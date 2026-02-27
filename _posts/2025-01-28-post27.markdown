@@ -3,6 +3,7 @@ layout: post
 title: Pyscript를 이용해서 파이썬 코드를 웹에 적용시키기
 date: 2025-01-28 +0900
 categories: [Javascript]
+img_path: /assets/images/post27/
 ---
 
 {% include file/post27/pyscript-init.html %}

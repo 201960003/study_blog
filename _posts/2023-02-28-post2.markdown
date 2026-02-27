@@ -3,13 +3,13 @@ layout: post
 title:  javascript operator
 date:   2023-02-28 +0900
 categories: javascript
+image:
+  path: image.png
+
+img_path: /assets/images/post2/
 ---
-<!-- <center>
-  <img src="https://raw.githubusercontent.com/201960003/study_blog/main/img/post2/image.png?raw=true" alt="첫번째 사진">
-</center> -->
-<center>
-  <img src="{{ "/assets/images/" | relative_url }}post2/image.png" alt="첫번째 사진">
-</center>
+<!-- ![첫번째 사진](image.png) -->
+![첫번째 사진](image.png)
 
 
 ## 목차 

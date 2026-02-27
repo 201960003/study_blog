@@ -3,12 +3,14 @@ layout: post
 title:  How to fix 'Invalid Reuse after Initialization Failure' Error in Xcode
 date:   2023-07-17 +0900
 categories: [Flutter, Xcode]
+image:
+  path: xcode.jpeg
+
+img_path: /assets/images/post16/
 ---
 
 <!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->
-<center>
-  <img src="{{ "/assets/images/" | relative_url }}post16/xcode.jpeg" alt="main 사진">
-</center>
+![main 사진](xcode.jpeg)
 
 <br><br>
 

@@ -3,6 +3,7 @@ layout: post
 title:  Pyscript를 이용해서 Pandas, Numpy를 웹에 적용시키기
 date:   2025-01-28 +0900
 categories: [Javascript, Pyscript]
+img_path: /assets/images/post28/
 ---
 
 {% include file/post28/pyscript-demo.html %}

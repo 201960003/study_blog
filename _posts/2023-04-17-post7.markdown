@@ -3,12 +3,14 @@ layout: post
 title: How to change node verson
 date: 2023-04-17 +0900
 categories: node
+image:
+  path: nodejs.png
+
+img_path: /assets/images/post7/
 ---
 
 
-<center>
-  <img src="{{ "/assets/images/" | relative_url }}post7/nodejs.png" alt="main 사진">
-</center>
+![main 사진](nodejs.png)
 
 ## node 버전 설정하는 방법!
 

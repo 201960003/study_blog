@@ -3,12 +3,14 @@ layout: post
 title:  flutter version downgrade
 date:   2023-07-05 +0900
 categories: flutter
+image:
+  path: flutter.png
+
+img_path: /assets/images/post8/
 ---
 
 <!-- 똑같은 카테고리여서 post 8사진 그대로 가져왔음-->
-<center>
-  <img src="{{ "/assets/images/" | relative_url }}post8/flutter.png" alt="main 사진">
-</center>
+![main 사진](flutter.png)
 
 네이버지도 api를 사용하면서 플러터 버전을 업그레이드를 했더니 <code>flutter run --no-sound-null-safety</code>를 사용을 할 수 없어서 굉장히 당황했었습니다ㅠ<br>
 네이버지도 api를 사용하면 꼭 저렇게 실행을 했어야했는데 할 수 없어서 디버깅을 할 수 없었어요. 그래서 오늘은 플러터 버전을 다운그레이드 하는 방법을 적어볼까 합니다.

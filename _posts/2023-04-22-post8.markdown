@@ -3,14 +3,16 @@ layout: post
 title:  How to fix the 'The sandbox is not in sync with the Podfile.lock' error
 date:   2023-04-22 +0900
 categories: flutter
+image:
+  path: flutter.png
+
+img_path: /assets/images/post8/
 ---
 
-<center>
-  <img src="{{ "/assets/images/" | relative_url }}post8/flutter.png" alt="main 사진">
-</center>
+![main 사진](flutter.png)
 
 ## Flutter "The sandbox is not in sync with the Podfile.lock." 에러 해결 방법!
-<img src="{{ "/assets/images/" | relative_url }}post8/error.png" alt="main 사진">
+![main 사진](error.png)
 
 flutter를 다루면서 나의 스마트폰으로 ios 시뮬을 하려고 했는데 위와 같은 오류가 생겼습니다. 찾아보니 ios 시뮬을 할 때 빌드를 해줘야한다고 하네요 ㅠ 너무 번거롭다는 생각이 들지만 일단 아는 방법은 이것이니 위의 오류를 해결하는 방법을 공부해보려고 합니다.
 <br>

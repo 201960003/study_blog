@@ -3,12 +3,14 @@ layout: post
 title:  Debug Node.js Apps using Visual Studio Code
 date:   2023-02-26 +0900
 categories: javascript
+image:
+  path: 1.png
+
+img_path: /assets/images/post1/
 ---
 
 <br>
-<center>
-  <img src="{{ "/assets/images/" | relative_url }}post1/1.png" alt="첫번째 사진">
-</center>
+![첫번째 사진](1.png)
 <br>
 
 >__1. command+shift+d 또는 왼쪽 Run and debug 탭을 선택__
@@ -17,9 +19,7 @@ Add Configuration을 눌러 오른쪽 아래에 있는 Add Configuration... 버�
 <br>
 <br>
 
-<center>
-  <img src="{{ "/assets/images/" | relative_url }}post1/2.png" alt="두번째 사진">
-</center>
+![두번째 사진](2.png)
 <br>
 
 
@@ -69,9 +69,7 @@ vscode는 문자열 내부의 변수 대체를 지원 launch.json하며 다음�
 <br>
 <br>
 
-<center>
-  <img src="{{ "/assets/images/" | relative_url }}post1/3.png" alt="세번째 사진">
-</center>
+![세번째 사진](3.png)
 <br>
 
 > __3. "Attach by Process ID"로 디버깅 시작.__
@@ -80,9 +78,7 @@ vscode는 문자열 내부의 변수 대체를 지원 launch.json하며 다음�
 <br>
 <br>
 
-<center>
-  <img src="{{ "/assets/images/" | relative_url }}post1/4.png" alt="네번째 사진">
-</center>
+![네번째 사진](4.png)
 <br>
 
 > __4. 터미널에 Node.js로 js파일을 실행__
@@ -91,9 +87,7 @@ node.js로 실행해도 되지만 편리함을 위해서 nodemon.js로 js파일�
 <br>
 <br>
 
-<center>
-  <img src="{{ "/assets/images/" | relative_url }}post1/5.png" alt="다섯번째 사진">
-</center>
+![다섯번째 사진](5.png)
 <br>
 
 > __5. break point 표시__
@@ -103,9 +97,7 @@ node.js로 실행해도 되지만 편리함을 위해서 nodemon.js로 js파일�
 <br>
 <br>
 
-<center>
-  <img src="{{ "/assets/images/" | relative_url }}post1/6.png" alt="여섯번째 사진">
-</center>
+![여섯번째 사진](6.png)
 <br>
 
 > __6. 각 버튼들의 기능들__

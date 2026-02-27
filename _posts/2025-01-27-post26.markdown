@@ -3,6 +3,7 @@ layout: post
 title:  Web Speech API로 TTS 및 STT 구현하기
 date:   2025-01-27 +0900
 categories: [HTML, Javascript]
+img_path: /assets/images/post26/
 ---
 
 {% include file/post26/tts-stt.html %}
