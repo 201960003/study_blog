@@ -2,7 +2,8 @@
 layout: post
 title:  pvsm & sout
 date:   2023-07-04 +0900
-categories: Java
+categories: [App, Java]
+tags: [java]
 image:
   path: java.png
 

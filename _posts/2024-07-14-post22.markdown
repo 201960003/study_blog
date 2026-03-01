@@ -2,7 +2,8 @@
 layout: post
 title:  웹에서 FCM 보내기
 date:   2024-07-14 +0900
-categories: [HTML, FCM, Javascript]
+categories: [Web, Html]
+tags: [html, fcm, javascript]
 image:
   path: 1.png
 

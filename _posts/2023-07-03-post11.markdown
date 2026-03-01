@@ -2,7 +2,8 @@
 layout: post
 title:  StatefulWidget ElevatedButton & Switch widget
 date:   2023-07-03 +0900
-categories: flutter
+categories: [App, Flutter]
+tags: [flutter]
 image:
   path: flutter.png
 

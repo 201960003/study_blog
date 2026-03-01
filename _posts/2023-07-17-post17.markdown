@@ -2,7 +2,8 @@
 layout: post
 title:  How to fix 'Invalid Reuse after Initialization Failure' Error in Xcode
 date:   2023-07-17 +0900
-categories: [Flutter, Xcode]
+categories: [App, Flutter]
+tags: [flutter, xcode]
 image:
   path: xcode.jpeg
 

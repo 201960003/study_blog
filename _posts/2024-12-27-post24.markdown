@@ -2,7 +2,8 @@
 layout: post
 title:  div 태그의 contentediatable, background-clip 속성 알아보기
 date:   2024-12-27 +0900
-categories: [HTML, CSS]
+categories: [Web, Html]
+tags: [html, css]
 img_path: /assets/images/post24/
 ---
 

@@ -2,7 +2,8 @@
 layout: post
 title:  canvas 에 mouse로 그림 그리기 (1)
 date:   2024-07-09 +0900
-categories: [HTML, Javascript]
+categories: [Web, Html]
+tags: [html, javascript]
 img_path: /assets/images/post20/
 ---
 

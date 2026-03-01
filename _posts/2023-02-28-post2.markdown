@@ -2,7 +2,8 @@
 layout: post
 title:  javascript operator
 date:   2023-02-28 +0900
-categories: javascript
+categories: [Web, Javascript]
+tags: [javascript]
 image:
   path: image.png
 

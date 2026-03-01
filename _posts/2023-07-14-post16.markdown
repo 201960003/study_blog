@@ -2,7 +2,8 @@
 layout: post
 title:  Wrap text on overflow 해결 방법 (ellipsis, fade 등)
 date:   2023-07-14 +0900
-categories: flutter
+categories: [App, Flutter]
+tags: [flutter]
 image:
   path: flutter.png
 img_path: /assets/images/post16/

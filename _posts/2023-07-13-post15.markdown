@@ -2,7 +2,8 @@
 layout: post
 title:  키보드 올라왔을 때 생기는 오버플로우 해결방법
 date:   2023-07-13 +0900
-categories: flutter
+categories: [App, Flutter]
+tags: [flutter]
 image:
   path: flutter.png
 
