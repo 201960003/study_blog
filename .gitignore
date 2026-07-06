@@ -4,6 +4,8 @@ _site/
 .jekyll-metadata
 vendor/
 .bundle/
+__pycache__/
+*.pyc
 
 ### DS_store ###
 .DS_Store

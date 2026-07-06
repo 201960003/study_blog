@@ -1,0 +1,166 @@
+const speakButton = document.getElementById('speak-button');
+const pauseButton = document.getElementById('pause-button');
+const resumeButton = document.getElementById('resume-button');
+const stopButton = document.getElementById('stop-button');
+const ttsText = document.getElementById('tts-text');
+
+let currentSpeech = null; // 현재 진행 중인 SpeechSynthesisUtterance 객체
+
+// TTS 시작
+speakButton.addEventListener('click', () => {
+    const text = ttsText.value.trim();
+    if (!text) {
+        alert("읽을 텍스트를 입력하세요.");
+        return;
+    }
+
+    // 현재 진행 중인 TTS가 있다면 중지
+    if (window.speechSynthesis.speaking || window.speechSynthesis.paused) {
+        window.speechSynthesis.cancel();
+    }
+
+    // 새로운 TTS 시작
+    currentSpeech = new SpeechSynthesisUtterance(text);
+    currentSpeech.lang = 'ko-KR'; // 한국어 설정
+    currentSpeech.rate = 1; // 음성 속도, 0.1 ~ 10 사이의 값
+    currentSpeech.pitch = 1; // 음높이, 0 ~ 2 사이의 값
+    currentSpeech.volume = 1; // 음량, 0 ~ 1 사이의 값
+
+    // TTS가 끝날 때 버튼 상태 초기화
+    currentSpeech.onend = () => {
+        speakButton.disabled = false;
+        pauseButton.disabled = true;
+        resumeButton.disabled = true;
+        stopButton.disabled = true;
+    };
+
+    window.speechSynthesis.speak(currentSpeech);
+
+    // 버튼 상태 업데이트
+    speakButton.disabled = true;
+    pauseButton.disabled = false;
+    resumeButton.disabled = true;
+    stopButton.disabled = false;
+});
+
+// TTS 일시 중지
+pauseButton.addEventListener('click', () => {
+    if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.pause();
+        pauseButton.disabled = true;
+        resumeButton.disabled = false;
+    }
+});
+
+// TTS 다시 재생
+resumeButton.addEventListener('click', () => {
+    if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+        pauseButton.disabled = false;
+        resumeButton.disabled = true;
+    }
+});
+
+// TTS 중지
+stopButton.addEventListener('click', () => {
+    if (window.speechSynthesis.speaking || window.speechSynthesis.paused) {
+        window.speechSynthesis.cancel();
+        speakButton.disabled = false;
+        pauseButton.disabled = true;
+        resumeButton.disabled = true;
+        stopButton.disabled = true;
+    }
+});
+
+
+// STT (Speech-to-Text)
+const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+recognition.lang = 'ko-KR'; // 한국어 설정
+recognition.continuous = true; // 연속 모드 활성화
+recognition.interimResults = false; // 중간 결과 비활성화
+
+
+const startButtonRec = document.getElementById('start-record-button');
+const stopButtonRec = document.getElementById('stop-record-button');
+const recognizedText = document.getElementById('recognized-text');
+const permissionStatusSpan = document.getElementById('permission-status');
+
+
+startButtonRec.addEventListener('click', () => {
+    recognition.start();
+    startButtonRec.disabled = true;
+    stopButtonRec.disabled = false;
+});
+
+stopButtonRec.addEventListener('click', () => {
+    recognition.stop();
+    startButtonRec.disabled = false;
+    stopButtonRec.disabled = true;
+});
+
+recognition.addEventListener('result', (event) => {
+    const transcript = event.results[0][0].transcript; // 인식된 텍스트
+    recognizedText.textContent = transcript;
+});
+
+recognition.addEventListener('end', () => {
+    currentSpeech = new SpeechSynthesisUtterance(recognizedText.textContent);
+    window.speechSynthesis.speak(currentSpeech);
+    setTimeout(()=>{
+        recognizedText.textContent = '';
+    }, 1000); // 1초 후에 빈 텍스트로 업데이트
+});
+
+// 마이크 권한 확인 및 상태 업데이트
+async function checkMicrophonePermission() {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        if (stream) {
+            updateUI('granted');
+        }
+    } catch (error) {
+        updateUI('denied');
+    }
+}
+
+// UI 업데이트 함수
+function updateUI(status) {
+    if (status === 'granted') {
+        permissionStatusSpan.textContent = '허용됨';
+        permissionStatusSpan.style.color = 'green';
+        startButtonRec.disabled = false;
+        stopButtonRec.disabled = true;
+    } else if (status === 'denied') {
+        permissionStatusSpan.textContent = '거부됨';
+        permissionStatusSpan.style.color = 'red';
+        startButtonRec.disabled = true;
+        stopButtonRec.disabled = true;
+    } else {
+        permissionStatusSpan.textContent = '알 수 없음';
+        permissionStatusSpan.style.color = 'orange';
+        startButtonRec.disabled = true;
+        stopButtonRec.disabled = true;
+    }
+}
+
+// 권한 변경 감지
+async function monitorPermissionChanges() {
+    try {
+        const permissionStatus = await navigator.permissions.query({ name: 'microphone' });
+        updateUI(permissionStatus.state); // 초기 상태 설정
+
+        // 권한 변경 이벤트 리스너 등록
+        permissionStatus.onchange = () => {
+            updateUI(permissionStatus.state);
+        };
+    } catch (error) {
+        console.error('권한 상태를 확인할 수 없습니다.', error);
+        updateUI('unknown');
+    }
+}
+
+// 윈도우 로드 시 실행
+window.addEventListener('load', () => {
+    checkMicrophonePermission(); // 권한 초기 확인
+    monitorPermissionChanges(); // 권한 변경 감지
+});
