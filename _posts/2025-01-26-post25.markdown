@@ -2,7 +2,7 @@
 layout: post
 title:  스티커 추가 및 그림 그리기 기능
 date:   2025-01-26 +0900
-categories: [Web, Html]
+categories: [Web, HTML]
 tags: [html, javascript]
 img_path: /assets/images/post25/
 # image:

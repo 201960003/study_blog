@@ -26,10 +26,10 @@ description: >- # used by seo meta and the atom feed
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
-url: "https://201960003.github.io"
+url: "https://sky-not-haneul.github.io"
 
 github:
-  username: 201960003 # change to your GitHub username
+  username: sky-not-haneul # change to your GitHub username
 
 twitter:
   username: # change to your Twitter username
@@ -37,11 +37,11 @@ twitter:
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: 201960003
+  name: sky-not-haneul
   email:  # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://github.com/201960003
+    - https://github.com/sky-not-haneul
 
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
