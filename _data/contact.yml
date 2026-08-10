@@ -2,6 +2,10 @@
   icon: "fab fa-github"
   noblank: false
 
+- type: portfolio
+  icon: "fas fa-briefcase"
+  url: "https://sky-not-haneul.github.io/devportfolio/"
+
 # You can add more social links here
 # - type: twitter
 #   icon: "fab fa-twitter"
